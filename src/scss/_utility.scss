@@ -1,0 +1,34 @@
+$utilities: map-merge(
+    $utilities,
+    (
+        "position": (
+            property: position,
+            responsive: true,
+            values: static relative absolute fixed sticky,
+        ),
+        "width": (
+            property: width,
+            class: w,
+            responsive: true,
+            values: (
+                25: 25%,
+                50: 50%,
+                75: 75%,
+                100: 100%,
+                auto: auto,
+            ),
+        ),
+        "height": (
+            property: height,
+            class: h,
+            responsive: true,
+            values: (
+                25: 25%,
+                50: 50%,
+                75: 75%,
+                100: 100%,
+                auto: auto,
+            ),
+        ),
+    )
+);

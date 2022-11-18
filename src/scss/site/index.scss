@@ -1,0 +1,63 @@
+.half-cover {
+    position: relative;
+}
+
+.half-cover:after {
+    background-color: #41527d;
+    content: "";
+    display: block;
+    height: 27rem;
+    left: 0;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+#top-bar {
+    background-image: url("/src/assets/images/card-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    button {
+        min-width: 274px;
+        min-height: 48px;
+    }
+}
+
+.page-arrow {
+    .arrow-before,
+    .arrow-after {
+        color: $secondary;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+
+#nowcount + #maxcount::before,
+#nowsize + #maxsize::before {
+    content: "/";
+    margin: 0 0.25rem;
+}
+
+#dropbox {
+    height: 140px;
+    max-height: 140px;
+}
+
+.scroll-item {
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+}
+
+.btn-board {
+    padding: 12px 0;
+    width: 140px;
+    border-radius: 4px;
+    font-weight: 700;
+    line-height: 24px;
+}

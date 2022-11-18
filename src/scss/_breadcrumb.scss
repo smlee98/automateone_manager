@@ -1,0 +1,27 @@
+$navbar-height: 5rem;
+$breadcrumb-height: 3rem;
+
+nav[aria-label="breadcrumb"] {
+    height: $breadcrumb-height;
+    top: $navbar-height !important;
+    background-color: transparent;
+    z-index: 1015;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    flex-wrap: nowrap !important;
+}
+
+.breadcrumb-item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    + .breadcrumb-item {
+        &::before {
+            content: "\F285";
+            font-family: "bootstrap-icons";
+        }
+    }
+}

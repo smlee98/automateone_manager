@@ -1,0 +1,653 @@
+extends ../templates/base
+
+block contents
+    a.d-none(href="/src/view/board-detail.pug")
+    section
+        .container
+            .vstack.gap-4.py-4
+                h1.fw-bold Automation Store
+                #top-bar.card.border-0
+                    .card-body
+                        .d-flex.flex-column.flex-lg-row.justify-content-lg-between.align-items-lg-center
+                            h5.fw-bold.text-light.mb-4.mb-lg-0 함께 나눌 때 더 쉽고 빨라집니다.
+                            a.btn.btn-lg.btn-primary.fw-bold(
+                                href="/src/view/board-new.pug"
+                            )
+                                .hstack.gap-2
+                                    i.bi.bi-pencil
+                                    span Automation Store 등록
+                #search-bar.card
+                    .card-body
+                        .row.g-4
+                            .col-12.col-lg-2
+                                select#searchType.form-select.form-select-lg.h-100
+                                    option(value="all") 전체
+                                    option(value="assets") 에셋
+                                    option(value="services") 서비스
+                            .col-12.col-lg-10
+                                .position-relative
+                                    input.form-control.form-control-lg.h-100(
+                                        type="text"
+                                    )
+                                    button.btn.btn-light.rounded-circle.position-absolute.top-50.end-0.translate-middle #[i.bi.bi-search.fs-5.text-primary]
+                    #smartFilter.accordion
+                        .accordion-item
+                            h2#filterHead.accordion-header
+                                button.accordion-button.collapsed(
+                                    type="button",
+                                    data-bs-toggle="collapse",
+                                    data-bs-target="#filterBody",
+                                    aria-expanded="false",
+                                    aria-controls="filterBody"
+                                )
+                                    .hstack.gap-1
+                                        i.bi.bi-funnel
+                                        span 스마트 필터
+                            #filterBody.accordion-collapse.collapse(
+                                aria-labelledby="filterHead",
+                                data-bs-parent="#smartFilter"
+                            )
+                                .accordion-body
+                                    .vstack.gap-2
+                                        .row.gx-0.gy-2
+                                            label.col-12.col-lg-2.col-form-label.bg-light
+                                                .px-3
+                                                    span.fw-bold 분류
+                                            .col-12.col-lg-10
+                                                .ps-lg-3
+                                                    select#searchDetailType.form-select
+                                                        option(value="all") 전체
+                                                        option(value="assets") 에셋
+                                                        option(
+                                                            value="services"
+                                                        ) 서비스
+                                            label.col-12.col-lg-2.col-form-label.bg-light.fw-bold
+                                                .px-3
+                                                    span 솔루션
+                                            .col-12.col-lg-10
+                                                .hstack.flex-column.flex-lg-row.align-items-start.align-items-lg-center.gap-3.gap-lg-5.h-100.ps-lg-3
+                                                    .form-check
+                                                        input#solutionAO2.form-check-input(
+                                                            type="checkbox",
+                                                            value=""
+                                                        )
+                                                        label.form-check-label(
+                                                            for="solutionAO2"
+                                                        ) AutomateOne 2
+                                                    .form-check
+                                                        input#solutionAO3.form-check-input(
+                                                            type="checkbox",
+                                                            value=""
+                                                        )
+                                                        label.form-check-label(
+                                                            for="solutionAO3"
+                                                        ) AutomateOne 3
+                                                    .form-check
+                                                        input#solutionA2O.form-check-input(
+                                                            type="checkbox",
+                                                            value=""
+                                                        )
+                                                        label.form-check-label(
+                                                            for="solutionA2O"
+                                                        ) AI InspectorOne
+                                            label.col-12.col-lg-2.col-form-label.bg-light.fw-bold
+                                                .px-3
+                                                    span 정렬
+                                            .col-12.col-lg-10
+                                                .hstack.flex-column.flex-lg-row.align-items-start.align-items-lg-center.gap-3.gap-lg-5.h-100.ps-lg-3
+                                                    .form-check
+                                                        input#viewTypeRecent.form-check-input(
+                                                            type="radio",
+                                                            name="viewType"
+                                                        )
+                                                        label.form-check-label(
+                                                            for="viewTypeRecent"
+                                                        ) 최근 업로드 순
+                                                    .form-check
+                                                        input#viewTypeOld.form-check-input(
+                                                            type="radio",
+                                                            name="viewType"
+                                                        )
+                                                        label.form-check-label(
+                                                            for="viewTypeOld"
+                                                        ) 오래된 순
+                                                    .form-check
+                                                        input#viewTypeABC.form-check-input(
+                                                            type="radio",
+                                                            name="viewType"
+                                                        )
+                                                        label.form-check-label(
+                                                            for="viewTypeABC"
+                                                        ) 가나다 순
+                                                    .form-check
+                                                        input#viewTypeDownload.form-check-input(
+                                                            type="radio",
+                                                            name="viewType"
+                                                        )
+                                                        label.form-check-label(
+                                                            for="viewTypeDownload"
+                                                        ) 다운로드 많은 순
+                                        button.btn.btn-outline-primary.align-self-end
+                                            .hstack.gap-1.justify-content-center
+                                                i.bi.bi-arrow-clockwise.lh-1
+                                                span 전체 해제
+                .d-flex.justify-content-between.align-items-center
+                    legend 신규
+                    .page-arrow.hstack.gap-3
+                        span.arrow-before #[i.bi.bi-arrow-left-circle.fs-4]
+                        span.arrow-after #[i.bi.bi-arrow-right-circle.fs-4]
+                .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
+                    .col
+                        .card.card-item(
+                            onclick="location.href='/board-detail.html';"
+                        )
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 서비스
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                .d-flex.justify-content-between.align-items-center
+                    legend 인기
+                    .page-arrow.hstack.gap-3
+                        span.arrow-before #[i.bi.bi-arrow-left-circle.fs-4]
+                        span.arrow-after #[i.bi.bi-arrow-right-circle.fs-4]
+                .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 서비스
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                legend 전체 #[span.text-primary 16]
+                .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 서비스
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 서비스
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 서비스
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                    .col
+                        .card.card-item
+                            .card-body
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        h5.text-primary.fw-bold 에셋
+                                        .hstack.gap-2.text-muted
+                                            span 기타
+                                            .vr
+                                            span RPA
+                                    h4.fw-bold.card-title 날짜 계산기
+                                    p.card-text.text-muted Javascript를 이용한 날짜 계산 Sample Task입니다. ①초라도 안보이면 ②렇게 초조한데
+                                    .hstack.gap-2
+                                        span.badge.rounded-pill.text-bg-light #task
+                                        span.badge.rounded-pill.text-bg-light #headless
+                                        span.badge.rounded-pill.text-bg-light #script
+                                        span.badge.rounded-pill.text-bg-light #simple
+                                hr
+                                .hstack.gap-3.justify-content-end.text-muted.small
+                                    .hstack.gap-1
+                                        i.bi.bi-download
+                                        span 20
+                                    //- .hstack.gap-1
+                                    //-     i.bi.bi-chat-square-text
+                                    //-     span 2
+                button.btn.btn-lg.btn-primary.w-100.fw-bold
+                    .hstack.gap-2.justify-content-center
+                        i.bi.bi-chevron-down
+                        span 더보기

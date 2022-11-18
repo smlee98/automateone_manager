@@ -1,0 +1,15 @@
+{
+    "compress": {
+        "dead_code": true,
+        "drop_console": true,
+        "drop_debugger": false,
+        "keep_classnames": true,
+        "keep_fargs": true,
+        "keep_fnames": true,
+        "keep_infinity": true
+    },
+    "mangle": false,
+    "output": {
+        "beautify": true
+    }
+}

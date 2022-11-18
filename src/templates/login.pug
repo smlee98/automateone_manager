@@ -1,0 +1,16 @@
+doctype html
+html(lang="ko")
+    head
+        include partials/meta
+        block head
+            title= "AutomateOne Store"
+    body
+        .vstack.vw-100.vh-100
+            include partials/preloader
+            //- MAIN START ===========
+            main.flex-grow-1
+                block contents
+
+        //- SCRIPT START ===========
+        script(src="/src/js/main.js", type="module")
+        block scripts

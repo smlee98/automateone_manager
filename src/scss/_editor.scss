@@ -1,0 +1,23 @@
+$prefix: sm-;
+
+:root {
+    --ck-z-default: 100;
+    --ck-z-modal: calc(var(--ck-z-default) + 999);
+    --ck-border-radius: var(--#{$prefix}border-radius) !important;
+    --ck-color-base-border: var(--#{$prefix}border-color) !important;
+    --ck-color-focus-border: #{$input-focus-border-color} !important;
+    --ck-font-face: var(--#{$prefix}font-sans-serif) !important;
+    --ck-drop-shadow: null !important;
+}
+
+.ck-content .table {
+    width: auto;
+}
+
+.ck-focused {
+    box-shadow: 0 0 0 0.25rem #41527d40 !important;
+}
+
+.ck-editor__editable_inline {
+    min-height: 17rem;
+}

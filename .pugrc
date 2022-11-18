@@ -1,0 +1,11 @@
+{
+    "pretty": true,
+    "locals": {
+        "menuList": {
+            "Home": {
+                "title": "홈",
+                "link": "/src/view/index.pug"
+            }
+        }
+    }
+}
