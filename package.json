@@ -5,7 +5,7 @@
     "scripts": {
         "build": "npm run clean && parcel build --no-optimize --no-scope-hoist ./src/view/index.pug",
         "clean": "rimraf dist && rimraf ./.parcel-cache",
-        "dev": "npm run clean && parcel --port 8993 ./src/view/index.pug",
+        "dev": "npm run clean && parcel --port 9999 ./src/view/index.pug",
         "lint": "eslint ./**/*.js --fix && stylelint ./**/*.scss",
         "server": "node ./server.js",
         "start": "nodemon --watch ./package.json --exec npm run dev"
@@ -24,6 +24,8 @@
         "@yaireo/tagify": "^4.17.1",
         "bootstrap": "^5.2.2",
         "bootstrap-icons": "^1.10.2",
+        "chart.js": "^3.9.1",
+        "chartjs-plugin-datalabels": "^2.1.0",
         "parcel-namer-custom": "^0.2.0",
         "pretendard": "^1.3.6",
         "static-server": "^2.2.1"

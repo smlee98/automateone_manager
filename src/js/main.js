@@ -1,6 +1,6 @@
 import preloader from "./_preloader";
 import * as bootstrap from "bootstrap";
-import { checkItems } from "./_input";
+import { checkItems, favToggle } from "./_input";
 
 /* Bootstrap */
 window.bootstrap = bootstrap;
@@ -10,3 +10,4 @@ preloader();
 
 /* InputItems */
 checkItems();
+favToggle();

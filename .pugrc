@@ -1,10 +1,158 @@
 {
     "pretty": true,
     "locals": {
-        "menuList": {
-            "Home": {
-                "title": "홈",
-                "link": "/src/view/index.pug"
+        "projectMenu": {
+            "dashboard": {
+                "field": "대시보드",
+                "icon": "graph-up-arrow",
+                "menu": [
+                    {
+                        "title": "대시보드",
+                        "id": "automateone-dashboard",
+                        "contents": [
+                            {
+                                "title": "메인 대시보드",
+                                "link": "#"
+                            },
+                            {
+                                "title": "상세 대시보드",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "robot": {
+                "field": "로봇",
+                "icon": "robot",
+                "menu": [
+                    {
+                        "title": "로봇",
+                        "id": "automateone-robot",
+                        "contents": [
+                            {
+                                "title": "로봇 설정",
+                                "link": "#"
+                            },
+                            {
+                                "title": "로봇그룹 설정",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "process": {
+                "field": "프로세스",
+                "icon": "diagram-3",
+                "menu": [
+                    {
+                        "title": "프로세스",
+                        "id": "automateone-process",
+                        "contents": [
+                            {
+                                "title": "스크립트 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "첨부파일 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "프로세스 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "데이터셋 관리",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "excution": {
+                "field": "실행",
+                "icon": "play",
+                "menu": [
+                    {
+                        "title": "실행",
+                        "id": "automateone-execution",
+                        "contents": [
+                            {
+                                "title": "프로세스 실행",
+                                "link": "#"
+                            },
+                            {
+                                "title": "예약",
+                                "link": "#"
+                            },
+                            {
+                                "title": "실행 대기열",
+                                "link": "#"
+                            },
+                            {
+                                "title": "실시간 모니터링",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "stats": {
+                "field": "통계",
+                "icon": "clipboard-data",
+                "menu": [
+                    {
+                        "title": "통계",
+                        "id": "automateone-stats",
+                        "contents": [
+                            {
+                                "title": "프로세스 실행 통계",
+                                "link": "#"
+                            },
+                            {
+                                "title": "프로세스 실행 결과",
+                                "link": "#"
+                            },
+                            {
+                                "title": "알림",
+                                "link": "#"
+                            },
+                            {
+                                "title": "프로세스 총 통계",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "admin": {
+                "field": "관리",
+                "icon": "person-fill-gear",
+                "menu": [
+                    {
+                        "title": "관리",
+                        "id": "automateone-stats",
+                        "contents": [
+                            {
+                                "title": "프로세스 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "역할 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "프로젝트 분류",
+                                "link": "#"
+                            },
+                            {
+                                "title": "프로젝트 분류 권한",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
             }
         }
     }

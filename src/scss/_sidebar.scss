@@ -1,0 +1,20 @@
+#sidebar {
+    width: 5rem;
+    position: fixed;
+    top: calc($navbar-height + $breadcrumb-height);
+    left: 0;
+    height: calc(100vh - $navbar-height - $breadcrumb-height);
+
+    li.nav-item {
+        width: $sidebar-width;
+        height: $sidebar-width;
+
+        a.nav-link {
+            &:hover,
+            &.active {
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+}

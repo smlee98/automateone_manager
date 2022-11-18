@@ -1,3 +1,10 @@
+export const favToggle = () => {
+    const favicon = document.querySelector("#favProject");
+    favicon.addEventListener("click", (e) => {
+        e.target.classList.toggle("active");
+    });
+};
+
 export const checkItems = (selectAll) => {
     const tableEl = document.querySelectorAll(".table-responsive");
 

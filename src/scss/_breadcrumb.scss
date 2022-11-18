@@ -1,11 +1,18 @@
-$navbar-height: 5rem;
-$breadcrumb-height: 3rem;
-
 nav[aria-label="breadcrumb"] {
     height: $breadcrumb-height;
     top: $navbar-height !important;
     background-color: transparent;
     z-index: 1015;
+
+    #favProject {
+        color: #6c757d;
+        transition: color 0.2s ease-in-out;
+
+        &:hover,
+        &.active {
+            color: #f1e21a;
+        }
+    }
 }
 
 .breadcrumb {
