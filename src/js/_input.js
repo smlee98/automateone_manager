@@ -1,8 +1,18 @@
 export const favToggle = () => {
     const favicon = document.querySelector("#favProject");
-    favicon.addEventListener("click", (e) => {
-        e.target.classList.toggle("active");
-    });
+    favicon &&
+        favicon.addEventListener("click", (e) => {
+            e.target.classList.toggle("active");
+        });
+};
+
+export const sidebarToggle = () => {
+    const sidebar = document.querySelector(".sidebar");
+    const toggle = document.querySelector(".toggle");
+    toggle &&
+        toggle.addEventListener("click", (e) => {
+            sidebar.classList.toggle("close");
+        });
 };
 
 export const checkItems = (selectAll) => {

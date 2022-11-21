@@ -1,0 +1,12 @@
+#login-box {
+    width: 580px;
+    padding: 55px 69px 50px 69px;
+}
+
+#login-box ~ ul.list-group {
+    --#{$prefix}list-group-border-color: rgba(0, 0, 0, 0.13);
+}
+
+#register {
+    max-width: 480px;
+}

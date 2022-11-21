@@ -1,6 +1,8 @@
-section#wrapper {
-    padding: 1.5rem 3rem 1.5rem calc($breadcrumb-height + 4.5rem);
-}
+// @include mobile {
+//     section#wrapper {
+//         padding: 1.5rem 3rem !important;
+//     }
+// }
 
 #update {
     select {

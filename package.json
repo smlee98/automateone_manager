@@ -37,7 +37,7 @@
         "@popperjs/core": "^2.11.6",
         "@prettier/plugin-pug": "^2.3.0",
         "buffer": "^5.7.1",
-        "eslint": "^8.27.0",
+        "eslint": "^8.28.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-config-standard": "^17.0.0",
         "jquery": "^3.6.1",

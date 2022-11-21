@@ -1,0 +1,66 @@
+extends ../templates/login
+
+block contents
+    .container
+        article.d-flex.justify-content-center.align-items-center
+            #register.vstack.gap-4.py-5
+                img#logo.align-self-center(
+                    src="/src/assets/images/logo_login.png",
+                    alt="logo"
+                )
+                .card
+                    .card-body
+                        .vstack.gap-4
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userId") 아이디 #[sup.text-danger ●]
+                                input#userId.form-control(
+                                    type="text",
+                                    minLength="5",
+                                    maxLength="20"
+                                )
+                                small.text-muted 영문 또는 숫자만 입력할수 있고, 5~20자까지만 입력 가능합니다.
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userFirstName") 성 #[sup.text-danger ●]
+                                input#userFirstName.form-control(type="text")
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userLastName") 이름 #[sup.text-danger ●]
+                                input#userLastName.form-control(type="text")
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userId") 비밀번호 #[sup.text-danger ●]
+                                input#userPw.form-control(
+                                    type="password",
+                                    minLength="8"
+                                )
+                                small.text-muted 영문, 숫자, 특수문자(`~!@#$%^&*=_+?) 포함 8자리 이상 입력 가능합니다.
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userId") 비밀번호 확인#[sup.text-danger ●]
+                                input#userPwCheck.form-control(
+                                    type="userPwCheck"
+                                )
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userEmail") 이메일 #[sup.text-danger ●]
+                                input#userEmail.form-control(type="email")
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userPhone") 전화번호 #[sup.text-danger ●]
+                                input#userPhone.form-control(
+                                    type="number",
+                                    minLength="8",
+                                    maxLength="12"
+                                )
+                                small.text-muted '-'를 제외한 숫자 9~12자리를 입력해주세요.
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userCompany") 회사
+                                input#userCompany.form-control(type="text")
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userDept") 부서
+                                input#userDept.form-control(type="text")
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userPosition") 직책
+                                input#userPosition.form-control(type="text")
+                .hstack.gap-3
+                    a.btn.btn-lg.btn-primary.flex-grow-1(
+                        href="/src/view/login.pug"
+                    ) 등록
+                    a.btn.btn-lg.btn-secondary.flex-grow-1(
+                        href="/src/view/login.pug"
+                    ) 취소

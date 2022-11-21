@@ -1,9 +1,31 @@
 extends ../templates/base
 
+mixin procTableBody
+    tr
+        td 10234
+        td 분류없음
+        td.text-wrap Naver_뉴스_HtmlAgilityPack
+        td.text-wrap ibizbot_note
+        td.text-wrap Naver_뉴스_Http.zip
+        td 예약
+        td 2022/04/13 #[br] 11:22:33
+        td 2022/04/13 #[br] 11:22:33
+        td 2022/04/13 #[br] 11:22:33
+        td 1,394
+        td 23.23
+        td
+            span.badge.badge-gridone.status-ongoing.w-100 SUCCESS
+        td 관리자
+        td
+            a.btn.btn-sm.btn-primary.py-0(href="#")
+                .hstack.gap-1
+                    span 조회
+                    i.bi.bi-search.lh-1
+
 block contents
     +breadcrumb("샘플 프로젝트", ["대시보드"])
     section#wrapper
-        .vstack.gap-4
+        .vstack.gap-4.p-4
             //- 상단 업데이트 영역
             .d-flex.justify-content-end.align-items-center
                 .hstack.gap-3
@@ -11,7 +33,7 @@ block contents
                     #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
                         button.btn.btn-primary.rounded-circle
                             .hstack.justify-content-center
-                                i.bi.bi-arrow-clockwise.fs-5
+                                i.bi.bi-arrow-clockwise.fs-5.d-inline-flex
                         select
                             option(value="0") 자동갱신안함
                             option(value="5000") 5초
@@ -26,27 +48,194 @@ block contents
                             .col-12.col-lg-4
                                 .card.h-100
                                     .card-body
-                                        .d-flex.justify-content-between.align-items-center
-                                            h4.fw-bold 로봇
-                                            h1.fw-bold.text-primary 10
-                                        canvas#statRobotChart(
-                                            style="max-height: 10rem"
-                                        )
+                                        .vstack.gap-0.h-100
+                                            .d-flex.justify-content-between.align-items-center
+                                                h4.fw-bold 로봇
+                                                h1.fw-bold.text-primary 10
+                                            .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                                canvas#statRobotChart
                             .col-12.col-lg-4
                                 .card.h-100
                                     .card-body
-                                        span hello!
+                                        .vstack.gap-0.h-100
+                                            .d-flex.justify-content-between.align-items-center
+                                                h4.fw-bold 프로세스
+                                                h1.fw-bold.text-primary 4
+                                            .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                                canvas#statProcChart
                             .col-12.col-lg-4
                                 .card.h-100
                                     .card-body
-                                        span hello!
+                                        .vstack.gap-0.h-100
+                                            .d-flex.justify-content-between.align-items-center
+                                                h4.fw-bold 실행
+                                                h1.fw-bold.text-primary 0
+                                            .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                                span.text-muted 데이터가 존재하지 않습니다.
                         .card.h-100
                             .card-body
-                                span hello!
+                                .row.g-0.flex-grow-1
+                                    .col-12.col-lg-9
+                                        .vstack.gap-4.h-100
+                                            .d-flex.justify-content-between.align-items-center
+                                                h4.fw-bold 일별 프로세스 실행결과
+                                                span.text-muted #[i.bi.bi-calendar2-week] 2022-11-04 ~ 2022-11-18 (단위 : 건)
+                                            .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                                canvas#statWeekChart
+                                    .col-12.col-lg-3
+                                        .vstack.gap-2.h-100.justify-content-center.text-center
+                                            h5 누적 운영시간
+                                            h1.fw-bold.text-primary 32.5시간
                 .col-3
                     .card.h-100
                         .card-body
-                            span hello!
+                            .vstack.gap-4.h-100
+                                .d-flex.justify-content-between.align-items-center
+                                    .vstack.gap-1
+                                        h4.fw-bold 리소스
+                                        small.fw-bold.text-muted 리소스 정보는 자동 동기화를 지원하지 않습니다.
+                                    button.btn.btn-primary.rounded-circle.p-2
+                                        .hstack.justify-content-center
+                                            i.bi.bi-arrow-clockwise.fs-5.d-inline-flex
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        small.text-muted CPU 사용량
+                                        h4.fw-bold.text-primary.text-end 50%
+                                    .progress(style="height: 0.25rem")
+                                        .progress-bar(
+                                            role="progressbar",
+                                            style="width: 50%",
+                                            aria-valuenow="50",
+                                            aria-valuemin="0",
+                                            aria-valuemax="100"
+                                        )
+                                    small.text-muted Intel(R) Core(TM) i7-9700K CPU @ 3.60GHz
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        small.text-muted 메모리 사용량
+                                        h4.fw-bold.text-primary.text-end 75%
+                                    .progress(style="height: 0.25rem")
+                                        .progress-bar(
+                                            role="progressbar",
+                                            style="width: 75%",
+                                            aria-valuenow="75",
+                                            aria-valuemin="0",
+                                            aria-valuemax="100"
+                                        )
+                                    .hstack.gap-3
+                                        small.text-muted 총 : 7.99GB
+                                        small.text-muted 사용중 : 5.05GB
+                                        small.text-muted 사용가능 : 2.94GB
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        small.text-muted 서버 디스크 사용량
+                                        h4.fw-bold.text-primary.text-end 25%
+                                    .progress(style="height: 0.25rem")
+                                        .progress-bar(
+                                            role="progressbar",
+                                            style="width: 25%",
+                                            aria-valuenow="25",
+                                            aria-valuemin="0",
+                                            aria-valuemax="100"
+                                        )
+                                    .hstack.gap-3
+                                        small.text-muted 총 : 98GB
+                                        small.text-muted 사용중 : 1GB
+                                        small.text-muted 사용가능 : 98GB
+                                .vstack.gap-2
+                                    .d-flex.justify-content-between.align-items-center
+                                        small.text-muted 결과 디스크 사용량
+                                        h4.fw-bold.text-primary.text-end 35%
+                                    .progress(style="height: 0.25rem")
+                                        .progress-bar(
+                                            role="progressbar",
+                                            style="width: 35%",
+                                            aria-valuenow="35",
+                                            aria-valuemin="0",
+                                            aria-valuemax="100"
+                                        )
+                                    .hstack.gap-3
+                                        small.text-muted 총 : 98GB
+                                        small.text-muted 사용중 : 1GB
+                                        small.text-muted 사용가능 : 98GB
+            .card
+                .card-body
+                    .vstack.gap-4
+                        .d-flex.justify-content-between.align-items-center
+                            .hstack.gap-3
+                                h4.fw-bold 전체 프로세스 실행결과
+                                small.text-muted 해당 조회는 최근 1000건 중 상태에 따라 그 중 10건을 가져옵니다.
+                            .hstack.gap-3
+                                .form-check
+                                    input#mainProcTypeAll.form-check-input(
+                                        type="radio",
+                                        name="mainProcType",
+                                        checked=""
+                                    )
+                                    label.form-check-label(
+                                        for="mainProcTypeAll"
+                                    ) 전체
+                                .form-check
+                                    input#mainProcTypeSuccess.form-check-input(
+                                        type="radio",
+                                        name="mainProcType"
+                                    )
+                                    label.form-check-label(
+                                        for="mainProcTypeSuccess"
+                                    ) 성공
+                                .form-check
+                                    input#mainProcTypeFail.form-check-input(
+                                        type="radio",
+                                        name="mainProcType"
+                                    )
+                                    label.form-check-label(
+                                        for="mainProcTypeFail"
+                                    ) 실패
+                                .form-check
+                                    input#mainProcTypeStop.form-check-input(
+                                        type="radio",
+                                        name="mainProcType"
+                                    )
+                                    label.form-check-label(
+                                        for="mainProcTypeStop"
+                                    ) 정지
+                                .form-check
+                                    input#mainProcTypeError.form-check-input(
+                                        type="radio",
+                                        name="mainProcType"
+                                    )
+                                    label.form-check-label(
+                                        for="mainProcTypeError"
+                                    ) 오류
+                        .table-responsive
+                            table#mainProcTable.table.table-bordered
+                                thead
+                                    tr
+                                        th 실행ID
+                                        th 분류명
+                                        th 프로세스
+                                        th 로봇
+                                        th 스크립트
+                                        th 유형
+                                        th 요청시간
+                                        th 시작시간
+                                        th 종료시간
+                                        th 실행시간 #[br] (초)
+                                        th 실행시간 #[br] (분)
+                                        th 상태
+                                        th 실행자
+                                        th 상세 #[br] 결과
+                                tbody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
+                                    +procTableBody
 
 block scripts
     script(src="/src/lib/data/mainChart.js", type="module")
