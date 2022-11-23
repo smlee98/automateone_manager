@@ -1,0 +1,73 @@
+extends ../../../templates/project
+
+mixin procTableBody(index)
+    tr
+        td
+            .form-check
+                input.form-check-input.board-check(
+                    id=`check${index}`,
+                    type="checkbox",
+                    name="boardCheck",
+                    value=`check${index}`
+                ) 
+        td= index
+        td #[span 사내시스템 점검]
+        td #[span 기타]
+        td #[span 관리자]
+        td #[span 2]
+        td
+            a.btn.btn-sm.btn-primary.py-0(
+                href="/src/view/sysMngr/project/project-modify.pug"
+            )
+                .hstack.gap-1
+                    span 수정
+                    i.bi.bi-pencil.lh-1
+        td #[span 2021-07-16 17:39:21]
+
+block contents
+    +breadcrumb(["프로젝트", "프로젝트 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            h4.fw-bold 프로젝트 관리
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    input.form-control-plaintext.form-control-sm(
+                        type="text",
+                        placeholder="프로젝트명 검색"
+                    )
+                    button.btn.btn-primary.btn-icon.rounded-circle
+                        .hstack.justify-content-center
+                            i.bi.bi-search.d-inline-flex
+                .hstack.gap-3
+                    a.btn.btn-primary(
+                        href="/src/view/sysMngr/project/project-new.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg
+                            span 프로젝트 추가
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-x-lg
+                            span 프로젝트 삭제
+            .table-responsive
+                table#allProcTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    )
+                            th #[span 번호]
+                            th #[span 프로젝트명]
+                            th #[span 프로젝트 유형]
+                            th #[span 관리자]
+                            th #[span 인원]
+                            th #[span 수정]
+                            th #[span 등록일]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +procTableBody(index)
+            +pagination

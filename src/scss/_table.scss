@@ -62,6 +62,38 @@ table#fileList {
     }
 }
 
+table#allProcTable {
+    $allProcTable: (
+        1: 5%,
+        2: 6%,
+        3: 40%,
+        4: 10%,
+        5: 10%,
+        6: 10%,
+        7: 6%,
+        8: 13%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $allProcTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
 table#mainProcTable {
     $mainProcTable: (
         1: 5%,
@@ -93,6 +125,35 @@ table#mainProcTable {
         }
 
         @each $i, $percent in $mainProcTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#serverResourceTable {
+    $serverResourceTable: (
+        1: 10%,
+        2: 10%,
+        3: 10%,
+        4: 20%,
+        5: 20%,
+        6: 20%,
+        7: 10%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $serverResourceTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

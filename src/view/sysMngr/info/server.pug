@@ -1,0 +1,34 @@
+extends ../../../templates/project
+
+block contents
+    +breadcrumb(["시스템 정보", "서버 상태"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            h4.fw-bold 서버 상태
+            .table-responsive
+                table#serverResourceTable.table.table-bordered
+                    thead
+                        tr
+                            th #[span 서버명]
+                            th #[span 서버 IP]
+                            th #[span 서버 체크 시간]
+                            th #[span CPU 사용률 (%)]
+                            th #[span 메모리 사용량]
+                            th #[span 디스크 용량]
+                            th #[span 리소스 그래프]
+                    tbody
+                        tr
+                            td #[span M1]
+                            td #[span 10.10.1.148]
+                            td #[span 13:59:00]
+                            td #[span 1%]
+                            td #[span 4.3 GB]
+                            td #[span 1.1 GB]
+                            td
+                                a.btn.btn-sm.btn-primary.py-0(
+                                    href="/src/view/sysMngr/info/resource.pug"
+                                )
+                                    .hstack.gap-1
+                                        span 확인
+                                        i.bi.bi-search.lh-1
+            +pagination

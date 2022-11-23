@@ -6,20 +6,32 @@ const commaify = (value) => {
     return value == result ? result : commaify(result);
 };
 
-const getDatesStartToLast = (startDate, lastDate) => {
-    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
-    if (!(regex.test(startDate) && regex.test(lastDate)))
-        return "Not Date Format";
+const getDatesStartToLast = (count) => {
+    const offset = 1000 * 60 * 60 * 9;
     let result = [];
-    const curDate = new Date(startDate);
-    while (curDate <= new Date(lastDate)) {
+    const curDate = new Date(new Date().getTime() + offset);
+    for (let i = 0; i < count; i++) {
         const date = curDate.toISOString().split("T")[0];
         const month = date.split("-")[1];
         const day = date.split("-")[2];
         result.push(`${month}-${day}`);
-        curDate.setDate(curDate.getDate() + 1);
+        curDate.setDate(curDate.getDate() - 1);
     }
-    return result;
+    return result.reverse();
+};
+
+const getTimeStartToLast = (count) => {
+    const offset = 1000 * 60 * 60 * 9;
+    let result = [];
+    const curTime = new Date(new Date().getTime() + offset);
+    for (let i = 0; i < count; i++) {
+        const time = curTime.toISOString().split("T")[1];
+        const hour = time.split(":")[0];
+        const minute = time.split(":")[1];
+        result.push(`${hour}:${minute}`);
+        curTime.setMinutes(curTime.getMinutes() - 1);
+    }
+    return result.reverse();
 };
 
 window.charts = [];
@@ -204,7 +216,7 @@ const statProcConfig = {
 };
 
 const statWeekEl = document.getElementById("statWeekChart");
-const statWeekLabels = getDatesStartToLast("2022-11-08", "2022-11-21");
+const statWeekLabels = getDatesStartToLast(14);
 const statWeekConfig = {
     type: "bar",
     data: {
@@ -278,6 +290,168 @@ const statWeekConfig = {
     },
 };
 
+const statDiskEl = document.getElementById("statDiskChart");
+const statDiskLabel = getTimeStartToLast(10);
+const statDiskConfig = {
+    type: "line",
+    data: {
+        labels: statDiskLabel,
+        datasets: [
+            {
+                label: "My First Dataset",
+                data: [198, 198, 198, 198, 198, 198, 198, 197, 197, 197],
+                fill: false,
+                borderColor: "#41527d",
+                tension: 0.1,
+            },
+        ],
+    },
+    options: {
+        layout: {
+            padding: {
+                left: 0,
+            },
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltips: {
+                displayColors: true,
+                callbacks: {
+                    mode: "x",
+                },
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    padding: 0,
+                    beginAtZero: true,
+                },
+            },
+            y: {
+                ticks: {
+                    callback: function (value, index, ticks) {
+                        return value + "GB";
+                    },
+                    padding: 0,
+                },
+            },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    },
+};
+
+const statMemoryEl = document.getElementById("statMemoryChart");
+const statMemoryLabel = getTimeStartToLast(10);
+const statMemoryConfig = {
+    type: "line",
+    data: {
+        labels: statMemoryLabel,
+        datasets: [
+            {
+                label: "My First Dataset",
+                data: [4.4, 4.4, 4.4, 4.3, 4.35, 4.4, 4.4, 4.4, 4.4, 4.4],
+                fill: false,
+                borderColor: "#41527d",
+                tension: 0.1,
+            },
+        ],
+    },
+    options: {
+        layout: {
+            padding: {
+                left: 0,
+            },
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltips: {
+                displayColors: true,
+                callbacks: {
+                    mode: "x",
+                },
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    padding: 0,
+                    beginAtZero: true,
+                },
+            },
+            y: {
+                ticks: {
+                    callback: function (value, index, ticks) {
+                        return value + "GB";
+                    },
+                    padding: 0,
+                },
+            },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    },
+};
+
+const statCpuEl = document.getElementById("statCpuChart");
+const statCpuLabel = getTimeStartToLast(10);
+const statCpuConfig = {
+    type: "line",
+    data: {
+        labels: statCpuLabel,
+        datasets: [
+            {
+                label: "My First Dataset",
+                data: [4, 4, 4, 12, 10, 4, 6, 4, 4, 15],
+                fill: false,
+                borderColor: "#41527d",
+                tension: 0.1,
+            },
+        ],
+    },
+    options: {
+        layout: {
+            padding: {
+                left: 0,
+            },
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltips: {
+                displayColors: true,
+                callbacks: {
+                    mode: "x",
+                },
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    padding: 0,
+                    beginAtZero: true,
+                },
+            },
+            y: {
+                ticks: {
+                    callback: function (value, index, ticks) {
+                        return value + "%";
+                    },
+                    padding: 0,
+                },
+            },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    },
+};
+
 const setRobotStatChart = () => {
     const statRobotChart = new Chart(statRobotEl, statRobotConfig);
     window.charts.push(statRobotChart);
@@ -293,9 +467,27 @@ const setWeekChart = () => {
     window.charts.push(statWeekChart);
 };
 
+const setDiskChart = () => {
+    const statDiskChart = new Chart(statDiskEl, statDiskConfig);
+    window.charts.push(statDiskChart);
+};
+
+const setMemoryChart = () => {
+    const statMemoryChart = new Chart(statMemoryEl, statMemoryConfig);
+    window.charts.push(statMemoryChart);
+};
+
+const setCpuChart = () => {
+    const statCpuChart = new Chart(statCpuEl, statCpuConfig);
+    window.charts.push(statCpuChart);
+};
+
 statRobotEl && setRobotStatChart();
 statProcEl && setProcStatChart();
 statWeekEl && setWeekChart();
+statDiskEl && setDiskChart();
+statMemoryEl && setMemoryChart();
+statCpuEl && setCpuChart();
 
 window.addEventListener("resize", function () {
     const chartElems = window.charts;

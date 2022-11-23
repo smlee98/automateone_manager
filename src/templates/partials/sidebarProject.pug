@@ -1,0 +1,47 @@
+nav.sidebar.border-end.close
+    header.position-relative
+        .d-flex.align-items-center
+            span.image
+                img(src="/src/assets/images/ic_no_profile.png", alt="")
+            .vstack.gap-0.text.justify-content-center.px-1.lh-1
+                span.fw-bold 관리자
+                small.text-muted admin
+        i.bi.bi-chevron-right.toggle
+    .menu-bar
+        .menu
+            each item, key in projectMenu
+                li.nav-item
+                    a.nav-link(
+                        id=key,
+                        role="button",
+                        aria-current="page",
+                        data-bs-toggle="collapse",
+                        href=`#collapse-${key}`,
+                        aria-expanded="false"
+                    )
+                        .hstack.gap-1.align-items-center
+                            i.bi.fs-5.icon(class=`bi-${item.icon}`)
+                            span.text= item.field
+                .collapse(id=`collapse-${key}`)
+                    each list in item.menu
+                        .list-group.list-group-flush
+                            each menu in list.contents
+                                a.list-group-item(href=menu.link)= menu.title
+        hr
+        .bottom-content.text-muted
+            li.nav-item
+                a.nav-link(href="#")
+                    .hstack.gap-1.align-items-center
+                        i.bi.bi-shop.fs-5.icon
+                        span.text 스토어
+            li.nav-item
+                a.nav-link(href="#")
+                    .hstack.gap-1.align-items-center
+                        i.bi.bi-question-circle-fill.fs-5.icon
+                        span.text 도움말
+            hr
+            li.nav-item
+                a.nav-link(href="/src/view/login.pug")
+                    .hstack.gap-1.align-items-center
+                        i.bi.bi-box-arrow-right.fs-5.icon
+                        span.text 로그아웃

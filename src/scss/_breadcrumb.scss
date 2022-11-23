@@ -4,7 +4,19 @@ nav[aria-label="breadcrumb"] {
     background-color: transparent;
     z-index: 1015;
 
-    #favProject {
+    .dropdown {
+        .dropdown-toggle {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: start;
+            width: 240px;
+            max-width: 240px;
+            @include text-truncate;
+        }
+    }
+
+    #projectFav {
         color: #6c757d;
         transition: color 0.2s ease-in-out;
 

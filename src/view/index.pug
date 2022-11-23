@@ -23,7 +23,7 @@ mixin procTableBody
                     i.bi.bi-search.lh-1
 
 block contents
-    +breadcrumb("샘플 프로젝트", ["대시보드"])
+    +breadcrumb(["대시보드"])
     section#wrapper
         .vstack.gap-4.p-4
             //- 상단 업데이트 영역
@@ -31,9 +31,9 @@ block contents
                 .hstack.gap-3
                     span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
                     #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
-                        button.btn.btn-primary.rounded-circle
+                        button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
-                                i.bi.bi-arrow-clockwise.fs-5.d-inline-flex
+                                i.bi.bi-arrow-clockwise.d-inline-flex
                         select
                             option(value="0") 자동갱신안함
                             option(value="5000") 5초
@@ -94,9 +94,9 @@ block contents
                                     .vstack.gap-1
                                         h4.fw-bold 리소스
                                         small.fw-bold.text-muted 리소스 정보는 자동 동기화를 지원하지 않습니다.
-                                    button.btn.btn-primary.rounded-circle.p-2
+                                    button.btn.btn-primary.btn-icon.rounded-circle.p-2
                                         .hstack.justify-content-center
-                                            i.bi.bi-arrow-clockwise.fs-5.d-inline-flex
+                                            i.bi.bi-arrow-clockwise.d-inline-flex
                                 .vstack.gap-2
                                     .d-flex.justify-content-between.align-items-center
                                         small.text-muted CPU 사용량

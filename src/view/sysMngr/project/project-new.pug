@@ -1,0 +1,185 @@
+extends ../../../templates/project
+
+block contents
+    +breadcrumb(["프로젝트", "프로젝트 생성"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            h4.fw-bold 프로젝트 생성
+            .row.g-4
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="projectTitle") 프로젝트 명
+                        input#projectTitle.form-control(type="text")
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="projectTypeRadio") 프로젝트 유형
+                        #projectTypeRadio.btn-group(role="group")
+                            input#typeEtc.btn-check(
+                                type="radio",
+                                name="projectTypeRadio",
+                                autocomplete="off",
+                                checked
+                            )
+                            label.btn.btn-outline-primary(for="typeEtc") 기타
+                            input#typeLive.btn-check(
+                                type="radio",
+                                name="projectTypeRadio",
+                                autocomplete="off"
+                            )
+                            label.btn.btn-outline-primary(for="typeLive") 운영
+                            input#typeDev.btn-check(
+                                type="radio",
+                                name="projectTypeRadio",
+                                autocomplete="off"
+                            )
+                            label.btn.btn-outline-primary(for="typeDev") 개발
+            .vstack.gap-2
+                label.form-label.fw-bold(for="projectEditor") 설명
+                #projectEditor.editor
+            .row.row-cols-1.row-cols-lg-2.g-4.flex-grow-1
+                .col
+                    .vstack.gap-2.h-100
+                        .d-flex.justify-content-between.align-items-center
+                            label.form-label.fw-bold(for="projectEditor") 프로젝트 관리자
+                            .hstack.gap-2
+                                button.btn.btn-sm.btn-primary
+                                    .hstack.gap-2
+                                        i.bi.bi-plus-lg
+                                        span 추가
+                                button.btn.btn-sm.btn-secondary
+                                    .hstack.gap-2
+                                        i.bi.bi-x-lg
+                                        span 삭제
+                        .card.h-100
+                            ul.list-group.list-group-flush
+                                li.list-group-item
+                                    .d-flex.justify-content-between.align-items-center
+                                        .hstack.gap-2
+                                            .form-check
+                                                input#checkPerson1.form-check-input(
+                                                    type="checkbox",
+                                                    value="checkPerson1"
+                                                ) 
+                                            i.bi.bi-person-gear
+                                            span 관리자(admin)
+                                        .hstack.gap-2
+                                            i.bi.bi-envelope
+                                            span admin@gridone.co.kr
+                                        span.text-muted 2022-11-18
+                                li.list-group-item
+                                    .d-flex.justify-content-between.align-items-center
+                                        .hstack.gap-2
+                                            .form-check
+                                                input#checkPerson2.form-check-input(
+                                                    type="checkbox",
+                                                    value="checkPerson2"
+                                                ) 
+                                            i.bi.bi-person-gear
+                                            span 관리자(admin)
+                                        .hstack.gap-2
+                                            i.bi.bi-envelope
+                                            span admin@gridone.co.kr
+                                        span.text-muted 2022-11-18
+                                li.list-group-item
+                                    .d-flex.justify-content-between.align-items-center
+                                        .hstack.gap-2
+                                            .form-check
+                                                input#checkPerson3.form-check-input(
+                                                    type="checkbox",
+                                                    value="checkPerson3"
+                                                ) 
+                                            i.bi.bi-person-gear
+                                            span 관리자(admin)
+                                        .hstack.gap-2
+                                            i.bi.bi-envelope
+                                            span admin@gridone.co.kr
+                                        span.text-muted 2022-11-18
+                                li.list-group-item
+                                    .d-flex.justify-content-between.align-items-center
+                                        .hstack.gap-2
+                                            .form-check
+                                                input#checkPerson4.form-check-input(
+                                                    type="checkbox",
+                                                    value="checkPerson4"
+                                                ) 
+                                            i.bi.bi-person-gear
+                                            span 관리자(admin)
+                                        .hstack.gap-2
+                                            i.bi.bi-envelope
+                                            span admin@gridone.co.kr
+                                        span.text-muted 2022-11-18
+                                li.list-group-item
+                                    .d-flex.justify-content-between.align-items-center
+                                        .hstack.gap-2
+                                            .form-check
+                                                input#checkPerson5.form-check-input(
+                                                    type="checkbox",
+                                                    value="checkPerson5"
+                                                ) 
+                                            i.bi.bi-person-gear
+                                            span 관리자(admin)
+                                        .hstack.gap-2
+                                            i.bi.bi-envelope
+                                            span admin@gridone.co.kr
+                                        span.text-muted 2022-11-18
+                .col
+                    .vstack.gap-2.h-100
+                        .d-flex.justify-content-between.align-items-center
+                            label.form-label.fw-bold(for="projectEditor") 로봇
+                            .hstack.gap-2
+                                button.btn.btn-sm.btn-primary
+                                    .hstack.gap-2
+                                        i.bi.bi-plus-lg
+                                        span 추가
+                                button.btn.btn-sm.btn-secondary
+                                    .hstack.gap-2
+                                        i.bi.bi-x-lg
+                                        span 삭제
+                        .card.h-100
+                            ul.list-group.list-group-flush
+                                li.list-group-item
+                                    .hstack.gap-2
+                                        .form-check
+                                            input#checkRobot1.form-check-input(
+                                                type="checkbox",
+                                                value="checkRobot1"
+                                            ) 
+                                        i.bi.bi-robot
+                                        span ibizbot_01
+                                li.list-group-item
+                                    .hstack.gap-2
+                                        .form-check
+                                            input#checkRobot2.form-check-input(
+                                                type="checkbox",
+                                                value="checkRobot2"
+                                            ) 
+                                        i.bi.bi-robot
+                                        span ibizbot_02
+                                li.list-group-item
+                                    .hstack.gap-2
+                                        .form-check
+                                            input#checkRobot3.form-check-input(
+                                                type="checkbox",
+                                                value="checkRobot3"
+                                            ) 
+                                        i.bi.bi-robot
+                                        span ibizbot_03
+                                li.list-group-item
+                                    .hstack.gap-2
+                                        .form-check
+                                            input#checkRobot4.form-check-input(
+                                                type="checkbox",
+                                                value="checkRobot4"
+                                            ) 
+                                        i.bi.bi-robot
+                                        span ibizbot_04
+                                li.list-group-item
+                                    .hstack.gap-2
+                                        .form-check
+                                            input#checkRobot5.form-check-input(
+                                                type="checkbox",
+                                                value="checkRobot5"
+                                            ) 
+                                        i.bi.bi-robot
+                                        span ibizbot_05
+    script(src="/src/js/AOEditor.js", type="module")

@@ -1,7 +1,109 @@
 {
     "pretty": true,
     "locals": {
-        "projectMenu": {
+        "projectMenu":{
+            "project":{
+                "field": "프로젝트",
+                "icon": "folder2-open",
+                "menu": [
+                    {
+                        "title": "프로젝트",
+                        "id": "automateone-project",
+                        "contents": [
+                            {
+                                "title": "프로젝트 관리",
+                                "link": "/src/view/sysMngr/project/project.pug"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "info":{
+                "field": "시스템 정보",
+                "icon": "ui-checks-grid",
+                "menu": [
+                    {
+                        "title": "시스템 정보",
+                        "id": "automateone-info",
+                        "contents": [
+                            {
+                                "title": "서버 상태",
+                                "link": "/src/view/sysMngr/info/server.pug"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "robot":{
+                "field": "로봇 & 트레이너",
+                "icon": "robot",
+                "menu": [
+                    {
+                        "title": "로봇 & 트레이너",
+                        "id": "automateone-robot",
+                        "contents": [
+                            {
+                                "title": "로봇 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "로봇설정 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "트레이너 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "패치 관리",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "system":{
+                "field": "시스템",
+                "icon": "pc-display",
+                "menu": [
+                    {
+                        "title": "시스템",
+                        "id": "automateone-system",
+                        "contents": [
+                            {
+                                "title": "사용자 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "MQ Queue 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "클라우드 변수 관리",
+                                "link": "#"
+                            },
+                            {
+                                "title": "이메일 설정",
+                                "link": "#"
+                            },
+                            {
+                                "title": "시스템 설정",
+                                "link": "#"
+                            },
+                            {
+                                "title": "시스템 상태 정정",
+                                "link": "#"
+                            },
+                            {
+                                "title": "알림 메시지 관리",
+                                "link": "#"
+                            },
+                        ]
+                    }
+                ]
+            },
+        },
+        "mainMenu": {
             "dashboard": {
                 "field": "대시보드",
                 "icon": "graph-up-arrow",

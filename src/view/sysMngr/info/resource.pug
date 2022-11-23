@@ -1,0 +1,36 @@
+extends ../../../templates/project
+
+block contents
+    +breadcrumb(["시스템 정보", "서버 리소스 모니터링"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 서버 리소스 모니터링
+                a.btn.btn-secondary(href="/src/view/sysMngr/info/server.pug")
+                    .hstack.gap-2
+                        i.bi.bi-list
+                        span 목록
+            .row.row-cols-1.row-cols-lg-2.g-4
+                .col
+                    .card
+                        .card-body
+                            .vstack.gap-4.h-100
+                                h4.fw-bold 디스크 용량
+                                .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                    canvas#statDiskChart
+                .col
+                    .card
+                        .card-body
+                            .vstack.gap-4.h-100
+                                h4.fw-bold 메모리 사용량
+                                .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                    canvas#statMemoryChart
+            .card
+                .card-body
+                    .vstack.gap-4.h-100
+                        h4.fw-bold CPU 사용률
+                        .d-flex.justify-content-center.align-items-center.flex-grow-1
+                            canvas#statCpuChart
+
+block scripts
+    script(src="/src/lib/data/mainChart.js", type="module")

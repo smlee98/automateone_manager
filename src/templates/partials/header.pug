@@ -1,12 +1,27 @@
-header.border-bottom.sticky-top
+header.border-bottom.fixed-top
     nav.navbar.bg-primary.text-light.ps-4.pe-5
         .d-flex.justify-content-between.align-items-center.flex-grow-1
             a.navbar-brand(href="/src/view/index.pug") #[img#logo(src="/src/assets/images/logo.png", alt="logo")]
             .hstack.gap-3
-                .hstack.gap-1
-                    b#userId admin
-                    span#userPos (관리자)
-                a.btn.btn-light.text-primary(href="/src/view/login.pug")
+                a.btn.btn-light.text-primary(
+                    href="/src/view/sysMngr/project/project.pug"
+                )
                     .hstack.gap-2
-                        i.bi.bi-box-arrow-right
-                        span 로그아웃
+                        i.bi.bi-house
+                        span 홈
+                .dropdown
+                    button#languageButton.btn.btn-light.dropdown-toggle.text-primary(
+                        type="button",
+                        data-bs-toggle="dropdown",
+                        aria-expanded="false"
+                    )
+                        .hstack.gap-2.w-100
+                            i.bi.bi-translate
+                            span#language 한국어
+                    ul#languageChoice.dropdown-menu(aria-labelledby="lang-btn")
+                        li
+                            a.dropdown-item 한국어
+                        li
+                            a.dropdown-item English
+                        li
+                            a.dropdown-item 日本語
