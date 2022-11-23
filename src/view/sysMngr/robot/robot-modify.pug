@@ -1,0 +1,83 @@
+extends ../../../templates/project
+
+block contents
+    +breadcrumb(["로봇 & 트레이너", "로봇 수정"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 로봇 수정
+                .hstack.gap-3
+                    a.btn.btn-secondary(
+                        href="/src/view/sysMngr/robot/robot.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-list.lh-1
+                            span 목록
+                    a.btn.btn-primary(href="/src/view/sysMngr/robot/robot.pug")
+                        .hstack.gap-2
+                            i.bi.bi-save.lh-1
+                            span 저장
+            .row.g-4
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotTitle") 프로젝트 명
+                        input#robotTitle.form-control(type="text")
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotIp") 접속 IP
+                        input#robotIp.form-control(type="text")
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotStatus") 상태
+                        input#robotStatus.form-control(
+                            type="text",
+                            readonly,
+                            value="사용가능"
+                        )
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotDate") 등록일시
+                        input#robotDate.form-control(
+                            type="text",
+                            readonly,
+                            value="2022-11-23"
+                        )
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotIp") 고유 키
+                        input#robotKey.form-control(type="robotKey", readonly)
+                .col-12.col-lg-6
+                    .vstack.gap-2.h-100
+                        label.form-label.fw-bold(for="robotAuth") 승인여부
+                        .form-check.form-switch.d-flex.align-items-center.h-100
+                            input#robotAuth.form-check-input(
+                                type="checkbox",
+                                role="switch"
+                            )
+            .vstack.gap-2
+                label.form-label.fw-bold(for="robotEditor") 설명
+                #robotEditor.editor
+            hr
+            .row.row-cols-1.row-cols-lg-2.g-4
+                .col
+                    .card
+                        .card-body
+                            .vstack.gap-4.h-100
+                                h4.fw-bold 디스크 용량
+                                .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                    canvas#statDiskChart
+                .col
+                    .card
+                        .card-body
+                            .vstack.gap-4.h-100
+                                h4.fw-bold 메모리 사용량
+                                .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                    canvas#statMemoryChart
+            .card
+                .card-body
+                    .vstack.gap-4.h-100
+                        h4.fw-bold CPU 사용률
+                        .d-flex.justify-content-center.align-items-center.flex-grow-1
+                            canvas#statCpuChart
+    script(src="/src/js/AOEditor.js", type="module")
+    script(src="/src/lib/data/mainChart.js", type="module")

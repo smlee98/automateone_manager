@@ -1,0 +1,94 @@
+extends ../../../templates/project
+
+mixin robotTableBody(index)
+    tr
+        td
+            .form-check
+                input.form-check-input.board-check(
+                    id=`check${index}`,
+                    type="checkbox",
+                    name="boardCheck",
+                    value=`check${index}`
+                ) 
+        td= index
+        td #[span= `ibizbot-${index}`]
+        td #[span 사용가능]
+        td #[span -]
+        td #[span -]
+        td #[span -]
+        td #[span -]
+        td
+            .form-check.form-switch
+                input.form-check-input(
+                    id=`robot-${index}`,
+                    type="checkbox",
+                    role="switch"
+                )
+        td
+            a.btn.btn-sm.btn-primary.py-0(
+                href="/src/view/sysMngr/robot/robot-modify.pug"
+            )
+                .hstack.gap-1
+                    span 수정
+                    i.bi.bi-pencil.lh-1
+
+block contents
+    +breadcrumb(["로봇 & 트레이너", "로봇 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            h4.fw-bold 로봇 관리
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    input.form-control-plaintext.form-control-sm(
+                        type="text",
+                        placeholder="로봇명 검색"
+                    )
+                    button.btn.btn-primary.btn-icon.rounded-circle
+                        .hstack.justify-content-center
+                            i.bi.bi-search.d-inline-flex
+                .hstack.gap-3
+                    span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
+                    #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-arrow-clockwise.d-inline-flex
+                        select
+                            option(value="0") 자동갱신안함
+                            option(value="5000") 5초
+                            option(value="10000") 10초
+                            option(value="30000") 30초
+                            option(value="60000") 60초
+                    a.btn.btn-primary(
+                        href="/src/view/sysMngr/robot/robot-new.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg
+                            span 로봇 추가
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-x-lg
+                            span 로봇 삭제
+            .table-responsive
+                table#allRobotTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    )
+                            th #[span 번호]
+                            th #[span 로봇명]
+                            th #[span 상태]
+                            th #[span 설명]
+                            th #[span CPU]
+                            th #[span Memory]
+                            th #[span Disk]
+                            th #[span 승인]
+                            th #[span 수정]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +robotTableBody(index)
+            +pagination

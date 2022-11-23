@@ -1,0 +1,35 @@
+extends ../../../templates/project
+
+block contents
+    +breadcrumb(["로봇 & 트레이너", "로봇 등록"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 로봇 등록
+                .hstack.gap-3
+                    a.btn.btn-secondary(
+                        href="/src/view/sysMngr/robot/robot.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-list.lh-1
+                            span 목록
+                    a.btn.btn-primary(href="/src/view/sysMngr/robot/robot.pug")
+                        .hstack.gap-2
+                            i.bi.bi-save.lh-1
+                            span 저장
+            .row.g-4
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotTitle") 프로젝트 명
+                        input#robotTitle.form-control(type="text")
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="robotIp") 접속 IP
+                        input#robotIp.form-control(type="text")
+            .vstack.gap-2
+                label.form-label.fw-bold(for="robotIp") 고유 키
+                input#robotKey.form-control(type="robotKey", readonly)
+            .vstack.gap-2
+                label.form-label.fw-bold(for="robotEditor") 설명
+                #robotEditor.editor
+    script(src="/src/js/AOEditor.js", type="module")

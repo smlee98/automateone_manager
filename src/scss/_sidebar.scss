@@ -129,7 +129,7 @@
     header {
         .toggle {
             position: absolute;
-            top: 50%;
+            top: calc(50% + 12px);
             right: -26px;
             transform: translateY(-50%) rotate(180deg);
             height: 26px;

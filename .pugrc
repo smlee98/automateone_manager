@@ -44,11 +44,11 @@
                         "contents": [
                             {
                                 "title": "로봇 관리",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/robot/robot.pug"
                             },
                             {
-                                "title": "로봇설정 관리",
-                                "link": "#"
+                                "title": "로봇 설정 관리",
+                                "link": "/src/view/sysMngr/robot/robot-setting.pug"
                             },
                             {
                                 "title": "트레이너 관리",

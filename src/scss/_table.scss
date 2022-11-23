@@ -38,6 +38,10 @@
         color: #64686e;
         text-align: center;
     }
+
+    td {
+        background-color: #fff;
+    }
 }
 
 table#fileList {
@@ -154,6 +158,71 @@ table#serverResourceTable {
         }
 
         @each $i, $percent in $serverResourceTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#allRobotTable {
+    $allRobotTable: (
+        1: 5%,
+        2: 6%,
+        3: 15%,
+        4: 10%,
+        5: 22%,
+        6: 10%,
+        7: 10%,
+        8: 10%,
+        9: 6%,
+        10: 6%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)):not(:nth-child(5)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $allRobotTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#robotSettingTable {
+    $robotSettingTable: (
+        1: 5%,
+        2: 6%,
+        3: 25%,
+        4: 38%,
+        5: 10%,
+        6: 10%,
+        7: 6%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $robotSettingTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

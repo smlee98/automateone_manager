@@ -1,0 +1,151 @@
+extends ../../../templates/project
+
+block contents
+    +breadcrumb(["로봇 & 트레이너", "로봇 설정 상세"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 로봇 설정 상세
+                .hstack.gap-3
+                    a.btn.btn-secondary(
+                        href="/src/view/sysMngr/robot/robot-setting.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-list.lh-1
+                            span 목록
+                    a.btn.btn-primary(
+                        href="/src/view/sysMngr/robot/robot-setting.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-save.lh-1
+                            span 저장
+            .vstack.gap-2
+                label.form-label.fw-bold(for="settingTitle") 설정 명
+                input#settingTitle.form-control(type="text")
+            .vstack.gap-2
+                label.form-label.fw-bold(for="settingEditor") 메모
+                #settingEditor.editor
+            hr
+            legend 기본 설정
+            .row.row-cols-1.row-cols-lg-2.g-4.mb-4
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingSocketRead") 소켓 읽기 제한 시간(ms)
+                        input#settingSocketRead.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingSocketWrite") 소켓 쓰기 제한 시간(ms)
+                        input#settingSocketWrite.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingThreadWait") 스레드 종료 대기 제한 시간(ms)
+                        input#settingThreadWait.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingBasicSearch") 기본 검색 제한 시간(ms)
+                        input#settingBasicSearch.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingCaptchaServer") 캡차 서버 연결 정보
+                        input#settingCaptchaServer.form-control(type="text")
+            legend 모바일
+            .row.row-cols-1.row-cols-lg-2.g-4.mb-4
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingOrderWait") 명령 수행후 대기시간(ms)
+                        input#settingOrderWait.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingOcrSearch") OCR 확장 검색
+                        select#settingOcrSearch.form-select
+                            option(value="false") False
+                            option(value="true") True
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingRelayPort") Relay 포트
+                        input#settingRelayPort.form-control(type="number")
+            legend 데스크탑
+            .row.row-cols-1.row-cols-lg-2.g-4.mb-4
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingStringWait") 문자열 자간 대기시간(ms)
+                        input#settingStringWait.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingStepUpload") 스텝업로드 이미지 크기(%)
+                        select#settingStepUpload.form-select
+                            option(value="13") 13%
+                            option(value="25") 25%
+                            option(value="33") 33%
+                            option(value="50") 50%
+                            option(value="67") 67%
+                            option(value="75") 75%
+                            option(value="80") 80%
+                            option(value="90") 90%
+                            option(value="100") 100%
+                            option(value="110") 110%
+                            option(value="125") 125%
+                            option(value="150") 150%
+                            option(value="175") 175%
+                            option(value="200") 200%
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingScreenWait") 스크린 캡쳐 지연시간(ms)
+                        input#settingScreenWait.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingScript") 전체 스크립트 최대 수행시간(s) (0 : 무제한)
+                        input#settingScript.form-control(type="number")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingCaptureType") 스크린 캡쳐 방식
+                        select#settingCaptureType.form-select
+                            option(value="RawAPI") RawAPI
+                            option(value="CSAPI") CSAPI
+                            option(value="PrtScr") PrtScr
+                            option(value="Capture H/W") Capture H/W
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingCaptchaBoard") 캡쳐 보드 IP
+                        input#settingCaptchaBoard.form-control(type="text")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingScreenImage") 스크린 이미지 저장
+                        select#settingScreenImage.form-select
+                            option(value="false") False
+                            option(value="true") True
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingResultSave") 실행 결과 저장
+                        select#settingResultSave.form-select
+                            option(value="false") False
+                            option(value="true") True
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingResultEncrypt") 실행 결과 암호화
+                        select#settingResultEncrypt.form-select
+                            option(value="false") False
+                            option(value="true") True
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingLimitInput") 실행중 입력 제한
+                        select#settingLimitInput.form-select
+                            option(value="false") False
+                            option(value="true") True
+            legend 라이선스 체크
+            .row.row-cols-1.row-cols-lg-2.g-4
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingCheckType") 체크 방식
+                        select#settingCheckType.form-select
+                            option(value="local") 로컬 파일
+                            option(value="server") 서버
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingLicenseIp") 라이선스 서버 IP
+                        input#settingLicenseIp.form-control(type="text")
+                .col
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="settingLicensePort") 라이선스 서버 포트
+                        input#settingLicensePort.form-control(type="number")
+    script(src="/src/js/AOEditor.js", type="module")

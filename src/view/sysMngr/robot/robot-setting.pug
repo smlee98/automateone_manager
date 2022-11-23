@@ -1,0 +1,95 @@
+extends ../../../templates/project
+
+mixin robotSettingTableBody(index)
+    tr
+        td
+            .form-check
+                input.form-check-input.board-check(
+                    id=`check${index}`,
+                    type="checkbox",
+                    name="boardCheck",
+                    value=`check${index}`
+                ) 
+        td= index
+        td #[span= `로봇설정#${index}`]
+        td #[span -]
+        td #[span 2021-06-14 15:40:15]
+        td #[span CONF1_ROBOT]
+        td
+            a.btn.btn-sm.btn-primary.py-0(
+                href="/src/view/sysMngr/robot/robot-setting-modify.pug"
+            )
+                .hstack.gap-1
+                    span 수정
+                    i.bi.bi-pencil.lh-1
+
+block contents
+    +breadcrumb(["로봇 & 트레이너", "로봇 설정 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 로봇 설정 관리
+                .btn-group(role="group")
+                    input#settingTypeAo2.btn-check(
+                        type="radio",
+                        name="settingType",
+                        autocomplete="off",
+                        checked=""
+                    )
+                    label.btn.btn-outline-primary(for="settingTypeAo2") AO2 로봇 설정
+                    input#settingTypeAo3.btn-check(
+                        type="radio",
+                        name="settingType",
+                        autocomplete="off"
+                    )
+                    label.btn.btn-outline-primary(for="settingTypeAo3") AO3 로봇 설정
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    input.form-control-plaintext.form-control-sm(
+                        type="text",
+                        placeholder="설정명 검색"
+                    )
+                    button.btn.btn-primary.btn-icon.rounded-circle
+                        .hstack.justify-content-center
+                            i.bi.bi-search.d-inline-flex
+                .hstack.gap-3
+                    span.text-muted 기본설정 : -
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-arrow-clockwise.lh-1
+                            span 기본설정 초기화
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-check-lg.lh-1
+                            span 기본설정으로 등록
+                    a.btn.btn-primary(
+                        href="/src/view/sysMngr/robot/robot-setting-new.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg.lh-1
+                            span 설정 추가
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-x-lg.lh-1
+                            span 설정 삭제
+            .table-responsive
+                table#robotSettingTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    )
+                            th #[span 번호]
+                            th #[span 설정명]
+                            th #[span 메모]
+                            th #[span 수정일]
+                            th #[span 파일명]
+                            th #[span 설정 입력]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +robotSettingTableBody(index)
+            +pagination
