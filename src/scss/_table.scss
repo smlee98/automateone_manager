@@ -84,12 +84,6 @@ table#allProcTable {
             text-align: center;
         }
 
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         @each $i, $percent in $allProcTable {
             &:nth-child(#{$i}) {
                 width: $percent;
@@ -122,12 +116,6 @@ table#mainProcTable {
             text-align: center;
         }
 
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         @each $i, $percent in $mainProcTable {
             &:nth-child(#{$i}) {
                 width: $percent;
@@ -150,12 +138,6 @@ table#serverResourceTable {
     th,
     td {
         text-align: center;
-
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
 
         @each $i, $percent in $serverResourceTable {
             &:nth-child(#{$i}) {
@@ -185,12 +167,6 @@ table#allRobotTable {
             text-align: center;
         }
 
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         @each $i, $percent in $allRobotTable {
             &:nth-child(#{$i}) {
                 width: $percent;
@@ -216,13 +192,27 @@ table#robotSettingTable {
             text-align: center;
         }
 
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         @each $i, $percent in $robotSettingTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#allTrainerTable {
+    $allTrainerTable: (
+        1: 5%,
+        2: 6%,
+        3: 44%,
+        4: 45%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        @each $i, $percent in $allTrainerTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

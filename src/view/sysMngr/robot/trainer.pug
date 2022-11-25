@@ -1,0 +1,52 @@
+extends ../../../templates/project
+
+mixin robotTableBody(index)
+    tr
+        td
+            .form-check
+                input.form-check-input.board-check(
+                    id=`check${index}`,
+                    type="checkbox",
+                    name="boardCheck",
+                    value=`check${index}`
+                ) 
+        td= index
+        td #[span 관리자]
+        td #[span 사용가능]
+
+block contents
+    +breadcrumb(["로봇 & 트레이너", "트레이너 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.p-4
+            h4.fw-bold 트레이너 관리
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    input.form-control-plaintext.form-control-sm(
+                        type="text",
+                        placeholder="사용자 검색"
+                    )
+                    button.btn.btn-primary.btn-icon.rounded-circle
+                        .hstack.justify-content-center
+                            i.bi.bi-search.d-inline-flex
+                button.btn.btn-secondary
+                    .hstack.gap-2
+                        i.bi.bi-x-lg
+                        span 연결 해제
+            .table-responsive
+                table#allTrainerTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    )
+                            th #[span 번호]
+                            th #[span 사용자]
+                            th #[span 로봇 상태]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +robotTableBody(index)
+            +pagination

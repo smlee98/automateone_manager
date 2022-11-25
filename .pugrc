@@ -52,11 +52,11 @@
                             },
                             {
                                 "title": "트레이너 관리",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/robot/trainer.pug"
                             },
                             {
                                 "title": "패치 관리",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/robot/patch.pug"
                             }
                         ]
                     }
