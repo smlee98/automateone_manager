@@ -26,7 +26,7 @@ mixin robotSettingTableBody(index)
 block contents
     +breadcrumb(["로봇 & 트레이너", "로봇 설정 관리"], "main")
     section#wrapper
-        .vstack.gap-4.p-4
+        .vstack.gap-4.px-5.py-4
             .d-flex.justify-content-between.align-items-center
                 h4.fw-bold 로봇 설정 관리
                 .btn-group(role="group")
@@ -58,10 +58,10 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-arrow-clockwise.lh-1
                             span 기본설정 초기화
-                    button.btn.btn-secondary
+                    button.btn.btn-primary
                         .hstack.gap-2
                             i.bi.bi-check-lg.lh-1
-                            span 기본설정으로 등록
+                            span 기본설정 등록
                     a.btn.btn-primary(
                         href="/src/view/sysMngr/robot/robot-setting-new.pug"
                     )

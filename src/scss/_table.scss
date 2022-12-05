@@ -68,14 +68,14 @@ table#fileList {
 
 table#allProcTable {
     $allProcTable: (
-        1: 5%,
-        2: 6%,
-        3: 40%,
+        1: 4%,
+        2: 5%,
+        3: 43%,
         4: 10%,
         5: 10%,
         6: 10%,
         7: 6%,
-        8: 13%,
+        8: 12%,
     );
 
     th,
@@ -149,11 +149,11 @@ table#serverResourceTable {
 
 table#allRobotTable {
     $allRobotTable: (
-        1: 5%,
-        2: 6%,
+        1: 4%,
+        2: 5%,
         3: 15%,
         4: 10%,
-        5: 22%,
+        5: 24%,
         6: 10%,
         7: 10%,
         8: 10%,
@@ -175,12 +175,32 @@ table#allRobotTable {
     }
 }
 
+table#allTrainerTable {
+    $allTrainerTable: (
+        1: 4%,
+        2: 6%,
+        3: 45%,
+        4: 45%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        @each $i, $percent in $allTrainerTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
 table#robotSettingTable {
     $robotSettingTable: (
-        1: 5%,
-        2: 6%,
+        1: 4%,
+        2: 5%,
         3: 25%,
-        4: 38%,
+        4: 40%,
         5: 10%,
         6: 10%,
         7: 6%,
@@ -200,19 +220,53 @@ table#robotSettingTable {
     }
 }
 
-table#allTrainerTable {
-    $allTrainerTable: (
-        1: 5%,
-        2: 6%,
-        3: 44%,
-        4: 45%,
+table#patchRobotTable {
+    $patchRobotTable: (
+        1: 4%,
+        2: 5%,
+        3: 15%,
+        4: 10%,
+        5: 10%,
+        6: 10%,
+        7: 23%,
+        8: 10%,
+        9: 7%,
+        10: 6%,
     );
 
     th,
     td {
-        text-align: center;
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
 
-        @each $i, $percent in $allTrainerTable {
+        @each $i, $percent in $patchRobotTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#allUserTable {
+    $allUserTable: (
+        1: 5%,
+        2: 15%,
+        3: 23%,
+        4: 23%,
+        5: 10%,
+        6: 12%,
+        7: 6%,
+        8: 6%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(2)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $allUserTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

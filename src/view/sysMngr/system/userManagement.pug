@@ -1,0 +1,75 @@
+extends ../../../templates/project
+
+mixin userTableBody(index)
+    tr
+        td= index
+        td
+            .hstack.gap-2.justify-content-between.align-items-center
+                span= `user${index}`
+                button.btn.btn-sm.btn-secondary.py-0
+                    .hstack.gap-1
+                        span 수정
+                        i.bi.bi-pencil.lh-1
+        td #[span 사용자]
+        td #[span= `user${index}@gridone.co.kr`]
+        td
+            .hstack.gap-2.justify-content-center.align-items-center
+                span.alert-gridone.status-ongoing
+                span ACTIVE
+        td #[span 2022-10-20 11:22:33]
+        td
+            button.btn.btn-sm.btn-primary.py-0(
+                data-bs-toggle="modal",
+                data-bs-target="#pwCheckModal"
+            )
+                .hstack.gap-1
+                    span 변경
+                    i.bi.bi-pencil.lh-1
+        td
+            button.btn.btn-sm.btn-primary.py-0(
+                data-bs-toggle="modal",
+                data-bs-target="#statChangeModal"
+            )
+                .hstack.gap-1
+                    span 변경
+                    i.bi.bi-pencil.lh-1
+
+block contents
+    +breadcrumb(["시스템", "사용자 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 사용자 관리
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    input.form-control-plaintext.form-control-sm(
+                        type="text",
+                        placeholder="아이디 검색"
+                    )
+                    button.btn.btn-primary.btn-icon.rounded-circle
+                        .hstack.justify-content-center
+                            i.bi.bi-search.d-inline-flex
+                .hstack.gap-2
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-git
+                            span GIT 사용자 생성
+                    button.btn.btn-primary
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg
+                            span 사용자 추가
+            .table-responsive
+                table#allUserTable.table.table-bordered
+                    thead
+                        tr
+                            th #[span 번호]
+                            th #[span 아이디]
+                            th #[span 이름]
+                            th #[span 이메일]
+                            th #[span 상태]
+                            th #[span 최종 접속일]
+                            th #[span 비밀번호 #[br] 변경]
+                            th #[span 상태 변경]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +userTableBody(index)
+            +pagination

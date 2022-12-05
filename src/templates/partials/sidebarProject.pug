@@ -45,3 +45,16 @@ nav.sidebar.border-end.close
                     .hstack.gap-1.align-items-center
                         i.bi.bi-box-arrow-right.fs-5.icon
                         span.text 로그아웃
+
+script.
+    const setAttributes = (el, attrs) => {
+        for (var key in attrs) {
+            el.setAttribute(key, attrs[key]);
+        }
+    };
+
+    const personEl = document.querySelectorAll("#collapse-system .list-group-item")[0];
+    setAttributes(personEl, {
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#personCheckModal",
+    });

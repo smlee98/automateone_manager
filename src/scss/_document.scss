@@ -149,3 +149,47 @@ legend {
         color: #b1b1b1;
     }
 }
+
+// badge
+.alert-gridone {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50rem;
+    display: inline-block;
+
+    &.status-done {
+        background-color: #5d7ed8;
+        color: #fff;
+    }
+    &.status-ongoing {
+        background-color: #14b860;
+        color: #fff;
+    }
+    &.status-delay {
+        background-color: #f69246;
+        color: #fff;
+    }
+    &.status-error {
+        background-color: #e64c2e;
+        color: #fff;
+    }
+    &.status-act-done {
+        border: 2px solid #5d7ed8;
+        background-color: #fff;
+        color: #5d7ed8;
+    }
+    &.status-act-ongoing {
+        border: 2px solid #14b860;
+        background-color: #fff;
+        color: #14b860;
+    }
+    &.status-schedule {
+        background-color: #b1b1b1;
+        color: #fff;
+    }
+    &.status-stand {
+        border: 2px solid #b1b1b1;
+        background-color: #fff;
+        color: #b1b1b1;
+    }
+}
