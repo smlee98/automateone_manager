@@ -1,0 +1,61 @@
+extends ../../../templates/project
+
+mixin userTableBody(index)
+    tr
+        td
+            .form-check
+                input.form-check-input.board-check(
+                    id=`check${index}`,
+                    type="checkbox",
+                    name="boardCheck",
+                    value=`check${index}`
+                ) 
+        td= index
+        td #[span= `variable${index}`]
+        td #[span 그리드원|BrityWorks/이든티엔에스/인지소프트|UiPath/Automation Anywhere/소프토모티브]
+        td #[span String]
+        td #[span ReadAndWrite]
+
+block contents
+    +breadcrumb(["시스템", "클라우드 변수 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 클라우드 변수 관리
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    input.form-control-plaintext.form-control-sm(
+                        type="text",
+                        placeholder="변수 이름 검색"
+                    )
+                    button.btn.btn-primary.btn-icon.rounded-circle
+                        .hstack.justify-content-center
+                            i.bi.bi-search.d-inline-flex
+                .hstack.gap-2
+                    button.btn.btn-success
+                        .hstack.gap-2
+                            i.bi.bi-file-earmark-spreadsheet
+                            span 엑셀 다운로드
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-x-lg
+                            span 데이터 삭제
+            .table-responsive
+                table#cloudVariablesTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    )
+                            th #[span 번호]
+                            th #[span 변수명]
+                            th #[span 값]
+                            th #[span 변수타입]
+                            th #[span 수정여부]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +userTableBody(index)
+            +pagination

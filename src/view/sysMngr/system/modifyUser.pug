@@ -1,0 +1,93 @@
+extends ../../../templates/project
+
+mixin userTableBody(index)
+    tr
+        td= index
+        td
+            .hstack.gap-2.justify-content-between.align-items-center
+                span= `user${index}`
+                button.btn.btn-sm.btn-secondary.py-0
+                    .hstack.gap-1
+                        span 수정
+                        i.bi.bi-pencil.lh-1
+        td #[span 사용자]
+        td #[span= `user${index}@gridone.co.kr`]
+        td
+            .hstack.gap-2.justify-content-center.align-items-center
+                span.alert-gridone.status-ongoing
+                span ACTIVE
+        td #[span 2022-10-20 11:22:33]
+        td
+            button.btn.btn-sm.btn-primary.py-0(
+                data-bs-toggle="modal",
+                data-bs-target="#pwCheckModal"
+            )
+                .hstack.gap-1
+                    span 변경
+                    i.bi.bi-pencil.lh-1
+        td
+            button.btn.btn-sm.btn-primary.py-0(
+                data-bs-toggle="modal",
+                data-bs-target="#statChangeModal"
+            )
+                .hstack.gap-1
+                    span 변경
+                    i.bi.bi-pencil.lh-1
+
+block contents
+    +breadcrumb(["시스템", "사용자 정보 수정"], "main")
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 사용자 정보 수정
+            .card
+                .card-body
+                    .row.row-cols-1.row-cols-lg-2.g-4
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userId") 아이디 #[sup.text-danger ●]
+                                input#userId.form-control(
+                                    type="text",
+                                    minLength="5",
+                                    maxLength="20",
+                                    readonly
+                                )
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userFirstName") 성 #[sup.text-danger ●]
+                                input#userFirstName.form-control(type="text")
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userLastName") 이름 #[sup.text-danger ●]
+                                input#userLastName.form-control(type="text")
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userEmail") 이메일 #[sup.text-danger ●]
+                                input#userEmail.form-control(type="email")
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userPhone") 전화번호 #[sup.text-danger ●]
+                                input#userPhone.form-control(
+                                    type="number",
+                                    minLength="8",
+                                    maxLength="12"
+                                )
+                                small.text-muted '-'를 제외한 숫자 9~12자리를 입력해주세요.
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userCompany") 회사
+                                input#userCompany.form-control(type="text")
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userDept") 부서
+                                input#userDept.form-control(type="text")
+                        .col
+                            .vstack.gap-2
+                                label.form-label.fw-bold(for="userPosition") 직책
+                                input#userPosition.form-control(type="text")
+            .hstack.justify-content-end.gap-3
+                a.btn.btn-board.btn-outline-secondary(
+                    href="/src/view/sysMngr/system/userManagement.pug"
+                ) 취소
+                a.btn.btn-board.btn-primary(
+                    href="/src/view/sysMngr/system/userManagement.pug"
+                ) 등록

@@ -1,0 +1,20 @@
+// fullcalendar
+script(src="/node_modules/fullcalendar/main.js")
+
+// popup
+script.
+    const isChrome = navigator.userAgent.split(" ").find((el) => el.startsWith("Chrome"));
+    const browserVersion = isChrome.split("/")[1] ?? null;
+    browserVersion && document.documentElement.setAttribute("data-browser-version", browserVersion);
+
+    function chooseExcludeSchedule() {
+        const screenWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        const screenHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        const width = 1920;
+        const height = 1080;
+        const top = (screenHeight - height) / 2;
+        const left = (screenWidth - width) / 2;
+
+        return window.open(`/popup/chooseExcludeSchedule.html`, "영업일 선택", `fullscreen=yes,location=no,menubar=no,toolbar=no,resizable=no,width=${width},height=${height},top=${top},left=${left}`);
+    }

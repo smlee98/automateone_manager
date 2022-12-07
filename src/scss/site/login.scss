@@ -1,3 +1,9 @@
+@include mobile {
+    #login-box {
+        width: auto !important;
+    }
+}
+
 #login-box {
     width: 580px;
     padding: 55px 69px 50px 69px;

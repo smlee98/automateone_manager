@@ -1,0 +1,44 @@
+extends ../../../templates/project
+
+mixin alarmMsgTableBody(index, type, msgCode, title)
+    tr
+        td #[span= `${index}`]
+        td #[span= type]
+        td #[span= msgCode]
+        td #[span= title]
+        td
+            .form-check.form-switch
+                input.form-check-input(
+                    id=`switch${index}`,
+                    type="checkbox",
+                    role="switch",
+                    checked=""
+                )
+
+block contents
+    +breadcrumb(["시스템", "알람 메시지 관리"], "main")
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 알람 메시지 관리
+            .table-responsive
+                table#alarmMsgTable.table.table-bordered
+                    thead
+                        tr
+                            th #[span 번호]
+                            th #[span 타입]
+                            th #[span Message Code]
+                            th #[span Title]
+                            th #[span 알람사용]
+                    tbody
+                        +alarmMsgTableBody("1","ROBOT","ROBOT_CONNECT","로봇이 연결되었습니다.")
+                        +alarmMsgTableBody("2","ROBOT","ROBOT_CONNECTED_UNREGISTERED","미등록 로봇 연결시도")
+                        +alarmMsgTableBody("3","ROBOT","ROBOTE_CONNECTED_UNAPPROVED","미승인 로봇 연결시도")
+                        +alarmMsgTableBody("4","ROBOT","ROBOT_CONNECTED_UNAPPROVED_IP","미승인 IP 로봇 연결시도")
+                        +alarmMsgTableBody("5","ROBOT","ROBOT_DISCONNECT","로봇 연결해제")
+                        +alarmMsgTableBody("6","PROCESS","EXECUTE_FILE_NOT_FOUND","스크립트 파일을 찾을 수 없음")
+                        +alarmMsgTableBody("7","EXECUTION","EXECUTE_ERROR","RPA 자동 실행중 오류가 발생하였습니다.")
+                        +alarmMsgTableBody("8","EXECUTION","EXECUTE_FAIL","RPA 자동 실행중 스크립트가 실패하였습니다.")
+                        +alarmMsgTableBody("9","SCHEDULE","MANAGER_SCHEDULE_WAIT","예약작업이 현재 실행대기중이므로 다음 실행주기까지 실행하지 않습니다.")
+                        +alarmMsgTableBody("10","SCHEDULE","MANAGER_SCHEDULE_SKIP","예약작업을 건너뛰었습니다.")
+                        +alarmMsgTableBody("11","SCHEDULE","MANAGER_SCHEDULE_QUEUE","예약된 프로세스가 실행대기열에 등록되었습니다.")
+                        +alarmMsgTableBody("12","EXECUTION","EXECUTE_EXCLUSION","실행 제외 일정에 있는 예약 입니다.")

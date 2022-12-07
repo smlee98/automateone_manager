@@ -298,7 +298,7 @@ const statDiskConfig = {
         labels: statDiskLabel,
         datasets: [
             {
-                label: "My First Dataset",
+                label: "디스크 용량",
                 data: [198, 198, 198, 198, 198, 198, 198, 197, 197, 197],
                 fill: false,
                 borderColor: "#41527d",
@@ -316,10 +316,12 @@ const statDiskConfig = {
             legend: {
                 display: false,
             },
-            tooltips: {
-                displayColors: true,
+            tooltip: {
                 callbacks: {
-                    mode: "x",
+                    label: function (value, index, ticks) {
+                        const label = `${value.dataset.label} : ${value.raw}GB`;
+                        return label;
+                    },
                 },
             },
         },
@@ -352,7 +354,7 @@ const statMemoryConfig = {
         labels: statMemoryLabel,
         datasets: [
             {
-                label: "My First Dataset",
+                label: "메모리 사용량",
                 data: [4.4, 4.4, 4.4, 4.3, 4.35, 4.4, 4.4, 4.4, 4.4, 4.4],
                 fill: false,
                 borderColor: "#41527d",
@@ -370,10 +372,12 @@ const statMemoryConfig = {
             legend: {
                 display: false,
             },
-            tooltips: {
-                displayColors: true,
+            tooltip: {
                 callbacks: {
-                    mode: "x",
+                    label: function (value, index, ticks) {
+                        const label = `${value.dataset.label} : ${value.raw}GB`;
+                        return label;
+                    },
                 },
             },
         },
@@ -406,7 +410,7 @@ const statCpuConfig = {
         labels: statCpuLabel,
         datasets: [
             {
-                label: "My First Dataset",
+                label: "CPU 사용률",
                 data: [4, 4, 4, 12, 10, 4, 6, 4, 4, 15],
                 fill: false,
                 borderColor: "#41527d",
@@ -424,10 +428,12 @@ const statCpuConfig = {
             legend: {
                 display: false,
             },
-            tooltips: {
-                displayColors: true,
+            tooltip: {
                 callbacks: {
-                    mode: "x",
+                    label: function (value, index, ticks) {
+                        const label = `${value.dataset.label} : ${value.raw}%`;
+                        return label;
+                    },
                 },
             },
         },

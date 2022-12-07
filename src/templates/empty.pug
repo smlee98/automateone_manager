@@ -1,5 +1,3 @@
-include mixins/items
-
 doctype html
 html(lang="ko")
     head
@@ -8,16 +6,9 @@ html(lang="ko")
             title= "AutomateOne Manager"
     body
         include partials/preloader
-
-        //- HEADER START ===========
-        include partials/header
-        //- MAIN START ===========
-        main
-            include partials/sidebarProject
+        // MAIN START ===========
+        main.d-flex.flex-column
             block contents
-
-        //- MODAL START ===========
-        include partials/modal
 
         //- SCRIPT START ===========
         include partials/default-script

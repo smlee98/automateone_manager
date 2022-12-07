@@ -72,7 +72,7 @@
                         "contents": [
                             {
                                 "title": "사용자 관리",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/system/userManagement.pug"
                             },
                             {
                                 "title": "MQ Queue 관리",
@@ -80,23 +80,23 @@
                             },
                             {
                                 "title": "클라우드 변수 관리",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/system/cloudVariables.pug"
                             },
                             {
                                 "title": "이메일 설정",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/system/emailManagement.pug"
                             },
                             {
                                 "title": "시스템 설정",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/system/systemManagement.pug"
                             },
                             {
                                 "title": "시스템 상태 정정",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/system/correctState.pug"
                             },
                             {
                                 "title": "알림 메시지 관리",
-                                "link": "#"
+                                "link": "/src/view/sysMngr/system/alarmMsg.pug"
                             },
                         ]
                     }

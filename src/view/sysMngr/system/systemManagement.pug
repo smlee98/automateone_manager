@@ -1,0 +1,263 @@
+extends ../../../templates/project
+
+mixin scheduleTableBody(index)
+    tr
+        td
+            .form-check
+                input.form-check-input.board-check(
+                    id=`check${index}`,
+                    type="checkbox",
+                    name="boardCheck",
+                    value=`check${index}`
+                ) 
+        td #[span= `group${index}`]
+        td #[span= `project${index}`]
+        td #[span 2022-04-16 12:34:56]
+        td
+            button.btn.btn-sm.btn-primary.py-0(
+                onclick="chooseExcludeSchedule()"
+            )
+                .hstack.gap-1
+                    span 관리
+                    i.bi.bi-pencil.lh-1
+
+block contents
+    +breadcrumb(["시스템", "시스템 설정"], "main")
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 시스템 설정
+                button.btn.btn-primary
+                    .hstack.gap-2
+                        i.bi.bi-save.lh-1
+                        span 저장
+            .card
+                .card-body
+                    .vstack.gap-4
+                        .hstack.gap-2
+                            h4.fw-bold 결과파일 저장
+                            small.text-muted 실행 결과 자동 정리 작업은 01:00에 수행됩니다. 무제한 저장 설정시 0으로 저장해 주시기 바랍니다.
+                        .row.g-4
+                            .col-12.col-lg-6
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="resultSaveRadio"
+                                    ) 저장여부
+                                    #resultSaveRadio.btn-group(role="group")
+                                        input#typeSave.btn-check(
+                                            type="radio",
+                                            name="resultSaveRadio",
+                                            autocomplete="off",
+                                            checked
+                                        )
+                                        label.btn.btn-outline-primary(
+                                            for="typeSave"
+                                        ) 저장
+                                        input#typeNoSave.btn-check(
+                                            type="radio",
+                                            name="resultSaveRadio",
+                                            autocomplete="off"
+                                        )
+                                        label.btn.btn-outline-primary(
+                                            for="typeNoSave"
+                                        ) 저장안함
+                            .col-12.col-lg-6
+                                .vstack.gap-2
+                                    .hstack.justify-content-between
+                                        label.form-label.fw-bold(
+                                            for="savePeriod"
+                                        ) 저장기간(일)
+                                        button.btn.btn-sm.btn-secondary 결과파일 즉시 정리
+                                    input#savePeriod.form-control(
+                                        type="number",
+                                        min="0"
+                                    )
+            .card
+                .card-body
+                    .vstack.gap-4
+                        h4.fw-bold 라이선스 정보
+                        .row.g-4
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="trainerUseCount"
+                                    ) 트레이너 사용수
+                                    input#trainerUseCount.form-control-plaintext(
+                                        type="number",
+                                        value="50",
+                                        readonly
+                                    )
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="trainerUseCount"
+                                    ) 동시로봇 연결수
+                                    input#robotConcurrentCount.form-control-plaintext(
+                                        type="number",
+                                        value="50",
+                                        readonly
+                                    )
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="trainerUseCount"
+                                    ) 동시실행 연결수
+                                    input#executeConcurrentCount.form-control-plaintext(
+                                        type="number",
+                                        value="50",
+                                        readonly
+                                    )
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(for="usePeriod") 사용기간
+                                    input#usePeriod.form-control-plaintext(
+                                        type="text",
+                                        value="2021-11-09 00:00:00 ~ 2023-12-31 23:59:59",
+                                        readonly
+                                    )
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="managerVersion"
+                                    ) 버전
+                                    input#managerVersion.form-control-plaintext(
+                                        type="text",
+                                        value="AutomateOne 3.0 ibizbot Manager",
+                                        readonly
+                                    )
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="managerBuild"
+                                    ) 빌드 번호
+                                    input#managerBuild.form-control-plaintext(
+                                        type="text",
+                                        value="3.600.10.6.20220701",
+                                        readonly
+                                    )
+            .card
+                .card-body
+                    .vstack.gap-4
+                        h4.fw-bold 문자열 암호화
+                        .row.g-4
+                            .col-12.col-lg-6
+                                .vstack.gap-2
+                                    .hstack.justify-content-between
+                                        label.form-label.fw-bold(
+                                            for="jasyptInput"
+                                        ) 입력
+                                        button.btn.btn-sm.btn-primary 변환
+                                    input#jasyptInput.form-control(type="text")
+                            .col-12.col-lg-6
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="jasyptOutput"
+                                    ) 결과
+                                    input#jasyptOutput.form-control-plaintext(
+                                        type="text",
+                                        value="ENC(L+nNTE2SYxezMXFV1uGf3w==)",
+                                        readonly
+                                    )
+            .card
+                .card-body
+                    .vstack.gap-4
+                        h4.fw-bold 스크립트 키
+                        .row.g-4
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="effectivenessCheckRadio"
+                                    ) 유효성 체크
+                                    #effectivenessCheckRadio.btn-group(
+                                        role="group"
+                                    )
+                                        input#effectivenessUse.btn-check(
+                                            type="radio",
+                                            name="effectivenessCheckRadio",
+                                            autocomplete="off",
+                                            checked
+                                        )
+                                        label.btn.btn-outline-primary(
+                                            for="effectivenessUse"
+                                        ) 사용
+                                        input#effectivenessNoUse.btn-check(
+                                            type="radio",
+                                            name="effectivenessCheckRadio",
+                                            autocomplete="off"
+                                        )
+                                        label.btn.btn-outline-primary(
+                                            for="effectivenessNoUse"
+                                        ) 사용안함
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    label.form-label.fw-bold(
+                                        for="localEncryptionRadio"
+                                    ) 로컬 암호화 키 사용
+                                    #localEncryptionRadio.btn-group(
+                                        role="group"
+                                    )
+                                        input#localEncryptionUse.btn-check(
+                                            type="radio",
+                                            name="localEncryptionRadio",
+                                            autocomplete="off",
+                                            checked
+                                        )
+                                        label.btn.btn-outline-primary(
+                                            for="localEncryptionUse"
+                                        ) 사용
+                                        input#localEncryptionNoUse.btn-check(
+                                            type="radio",
+                                            name="localEncryptionRadio",
+                                            autocomplete="off"
+                                        )
+                                        label.btn.btn-outline-primary(
+                                            for="localEncryptionNoUse"
+                                        ) 사용안함
+                            .col-12.col-lg-4
+                                .vstack.gap-2
+                                    .hstack.justify-content-between
+                                        label.form-label.fw-bold(
+                                            for="encryptionKey"
+                                        ) 암호화 키
+                                        .hstack.gap-2
+                                            button.btn.btn-sm.btn-primary 키확인
+                                            button.btn.btn-sm.btn-secondary 랜덤키 생성
+                                    input#encryptionKey.form-control(
+                                        type="text"
+                                    )
+            .card
+                .card-body
+                    .vstack.gap-4
+                        .hstack.justify-content-between
+                            h4.fw-bold 실행 제외 일정 그룹목록
+                            .hstack.gap-2
+                                button.btn.btn-sm.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#excludeScheduleModal"
+                                )
+                                    .hstack.gap-2
+                                        i.bi.bi-plus-lg.lh-1
+                                        span 추가
+                                button.btn.btn-sm.btn-secondary
+                                    .hstack.gap-2
+                                        i.bi.bi-x-lg.lh-1
+                                        span 삭제
+                        .table-responsive
+                            table#excludeScheduleTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                )
+                                        th #[span 그룹명]
+                                        th #[span 적용 프로젝트]
+                                        th #[span 생성일]
+                                        th #[span 제외일 관리]
+                                tbody
+                                    - for (let index = 1; index <= 10; index++)
+                                        +scheduleTableBody(index)
+                        +pagination

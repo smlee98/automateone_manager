@@ -273,3 +273,91 @@ table#allUserTable {
         }
     }
 }
+
+table#cloudVariablesTable {
+    $cloudVariablesTable: (
+        1: 5%,
+        2: 6%,
+        3: 24%,
+        4: 35%,
+        5: 15%,
+        6: 15%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $cloudVariablesTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#excludeScheduleTable {
+    $excludeScheduleTable: (
+        1: 5%,
+        2: 39%,
+        3: 38%,
+        4: 12%,
+        5: 6%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        @each $i, $percent in $excludeScheduleTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#correctStateTable {
+    $correctStateTable: (
+        1: 5%,
+        2: 32%,
+        3: 31%,
+        4: 12%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        @each $i, $percent in $correctStateTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#alarmMsgTable {
+    $alarmMsgTable: (
+        1: 5%,
+        2: 21%,
+        3: 34%,
+        4: 34%,
+        5: 6%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $alarmMsgTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}

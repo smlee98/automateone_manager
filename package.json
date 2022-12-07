@@ -40,6 +40,7 @@
         "eslint": "^8.28.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-config-standard": "^17.0.0",
+        "fullcalendar": "^5.11.3",
         "jquery": "^3.6.1",
         "nodemon": "^2.0.20",
         "parcel": "^2.8.0",
@@ -52,7 +53,7 @@
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "parcel-namer-custom": {
-        "main.js$": "js/main.[type]",
+        "gridone.js$": "js/gridone.[type]",
         "styles.scss$": "css/styles.[type]",
         "favicon.ico$": "favicon.[type]",
         ".scss$": "css/[name].[type]",
