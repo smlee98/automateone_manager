@@ -98,7 +98,7 @@ table#mainProcTable {
         2: 6%,
         3: 12%,
         4: 8%,
-        5: 15%,
+        5: 14%,
         6: 4%,
         7: 7%,
         8: 7%,
@@ -107,7 +107,7 @@ table#mainProcTable {
         11: 6%,
         12: 6%,
         13: 6%,
-        14: 5%,
+        14: 6%,
     );
 
     th,
@@ -355,6 +355,55 @@ table#alarmMsgTable {
         }
 
         @each $i, $percent in $alarmMsgTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#mainRobotTable {
+    $mainRobotTable: (
+        1: 5%,
+        2: 15%,
+        3: 15%,
+        4: 10%,
+        5: 25%,
+        6: 10%,
+        7: 10%,
+        8: 10%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(2)):not(:nth-child(5)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $mainRobotTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#robotGroupTable {
+    $robotGroupTable: (
+        1: 4%,
+        2: 6%,
+        3: 25%,
+        4: 35%,
+        5: 20%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $robotGroupTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

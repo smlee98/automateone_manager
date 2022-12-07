@@ -1,7 +1,7 @@
-extends ../../../templates/project
+extends ../../templates/base
 
 block contents
-    +breadcrumb(["로봇 & 트레이너", "로봇 수정"], "main")
+    +breadcrumb(["로봇", "로봇 수정"])
     section#wrapper
         .vstack.gap-4.px-5.py-4
             .d-flex.justify-content-between.align-items-center
@@ -46,14 +46,6 @@ block contents
                     .vstack.gap-2
                         label.form-label.fw-bold(for="robotIp") 고유 키
                         input#robotKey.form-control(type="robotKey", readonly)
-                .col-12.col-lg-6
-                    .vstack.gap-2.h-100
-                        label.form-label.fw-bold(for="robotAuth") 승인여부
-                        .form-check.form-switch.d-flex.align-items-center.h-100
-                            input#robotAuth.form-check-input(
-                                type="checkbox",
-                                role="switch"
-                            )
             .vstack.gap-2
                 label.form-label.fw-bold(for="robotEditor") 설명
                 #robotEditor.editor

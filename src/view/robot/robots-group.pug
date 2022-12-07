@@ -1,0 +1,85 @@
+extends ../../templates/base
+
+mixin robotTableBody(index)
+    tr
+        td= index
+        td
+            .hstack.justify-content-between.align-items-center
+                span= `ibizbot-${index}`
+                a.btn.btn-sm.btn-secondary.py-0(
+                    href="/src/view/robot/robots-modify.pug"
+                )
+                    .hstack.gap-1
+                        span 수정
+                        i.bi.bi-pencil.lh-1
+        td #[span= `group-${index}`]
+        td #[span 사용가능]
+        td #[span -]
+        td #[span -]
+        td #[span -]
+        td #[span -]
+
+block contents
+    +breadcrumb(["로봇", "로봇그룹"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 로봇그룹
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-3
+                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                        input.form-control-plaintext.form-control-sm(
+                            type="text",
+                            placeholder="그룹명 검색"
+                        )
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-search.d-inline-flex
+                    button.btn.btn-success
+                        .hstack.gap-2
+                            i.bi.bi-file-earmark-spreadsheet
+                            span 엑셀 다운로드
+                .hstack.gap-3
+                    button.btn.btn-primary
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg
+                            span 추가
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-x-lg
+                            span 삭제
+            .table-responsive
+                table#robotGroupTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    )
+                            th #[span 번호]
+                            th #[span 그룹명]
+                            th #[span 설명]
+                            th #[span 수정일]
+                    tbody
+                        tr
+                            td
+                                .form-check
+                                    input#board1.form-check-input.board-check(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="board1"
+                                    )
+                            td #[span 1]
+                            td
+                                .hstack.justify-content-between.align-items-center
+                                    span CNR22010_I_02
+                                    a.btn.btn-sm.btn-secondary.py-0(
+                                        href="/src/view/robot/robots-group-modify.pug"
+                                    )
+                                        .hstack.gap-1
+                                            span 수정
+                                            i.bi.bi-pencil.lh-1
+                            td #[span 관공서 지급심사 활용자료 확보]
+                            td #[span 2022-02-22 16:57:22]

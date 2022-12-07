@@ -1,0 +1,68 @@
+extends ../../templates/base
+
+mixin robotTableBody(index)
+    tr
+        td= index
+        td
+            .hstack.justify-content-between.align-items-center
+                span= `ibizbot-${index}`
+                a.btn.btn-sm.btn-secondary.py-0(
+                    href="/src/view/robot/robots-modify.pug"
+                )
+                    .hstack.gap-1
+                        span 수정
+                        i.bi.bi-pencil.lh-1
+        td #[span= `group-${index}`]
+        td #[span 사용가능]
+        td #[span -]
+        td #[span -]
+        td #[span -]
+        td #[span -]
+
+block contents
+    +breadcrumb(["로봇", "로봇 설정"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 로봇 설정
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-3
+                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                        input.form-control-plaintext.form-control-sm(
+                            type="text",
+                            placeholder="로봇명 검색"
+                        )
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-search.d-inline-flex
+                    button.btn.btn-success
+                        .hstack.gap-2
+                            i.bi.bi-file-earmark-spreadsheet
+                            span 엑셀 다운로드
+                .hstack.gap-3
+                    span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
+                    #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-arrow-clockwise.d-inline-flex
+                        select
+                            option(value="0") 자동갱신안함
+                            option(value="5000") 5초
+                            option(value="10000") 10초
+                            option(value="30000") 30초
+                            option(value="60000") 60초
+            .table-responsive
+                table#mainRobotTable.table.table-bordered
+                    thead
+                        tr
+                            th #[span 번호]
+                            th #[span 로봇명]
+                            th #[span 로봇그룹]
+                            th #[span 상태]
+                            th #[span 설명]
+                            th #[span CPU]
+                            th #[span Memory]
+                            th #[span Disk]
+                    tbody
+                        - for (let index = 1; index <= 10; index++)
+                            +robotTableBody(index)
+            +pagination

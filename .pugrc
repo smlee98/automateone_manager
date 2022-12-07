@@ -114,12 +114,8 @@
                         "contents": [
                             {
                                 "title": "메인 대시보드",
-                                "link": "#"
+                                "link": "/src/view/index.pug"
                             },
-                            {
-                                "title": "상세 대시보드",
-                                "link": "#"
-                            }
                         ]
                     }
                 ]
@@ -134,11 +130,11 @@
                         "contents": [
                             {
                                 "title": "로봇 설정",
-                                "link": "#"
+                                "link": "/src/view/robot/robots.pug"
                             },
                             {
                                 "title": "로봇그룹 설정",
-                                "link": "#"
+                                "link": "/src/view/robot/robots-group.pug"
                             }
                         ]
                     }
