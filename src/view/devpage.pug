@@ -1,0 +1,269 @@
+extends ../templates/base
+
+block contents
+    +breadcrumb(["개발자 페이지"], "main")
+    section#wrapper
+        .px-5.py-4
+            .row.g-4
+                .col-4
+                    .hstack.gap-2.mb-3
+                        img(src="/src/assets/images/ic_home.png")
+                        span.d-block.fw-bold.lh-1 Color Scheme
+                    span.d-block.fs-5.fw-bold.text-primary #41527d (Primary)
+                    span.d-block.fs-5.fw-bold.text-secondary #595959 (Secondary)
+                    span.d-block.fs-5.fw-bold.text-dark #212529 (Dark)
+                    span.d-block.fs-5.fw-bold.text-light.bg-dark #f7f7f7 (Light)
+                    hr
+                    .row.mt-2
+                        .col-12
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Checkbox & Radio
+                        .col
+                            .form-check
+                                input#flexCheck.form-check-input(
+                                    type="checkbox",
+                                    value=""
+                                )
+                                label.form-check-label(for="flexCheck") checkbox
+                            .form-check
+                                input#flexCheckChecked.form-check-input(
+                                    type="checkbox",
+                                    value="",
+                                    checked=""
+                                )
+                                label.form-check-label(for="flexCheckChecked") checked chkbox
+                            .form-check.form-check-lg
+                                input#flexCheck1.form-check-input(
+                                    type="checkbox",
+                                    value=""
+                                )
+                                label.form-check-label(for="flexCheck1") checkbox
+                            .form-check.form-check-lg
+                                input#flexCheckChecked2.form-check-input(
+                                    type="checkbox",
+                                    value="",
+                                    checked=""
+                                )
+                                label.form-check-label(for="flexCheckChecked2") checked chkbox
+                        .col
+                            .form-check
+                                input#flexRadio1.form-check-input(
+                                    type="radio",
+                                    name="flexRadio"
+                                )
+                                label.form-check-label(for="flexRadio1") radio
+                            .form-check
+                                input#flexRadio2.form-check-input(
+                                    type="radio",
+                                    name="flexRadio",
+                                    checked=""
+                                )
+                                label.form-check-label(for="flexRadio2") checked radio
+                            .form-check.form-check-lg
+                                input#flexRadio3.form-check-input(
+                                    type="radio",
+                                    name="flexRadio"
+                                )
+                                label.form-check-label(for="flexRadio3") radio
+                            .form-check.form-check-lg
+                                input#flexRadio4.form-check-input(
+                                    type="radio",
+                                    name="flexRadio",
+                                    checked=""
+                                )
+                                label.form-check-label(for="flexRadio4") checked radio
+                .col-8
+                    .bg-white.h-100.w-100.rounded-3.p-4
+                        .d-flex.flex-column.justify-content-center.h-100.w-100
+                            .fs-2.fw-bold Gridone 그리드원 1234567890 프리텐다드 Bold
+                            .fs-2 Gridone 그리드원 1234567890 프리텐다드 Bold
+                .col-4
+                    hr
+                    .row
+                        .col
+                            .vstack.gap-3
+                                .hstack.gap-2
+                                    img(src="/src/assets/images/ic_home.png")
+                                    span.d-block.fw-bold.lh-1 Text
+                                p.mb-0.text-primary .text-primary
+                                p.mb-0.text-secondary .text-secondary
+                                p.mb-0.text-success .text-success
+                                p.mb-0.text-danger .text-danger
+                                p.mb-0.text-warning.bg-dark .text-warning
+                                p.mb-0.text-info .text-info
+                                p.mb-0.text-light.bg-dark .text-light
+                                p.mb-0.text-dark .text-dark
+                                p.mb-0.text-body .text-body
+                                p.mb-0.text-muted .text-muted
+                        .col
+                            .vstack.gap-3
+                                .hstack.gap-2
+                                    img(src="/src/assets/images/ic_home.png")
+                                    span.d-block.fw-bold.lh-1 Link
+                                a.d-block.link-primary(href="#") Primary link
+                                a.d-block.link-secondary(href="#") Secondary link
+                                a.d-block.link-success(href="#") Success link
+                                a.d-block.link-danger(href="#") Danger link
+                                a.d-block.link-warning.bg-dark(href="#") Warning link
+                                a.d-block.link-info(href="#") Info link
+                                a.d-block.link-light.bg-dark(href="#") Light link
+                                a.d-block.link-dark(href="#") Dark link
+                                a.d-block.plain-link(href="#") Plain Link
+                    hr
+                    .row
+                        .col
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Input
+                            input.form-control(type="text")
+                        .col
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Select
+                            select.form-select
+                                option(value="") 선택
+                                option(value="value1") value1
+                                option(value="value2") value2
+                                option(value="value3") value3
+                    hr
+                    .hstack.gap-2.mb-3
+                        img(src="/src/assets/images/ic_home.png")
+                        span.d-block.fw-bold.lh-1 Range
+                    input#customRange1.form-range(type="range")
+                .col-8.vstack.gap-3
+                    .hstack.gap-2.mb-3
+                        img(src="/src/assets/images/ic_home.png")
+                        span.d-block.fw-bold.lh-1 Button
+                    .hstack.gap-1
+                        button.btn.btn-primary(type="button") Primary
+                        button.btn.btn-secondary(type="button") Secondary
+                        button.btn.btn-success(type="button") Success
+                        button.btn.btn-danger(type="button") Danger
+                        button.btn.btn-warning(type="button") Warning
+                        button.btn.btn-info(type="button") Info
+                        button.btn.btn-light(type="button") Light
+                        button.btn.btn-dark(type="button") Dark
+                    .hstack.gap-1
+                        button.btn.btn-outline-primary(type="button") Primary
+                        button.btn.btn-outline-secondary(type="button") Secondary
+                        button.btn.btn-outline-success(type="button") Success
+                        button.btn.btn-outline-danger(type="button") Danger
+                        button.btn.btn-outline-warning(type="button") Warning
+                        button.btn.btn-outline-info(type="button") Info
+                        button.btn.btn-outline-light(type="button") Light
+                        button.btn.btn-outline-dark(type="button") Dark
+                    .hstack.gap-1
+                        button.btn.btn-primary(type="button", disabled="") Primary
+                        button.btn.btn-secondary(type="button", disabled="") Button
+                        button.btn.btn-outline-primary(
+                            type="button",
+                            disabled=""
+                        ) Primary
+                        button.btn.btn-outline-secondary(
+                            type="button",
+                            disabled=""
+                        ) Button
+                    hr
+                    .hstack.gap-2.mb-3
+                        img(src="/src/assets/images/ic_home.png")
+                        span.d-block.fw-bold.lh-1 Badge
+                    .hstack.gap-1
+                        span.badge.badge-gridone.status-done 완료
+                        span.badge.badge-gridone.status-ongoing 진행중
+                        span.badge.badge-gridone.status-delay 지연
+                        span.badge.badge-gridone.status-error 오류
+                        span.badge.badge-gridone.status-act-done 조치완료
+                        span.badge.badge-gridone.status-act-ongoing 조치중
+                        span.badge.badge-gridone.status-schedule 예정
+                        span.badge.badge-gridone.status-stand 대기
+                    hr
+                    .row.row-cols-2
+                        .col
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Switch
+                            .form-check.form-switch
+                                input#flexSwitchCheck.form-check-input(
+                                    type="checkbox",
+                                    role="switch"
+                                )
+                                label.form-check-label(for="flexSwitchCheck") switch checkbox input
+                            .form-check.form-switch
+                                input#flexSwitchCheckChecked.form-check-input(
+                                    type="checkbox",
+                                    role="switch",
+                                    checked=""
+                                )
+                                label.form-check-label(
+                                    for="flexSwitchCheckChecked"
+                                ) Checked switch checkbox input
+                            .form-check.form-switch
+                                input#flexSwitchCheckDisabled.form-check-input(
+                                    type="checkbox",
+                                    role="switch",
+                                    disabled=""
+                                )
+                                label.form-check-label(
+                                    for="flexSwitchCheckDisabled"
+                                ) Disabled switch checkbox input
+                            .form-check.form-switch
+                                input#flexSwitchCheckCheckedDisabled.form-check-input(
+                                    type="checkbox",
+                                    role="switch",
+                                    checked="",
+                                    disabled=""
+                                )
+                                label.form-check-label(
+                                    for="flexSwitchCheckCheckedDisabled"
+                                ) Disabled checked switch checkbox input
+                        .col
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Table
+                            .table-responsive
+                                table.table.small.table-bordered.table-sm.table-hover(
+                                    style="min-width: auto"
+                                )
+                                    thead
+                                        tr
+                                            th(scope="col") 1열 제목
+                                            th(scope="col") 2열 제목
+                                    tbody
+                                        tr
+                                            td 홍길동
+                                            td 아무개
+                                        tr
+                                            td #[button.btn.btn-sm.py-0.btn-primary Table Button]
+                                            td #[button.btn.btn-sm.py-0.btn-secondary Table Button]
+                    hr
+                    .row
+                        .col
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Popup
+                            .row.row-cols-1.gx-4.gy-2.mb-3
+                                .col
+                                    button.btn.btn-primary.w-100(
+                                        onclick="chooseExcludeSchedule()"
+                                    ) 영업일 선택
+                            .hstack.gap-2.mb-3
+                                img(src="/src/assets/images/ic_home.png")
+                                span.d-block.fw-bold.lh-1 Modal
+                            .row.row-cols-1.gx-4.gy-2
+                                .col
+                                    button.btn.btn-primary.w-100(
+                                        data-bs-toggle="modal",
+                                        data-bs-target="#loadingModal"
+                                    ) 로딩 모달
+                        .col
+                            .d-flex.flex-column.h-100
+                                .hstack.gap-2.mb-3
+                                    img(src="/src/assets/images/ic_home.png")
+                                    span.d-block.fw-bold.lh-1 Card
+                                .card.flex-grow-1
+                                    .card-header
+                                        h5.card-title 카드 제목
+                                        h6.card-subtitle.text-muted 카드 부제목
+                                    .card-body
+                                        p.card-text 카드 내용은 다음과 같이 입력됩니다.

@@ -23,8 +23,8 @@ block contents
                 label.form-label.fw-bold(for="settingTitle") 설정 명
                 input#settingTitle.form-control(type="text")
             .vstack.gap-2
-                label.form-label.fw-bold(for="settingEditor") 메모
-                #settingEditor.editor
+                label.form-label.fw-bold(for="settingExplain") 메모
+                textarea#settingExplain.form-control(rows="5")
             hr
             legend 기본 설정
             .row.row-cols-1.row-cols-lg-2.g-4.mb-4
@@ -148,4 +148,3 @@ block contents
                     .vstack.gap-2
                         label.form-label.fw-bold(for="settingLicensePort") 라이선스 서버 포트
                         input#settingLicensePort.form-control(type="number")
-    script(src="/src/js/AOEditor.js", type="module")

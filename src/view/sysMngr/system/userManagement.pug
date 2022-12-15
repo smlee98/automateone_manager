@@ -4,14 +4,7 @@ mixin userTableBody(index)
     tr
         td= index
         td
-            .hstack.justify-content-between.align-items-center
-                span= `user${index}`
-                a.btn.btn-sm.btn-secondary.py-0(
-                    href="/src/view/sysMngr/system/modifyUser.pug"
-                )
-                    .hstack.gap-1
-                        span 수정
-                        i.bi.bi-pencil.lh-1
+            span= `user${index}`
         td #[span 사용자]
         td #[span= `user${index}@gridone.co.kr`]
         td
@@ -34,6 +27,13 @@ mixin userTableBody(index)
             )
                 .hstack.gap-1
                     span 변경
+                    i.bi.bi-pencil.lh-1
+        td
+            a.btn.btn-sm.btn-secondary.py-0(
+                href="/src/view/sysMngr/system/modifyUser.pug"
+            )
+                .hstack.gap-1
+                    span 수정
                     i.bi.bi-pencil.lh-1
 
 block contents
@@ -71,6 +71,7 @@ block contents
                             th #[span 최종 접속일]
                             th #[span 비밀번호 #[br] 변경]
                             th #[span 상태 변경]
+                            th #[span 수정]
                     tbody
                         - for (let index = 1; index <= 10; index++)
                             +userTableBody(index)

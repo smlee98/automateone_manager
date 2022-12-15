@@ -1,0 +1,37 @@
+extends ../../templates/base
+
+mixin robotItems(index)
+    .col
+        .card
+            .card-body
+                .hstack.gap-2
+                    .form-check
+                        input.form-check-input(
+                            id=`checkbox${index}`,
+                            type="checkbox"
+                        )
+                    span= `ibizbot-${index}`
+
+block contents
+    +breadcrumb(["로봇", "로봇그룹 등록"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            .hstack.justify-content-between
+                h4.fw-bold 로봇그룹 등록
+                .hstack.gap-3
+                    a.btn.btn-secondary(
+                        href="/src/view/robot/robots-group.pug"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-list.lh-1
+                            span 목록
+                    a.btn.btn-primary(href="/src/view/robot/robots-group.pug")
+                        .hstack.gap-2
+                            i.bi.bi-save.lh-1
+                            span 저장
+            .vstack.gap-2
+                label.form-label.fw-bold(for="robotGroupTitle") 로봇 그룹명
+                input#settingrobotGroupTitle.form-control(type="text")
+            .vstack.gap-2
+                label.form-label.fw-bold(for="settingRobotGroupExplain") 설명
+                textarea#settingRobotGroupExplain.form-control(rows="5")

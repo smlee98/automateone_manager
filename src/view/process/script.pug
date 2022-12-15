@@ -1,35 +1,16 @@
 extends ../../templates/base
 
-mixin robotTableBody(index)
-    tr
-        td= index
-        td
-            .hstack.justify-content-between.align-items-center
-                span= `ibizbot-${index}`
-                a.btn.btn-sm.btn-secondary.py-0(
-                    href="/src/view/robot/robots-modify.pug"
-                )
-                    .hstack.gap-1
-                        span 수정
-                        i.bi.bi-pencil.lh-1
-        td #[span= `group-${index}`]
-        td #[span 사용가능]
-        td #[span -]
-        td #[span -]
-        td #[span -]
-        td #[span -]
-
 block contents
-    +breadcrumb(["로봇", "로봇그룹 설정"])
+    +breadcrumb(["프로세스", "스크립트 관리"])
     section#wrapper
         .vstack.gap-4.px-5.py-4
-            h4.fw-bold 로봇그룹 설정
+            h4.fw-bold 스크립트 관리
             .d-flex.justify-content-between.align-items-center
                 .hstack.gap-3
                     .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
                         input.form-control-plaintext.form-control-sm(
                             type="text",
-                            placeholder="그룹명 검색"
+                            placeholder="스크립트명 검색"
                         )
                         button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
@@ -38,19 +19,21 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-file-earmark-spreadsheet
                             span 엑셀 다운로드
-                .hstack.gap-3
-                    a.btn.btn-primary(
-                        href="/src/view/robot/robots-group-new.pug"
-                    )
+                .hstack.gap-2
+                    button.btn.btn-secondary
+                        .hstack.gap-2
+                            i.bi.bi-git
+                            span GIT 스크립트 동기화
+                    button.btn.btn-primary
                         .hstack.gap-2
                             i.bi.bi-plus-lg
-                            span 로봇그룹 추가
+                            span 스크립트 추가
                     button.btn.btn-secondary
                         .hstack.gap-2
                             i.bi.bi-x-lg
-                            span 로봇그룹 삭제
+                            span 스크립트 삭제
             .table-responsive
-                table#robotGroupTable.table.table-bordered
+                table#manageScriptTable.table.table-bordered
                     thead
                         tr
                             th
@@ -59,11 +42,12 @@ block contents
                                         type="checkbox",
                                         name="boardCheck",
                                         value="checkAll"
-                                    )
+                                    ) 
                             th #[span 번호]
-                            th #[span 그룹명]
-                            th #[span 설명]
-                            th #[span 수정일]
+                            th #[span 스크립트명]
+                            th #[span GIT URL]
+                            th #[span 버전]
+                            th #[span 등록일]
                             th #[span 수정]
                     tbody
                         tr
@@ -75,13 +59,14 @@ block contents
                                         value="board1"
                                     )
                             td #[span 1]
-                            td #[span CNR22010_I_02]
-                            td #[span 관공서 지급심사 활용자료 확보]
+                            td #[span 디지털마케팅팀 주보 업무]
+                            td #[span https://10.10.1.148:8033/automateone_git/r/~NzM/Mjc1.git]
+                            td #[span 5]
                             td #[span 2022-02-22 16:57:22]
                             td
-                                a.btn.btn-sm.btn-secondary.py-0(
-                                    href="/src/view/robot/robots-group-modify.pug"
+                                a.btn.btn-sm.btn-primary.py-0(
+                                    href="/src/view/process/script-modify.pug"
                                 )
-                                    .hstack.gap-1
-                                        span 수정
-                                        i.bi.bi-pencil.lh-1
+                                    span.me-1 수정
+                                    i.bi.bi-pencil-fill
+            +pagination

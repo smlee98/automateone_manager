@@ -1,0 +1,139 @@
+extends ../../templates/base
+
+block contents
+    +breadcrumb(["프로세스", "스크립트 수정"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 스크립트 수정
+                .hstack.gap-3
+                    a.btn.btn-secondary(href="/src/view/process/script.pug")
+                        .hstack.gap-2
+                            i.bi.bi-list.lh-1
+                            span 목록
+                    a.btn.btn-primary(href="/src/view/process/script.pug")
+                        .hstack.gap-2
+                            i.bi.bi-save.lh-1
+                            span 저장
+            .row.g-4
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="scriptTitle") 스크립트명
+                        input#scriptTitle.form-control(type="text")
+                .col-12.col-lg-6
+                    .vstack.gap-2
+                        label.form-label.fw-bold(for="scriptGitUrl") Git URL
+                        input#scriptGitUrl.form-control(type="text")
+            .card
+                .card-body
+                    .vstack.gap-4
+                        .hstack.justify-content-between
+                            h4.fw-bold 스크립트 버전 관리
+                            .hstack.gap-3
+                                button.btn.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#newScriptModal"
+                                )
+                                    .hstack.gap-2
+                                        i.bi.bi-plus-lg.lh-1
+                                        span 스크립트 등록
+                                button.btn.btn-secondary
+                                    .hstack.gap-2
+                                        i.bi.bi-x-lg.lh-1
+                                        span 스크립트 삭제
+                        .table-responsive
+                            table#scriptHistoryTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                ) 
+                                        th 버전
+                                        th 파일명
+                                        th 설명
+                                        th 등록자
+                                        th 등록일
+                                        th 저장
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#board3.form-check-input.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="board1"
+                                                )
+                                        td 3
+                                        td
+                                            a.hstack.gap-1.highlight-item(
+                                                href="#"
+                                            )
+                                                i.bi.bi-download.text-muted
+                                                span 디지털마케팅팀 주보 업무.zip
+                                        td
+                                            input.form-control-plaintext.py-0(
+                                                type="text",
+                                                value="디지털마케팅팀 주보 업무"
+                                            )
+                                        td admin
+                                        td 2022-02-22 16:57:22
+                                        td
+                                            button.btn.btn-sm.btn-primary.py-0
+                                                span.me-1 저장
+                                                i.bi.bi-check-lg
+                                    tr
+                                        td
+                                            .form-check
+                                                input#board2.form-check-input.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="board1"
+                                                )
+                                        td 2
+                                        td
+                                            a.hstack.gap-1.highlight-item(
+                                                href="#"
+                                            )
+                                                i.bi.bi-download.text-muted
+                                                span 디지털마케팅팀 주보 업무.zip
+                                        td
+                                            input.form-control-plaintext.py-0(
+                                                type="text",
+                                                value="디지털마케팅팀 주보 업무"
+                                            )
+                                        td admin
+                                        td 2022-02-22 16:57:22
+                                        td
+                                            button.btn.btn-sm.btn-primary.py-0
+                                                span.me-1 저장
+                                                i.bi.bi-check-lg
+                                    tr
+                                        td
+                                            .form-check
+                                                input#board1.form-check-input.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="board1"
+                                                )
+                                        td 1
+                                        td
+                                            a.hstack.gap-1.highlight-item(
+                                                href="#"
+                                            )
+                                                i.bi.bi-download.text-muted
+                                                span 디지털마케팅팀 주보 업무.zip
+                                        td
+                                            input.form-control-plaintext.py-0(
+                                                type="text",
+                                                value="디지털마케팅팀 주보 업무"
+                                            )
+                                        td admin
+                                        td 2022-02-22 16:57:22
+                                        td
+                                            button.btn.btn-sm.btn-primary.py-0
+                                                span.me-1 저장
+                                                i.bi.bi-check-lg

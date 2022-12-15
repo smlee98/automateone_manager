@@ -70,12 +70,12 @@ table#allProcTable {
     $allProcTable: (
         1: 4%,
         2: 5%,
-        3: 43%,
+        3: 45%,
         4: 10%,
         5: 10%,
-        6: 10%,
-        7: 6%,
-        8: 12%,
+        6: 8%,
+        7: 12%,
+        8: 5%,
     );
 
     th,
@@ -251,13 +251,14 @@ table#patchRobotTable {
 table#allUserTable {
     $allUserTable: (
         1: 5%,
-        2: 15%,
-        3: 23%,
-        4: 23%,
+        2: 16%,
+        3: 20%,
+        4: 20%,
         5: 10%,
         6: 12%,
         7: 6%,
         8: 6%,
+        9: 5%,
     );
 
     th,
@@ -365,13 +366,14 @@ table#alarmMsgTable {
 table#mainRobotTable {
     $mainRobotTable: (
         1: 5%,
-        2: 15%,
-        3: 15%,
+        2: 11%,
+        3: 11%,
         4: 10%,
-        5: 25%,
+        5: 22%,
         6: 10%,
         7: 10%,
         8: 10%,
+        9: 5%,
     );
 
     th,
@@ -392,9 +394,10 @@ table#robotGroupTable {
     $robotGroupTable: (
         1: 4%,
         2: 6%,
-        3: 25%,
-        4: 35%,
-        5: 20%,
+        3: 30%,
+        4: 40%,
+        5: 15%,
+        6: 5%,
     );
 
     th,
@@ -404,6 +407,68 @@ table#robotGroupTable {
         }
 
         @each $i, $percent in $robotGroupTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#manageScriptTable {
+    $manageScriptTable: (
+        1: 4%,
+        2: 6%,
+        3: 25%,
+        4: 35%,
+        5: 13%,
+        6: 12%,
+        7: 5%,
+    );
+
+    th,
+    td {
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $manageScriptTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#scriptHistoryTable {
+    $scriptHistoryTable: (
+        1: 4%,
+        2: 6%,
+        3: 25%,
+        4: 35%,
+        5: 12%,
+        6: 12%,
+        7: 6%,
+    );
+
+    th,
+    td {
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $scriptHistoryTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

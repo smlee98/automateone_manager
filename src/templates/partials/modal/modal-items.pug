@@ -1,3 +1,15 @@
+#loadingModal.modal.fade(aria-labelledby="loadingModal", aria-hidden="true")
+    .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content
+            .modal-body
+                .loading-spinner
+                    .loading-balls
+                        div 
+                        div 
+                        div 
+                        div 
+                    span.visually-hidden Loading...
+
 #personCheckModal.modal.fade(
     aria-labelledby="personCheckModal",
     aria-hidden="true"
@@ -110,29 +122,24 @@
                         aria-label="Close"
                     ) 취소
 
-#excludeScheduleModal.modal.fade(
-    aria-labelledby="excludeScheduleModal",
+#newScriptModal.modal.fade(
+    aria-labelledby="newScriptModal",
     aria-hidden="true"
 )
-    .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+    .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
         .modal-content.text-center
             .modal-body
                 .vstack.gap-3
                     .vstack.gap-2
                         label.form-label.text-start.fw-bold(
-                            for="newExcludeScheduleName"
-                        ) 그룹명
-                        input#newExcludeScheduleName.form-control(type="text")
+                            for="newScriptFile"
+                        ) 스크립트 파일
+                        input#newScriptFile.form-control(type="file")
                     .vstack.gap-2
                         label.form-label.text-start.fw-bold(
-                            for="newExcludeScheduleProject"
-                        ) 프로젝트 선택
-                        select#newExcludeScheduleProject.form-select
-                            option(value="project1") 프로젝트 1
-                            option(value="project2") 프로젝트 2
-                            option(value="project3") 프로젝트 3
-                            option(value="project4") 프로젝트 4
-                            option(value="project5") 프로젝트 5
+                            for="newScriptExplain"
+                        ) 설명
+                        textarea#newScriptExplain.form-control(rows="5")
             .modal-footer.justify-content-center
                 .hstack.gap-3.w-100
                     button.btn.btn-lg.btn-primary.w-100(

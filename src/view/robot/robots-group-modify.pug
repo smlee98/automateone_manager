@@ -13,11 +13,11 @@ mixin robotItems(index)
                     span= `ibizbot-${index}`
 
 block contents
-    +breadcrumb(["로봇", "로봇 그룹 등록"], "main")
+    +breadcrumb(["로봇", "로봇그룹 수정"])
     section#wrapper
         .vstack.gap-4.px-5.py-4
             .hstack.justify-content-between
-                h4.fw-bold 로봇 그룹 등록
+                h4.fw-bold 로봇그룹 수정
                 .hstack.gap-3
                     a.btn.btn-secondary(
                         href="/src/view/robot/robots-group.pug"
@@ -33,8 +33,8 @@ block contents
                 label.form-label.fw-bold(for="robotGroupTitle") 로봇 그룹명
                 input#settingTrobotGroupTitleitle.form-control(type="text")
             .vstack.gap-2
-                label.form-label.fw-bold(for="robotGroupEditor") 설명
-                #robotGroupEditor.editor
+                label.form-label.fw-bold(for="robotGroupExplain") 설명
+                textarea#robotGroupExplain.form-control(rows="5")
             .card
                 .card-body
                     .vstack.gap-4
@@ -52,4 +52,3 @@ block contents
                         .row.row-cols-2.row-cols-lg-6.g-4
                             - for (let index = 1; index <= 10; index++)
                                 +robotItems(index)
-    script(src="/src/js/AOEditor.js", type="module")

@@ -30,6 +30,5 @@ block contents
                 label.form-label.fw-bold(for="robotIp") 고유 키
                 input#robotKey.form-control(type="robotKey", readonly)
             .vstack.gap-2
-                label.form-label.fw-bold(for="robotEditor") 설명
-                #robotEditor.editor
-    script(src="/src/js/AOEditor.js", type="module")
+                label.form-label.fw-bold(for="robotExplain") 설명
+                textarea#robotExplain.form-control(rows="5")

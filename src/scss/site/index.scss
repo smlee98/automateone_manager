@@ -1,9 +1,3 @@
-// @include mobile {
-//     section#wrapper {
-//         padding: 1.5rem 3rem !important;
-//     }
-// }
-
 #update {
     select {
         border: 0;
@@ -21,4 +15,84 @@
 #languageButton {
     text-align: center;
     width: 120px;
+}
+
+/* Loading Modal */
+
+#loadingModal {
+    .modal-dialog {
+        width: 15rem;
+        .modal-content {
+            height: 15rem;
+            background-color: transparent !important;
+            border: none !important;
+        }
+    }
+}
+
+@keyframes spinner-animation {
+    0% {
+        animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+        top: 104px;
+    }
+    30% {
+        animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+        top: 88px;
+    }
+    60% {
+        animation-timing-function: cubic-bezier(0.5, 0.5, 0.5, 0.5);
+        top: 104px;
+    }
+    100% {
+        top: 104px;
+    }
+}
+
+.loading-spinner {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.loading-balls {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+
+    & div {
+        position: absolute;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        animation: spinner-animation 0.8s infinite;
+        box-sizing: content-box;
+
+        &:first-child {
+            left: 75px;
+            background: #00ce5f;
+            animation-delay: -0.48s;
+        }
+
+        &:nth-child(2) {
+            left: 89px;
+            background: #ffc00e;
+            animation-delay: -0.36s;
+        }
+
+        &:nth-child(3) {
+            left: 103px;
+            background: #ff7f00;
+            animation-delay: -0.24s;
+        }
+
+        &:last-child {
+            left: 117px;
+            background: #140fb4;
+            animation-delay: -0.12s;
+        }
+    }
 }

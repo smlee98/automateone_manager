@@ -150,7 +150,7 @@
                         "contents": [
                             {
                                 "title": "스크립트 관리",
-                                "link": "#"
+                                "link": "/src/view/process/script.pug"
                             },
                             {
                                 "title": "첨부파일 관리",

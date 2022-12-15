@@ -15,6 +15,7 @@ mixin procTableBody(index)
         td #[span 기타]
         td #[span 관리자]
         td #[span 2]
+        td #[span 2021-07-16 17:39:21]
         td
             a.btn.btn-sm.btn-primary.py-0(
                 href="/src/view/sysMngr/project/project-modify.pug"
@@ -22,7 +23,6 @@ mixin procTableBody(index)
                 .hstack.gap-1
                     span 수정
                     i.bi.bi-pencil.lh-1
-        td #[span 2021-07-16 17:39:21]
 
 block contents
     +breadcrumb(["프로젝트", "프로젝트 관리"], "main")
@@ -65,8 +65,8 @@ block contents
                             th #[span 프로젝트 유형]
                             th #[span 관리자]
                             th #[span 인원]
-                            th #[span 수정]
                             th #[span 등록일]
+                            th #[span 수정]
                     tbody
                         - for (let index = 1; index <= 10; index++)
                             +procTableBody(index)

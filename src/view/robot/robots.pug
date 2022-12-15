@@ -3,21 +3,20 @@ extends ../../templates/base
 mixin robotTableBody(index)
     tr
         td= index
-        td
-            .hstack.justify-content-between.align-items-center
-                span= `ibizbot-${index}`
-                a.btn.btn-sm.btn-secondary.py-0(
-                    href="/src/view/robot/robots-modify.pug"
-                )
-                    .hstack.gap-1
-                        span 수정
-                        i.bi.bi-pencil.lh-1
+        td #[span= `ibizbot-${index}`]
         td #[span= `group-${index}`]
         td #[span 사용가능]
         td #[span -]
         td #[span -]
         td #[span -]
         td #[span -]
+        td
+            a.btn.btn-sm.btn-secondary.py-0(
+                href="/src/view/robot/robots-modify.pug"
+            )
+                .hstack.gap-1
+                    span 수정
+                    i.bi.bi-pencil.lh-1
 
 block contents
     +breadcrumb(["로봇", "로봇 설정"])
@@ -62,6 +61,7 @@ block contents
                             th #[span CPU]
                             th #[span Memory]
                             th #[span Disk]
+                            th #[span 수정]
                     tbody
                         - for (let index = 1; index <= 10; index++)
                             +robotTableBody(index)
