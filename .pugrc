@@ -154,7 +154,7 @@
                             },
                             {
                                 "title": "첨부파일 관리",
-                                "link": "#"
+                                "link": "/src/view/process/attach.pug"
                             },
                             {
                                 "title": "프로세스 관리",

@@ -545,3 +545,63 @@ table#robotPatchListTable {
         }
     }
 }
+
+table#manageAttachTable {
+    $manageAttachTable: (
+        1: 4%,
+        2: 6%,
+        3: 60%,
+        4: 13%,
+        5: 12%,
+        6: 5%,
+    );
+
+    th,
+    td {
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $manageAttachTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#attachListTable {
+    $attachListTable: (
+        1: 5%,
+        2: 30%,
+        3: 35%,
+        4: 12%,
+        5: 12%,
+        6: 6%,
+    );
+
+    th,
+    td {
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $attachListTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}

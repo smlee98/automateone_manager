@@ -128,33 +128,3 @@
                         data-bs-dismiss="modal",
                         aria-label="Close"
                     ) 취소
-
-#newScriptModal.modal.fade(
-    tabindex="-1",
-    aria-labelledby="newScriptModal",
-    aria-hidden="true"
-)
-    .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
-        .modal-content.text-center
-            .modal-body
-                .vstack.gap-3
-                    .vstack.gap-2
-                        label.form-label.text-start.fw-bold(
-                            for="newScriptFile"
-                        ) 스크립트 파일
-                        input#newScriptFile.form-control(type="file")
-                    .vstack.gap-2
-                        label.form-label.text-start.fw-bold(
-                            for="newScriptExplain"
-                        ) 설명
-                        textarea#newScriptExplain.form-control(rows="5")
-            .modal-footer.justify-content-center
-                .hstack.gap-3.w-100
-                    button.btn.btn-lg.btn-primary.w-100(
-                        data-bs-dismiss="modal",
-                        aria-label="Close"
-                    ) 확인
-                    button.btn.btn-lg.btn-secondary.w-100(
-                        data-bs-dismiss="modal",
-                        aria-label="Close"
-                    ) 취소

@@ -1,16 +1,16 @@
 extends ../../templates/base
 
 block contents
-    +breadcrumb(["프로세스", "스크립트 관리"])
+    +breadcrumb(["프로세스", "첨부파일 관리"])
     section#wrapper
         .vstack.gap-4.px-5.py-4
-            h4.fw-bold 스크립트 관리
+            h4.fw-bold 첨부파일 관리
             .d-flex.justify-content-between.align-items-center
                 .hstack.gap-3
                     .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
                         input.form-control-plaintext.form-control-sm(
                             type="text",
-                            placeholder="스크립트명 검색"
+                            placeholder="파일 검색"
                         )
                         button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
@@ -20,29 +20,22 @@ block contents
                             i.bi.bi-file-earmark-spreadsheet
                             span 엑셀 다운로드
                 .hstack.gap-2
-                    button.btn.btn-secondary(
-                        data-bs-toggle="modal",
-                        data-bs-target="#loadingModal"
-                    )
-                        .hstack.gap-2
-                            i.bi.bi-git
-                            span GIT 스크립트 동기화
                     button.btn.btn-primary(
                         data-bs-toggle="modal",
-                        data-bs-target="#newScriptModal"
+                        data-bs-target="#newAttachModal"
                     )
                         .hstack.gap-2
                             i.bi.bi-plus-lg
-                            span 스크립트 등록
+                            span 첨부파일 등록
                     button.btn.btn-secondary(
                         data-bs-toggle="modal",
                         data-bs-target="#deleteCheckModal"
                     )
                         .hstack.gap-2
                             i.bi.bi-x-lg
-                            span 스크립트 삭제
+                            span 첨부파일 삭제
             .table-responsive
-                table#manageScriptTable.table.table-bordered.table-excel
+                table#manageAttachTable.table.table-bordered.table-excel
                     thead
                         tr
                             th
@@ -53,9 +46,8 @@ block contents
                                         value="checkAll"
                                     ) 
                             th #[span 번호]
-                            th #[span 스크립트명]
-                            th #[span Git URL]
-                            th #[span 버전]
+                            th #[span 파일 그룹]
+                            th #[span 파일 개수]
                             th #[span 등록일]
                             th #[span 수정]
                     tbody
@@ -68,22 +60,21 @@ block contents
                                         value="board1"
                                     )
                             td #[span 1]
-                            td #[span 디지털마케팅팀 주보 업무]
-                            td #[span https://10.10.1.148:8033/automateone_git/r/~NzM/Mjc1.git]
-                            td #[span 5]
+                            td #[span 파일 그룹 1]
+                            td #[span 2]
                             td #[span 2022-02-22 16:57:22]
                             td
                                 a.btn.btn-sm.btn-secondary.py-0(
-                                    href="/src/view/process/script-modify.pug"
+                                    href="/src/view/process/attach-modify.pug"
                                 )
                                     span.me-1 수정
                                     i.bi.bi-pencil-fill
             +pagination
 
 block modal
-    #newScriptModal.modal.fade(
+    #newAttachModal.modal.fade(
         tabindex="-1",
-        aria-labelledby="newScriptModal",
+        aria-labelledby="newAttachModal",
         aria-hidden="true"
     )
         .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
@@ -92,18 +83,14 @@ block modal
                     .vstack.gap-3
                         .vstack.gap-2
                             label.form-label.text-start.fw-bold(
-                                for="newScriptName"
-                            ) 스크립트명
-                            input#newScriptGitUrl.form-control(type="text")
+                                for="newAttachGroupName"
+                            ) 그룹명
+                            input#newAttachGroupName.form-control(type="text")
                         .vstack.gap-2
                             label.form-label.text-start.fw-bold(
-                                for="newScriptGitUrl"
-                            ) Git URL
-                            input#newScriptGitUrl.form-control(
-                                type="text",
-                                value="https://10.10.1.148:8033/automateone_git/r/~NzM/Mjc1.git",
-                                readonly
-                            )
+                                for="newAttachExplain"
+                            ) 설명
+                            textarea#newAttachExplain.form-control(rows="5")
                 .modal-footer.justify-content-center
                     .hstack.gap-3.w-100
                         button.btn.btn-lg.btn-primary.w-100(
