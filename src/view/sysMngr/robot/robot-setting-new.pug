@@ -14,7 +14,8 @@ block contents
                             i.bi.bi-list.lh-1
                             span 목록
                     a.btn.btn-primary(
-                        href="/src/view/sysMngr/robot/robot-setting.pug"
+                        data-bs-toggle="modal",
+                        data-bs-target="#saveCheckModal"
                     )
                         .hstack.gap-2
                             i.bi.bi-save.lh-1
@@ -25,3 +26,6 @@ block contents
             .vstack.gap-2
                 label.form-label.fw-bold(for="settingExplain") 메모
                 textarea#settingExplain.form-control(rows="5")
+
+block modal
+    +saveCheckModal("/src/view/sysMngr/robot/robot-setting.pug")

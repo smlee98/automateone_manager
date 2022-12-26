@@ -31,16 +31,22 @@ block contents
                         .hstack.justify-content-center
                             i.bi.bi-search.d-inline-flex
                 .hstack.gap-2
-                    button.btn.btn-success
+                    button#excelDownload.btn.btn-success(
+                        data-bs-toggle="modal",
+                        data-bs-target="#loadingModal"
+                    )
                         .hstack.gap-2
                             i.bi.bi-file-earmark-spreadsheet
                             span 엑셀 다운로드
-                    button.btn.btn-secondary
+                    button.btn.btn-secondary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#deleteCheckModal"
+                    )
                         .hstack.gap-2
                             i.bi.bi-x-lg
                             span 데이터 삭제
             .table-responsive
-                table#cloudVariablesTable.table.table-bordered
+                table#cloudVariablesTable.table.table-bordered.table-excel
                     thead
                         tr
                             th

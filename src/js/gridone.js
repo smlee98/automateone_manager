@@ -6,6 +6,7 @@ import {
     modalController,
     tooltipController,
 } from "./_bsCustom";
+import { excelController } from "./_excel";
 
 /* Bootstrap */
 window.bootstrap = bootstrap;
@@ -20,3 +21,6 @@ accordionController();
 checkItems();
 projectToggle();
 sidebarToggle();
+
+/* Excel Export */
+excelController();

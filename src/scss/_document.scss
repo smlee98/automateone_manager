@@ -217,3 +217,45 @@ legend {
     color: $primary !important;
     background-size: 100% 100%;
 }
+
+.manual-item * {
+    pointer-events: none !important;
+}
+
+// form control
+.form-field {
+    position: relative;
+
+    &.has-icon {
+        .form-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            color: #dbdbdb;
+            height: 2.5rem;
+            width: 2.5rem;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+
+            &.is-small {
+                width: 1rem !important;
+                height: 1rem !important;
+            }
+
+            &.is-left {
+                left: 0;
+            }
+
+            &.is-right {
+                right: 0;
+            }
+        }
+    }
+}
+
+label.required:after {
+    content: "*";
+    color: #ff4d4f;
+    margin-left: 0.3rem;
+}

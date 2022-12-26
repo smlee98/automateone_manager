@@ -12,7 +12,7 @@ block contents
                     .card-body
                         .vstack.gap-4
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userId") 아이디 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(for="userId") 아이디
                                 input#userId.form-control(
                                     type="text",
                                     minLength="5",
@@ -20,28 +20,36 @@ block contents
                                 )
                                 small.text-muted 영문 또는 숫자만 입력할수 있고, 5~20자까지만 입력 가능합니다.
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userFirstName") 성 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userFirstName"
+                                ) 성
                                 input#userFirstName.form-control(type="text")
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userLastName") 이름 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userLastName"
+                                ) 이름
                                 input#userLastName.form-control(type="text")
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userId") 비밀번호 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(for="userId") 비밀번호
                                 input#userPw.form-control(
                                     type="password",
                                     minLength="8"
                                 )
                                 small.text-muted 영문, 숫자, 특수문자(`~!@#$%^&*=_+?) 포함 8자리 이상 입력 가능합니다.
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userId") 비밀번호 확인#[sup.text-danger ●]
+                                label.form-label.fw-bold.required(for="userId") 비밀번호 확인
                                 input#userPwCheck.form-control(
                                     type="userPwCheck"
                                 )
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userEmail") 이메일 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userEmail"
+                                ) 이메일
                                 input#userEmail.form-control(type="email")
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userPhone") 전화번호 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userPhone"
+                                ) 전화번호
                                 input#userPhone.form-control(
                                     type="number",
                                     minLength="8",

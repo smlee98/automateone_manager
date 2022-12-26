@@ -28,7 +28,10 @@ block contents
                     button.btn.btn-primary.btn-icon.rounded-circle
                         .hstack.justify-content-center
                             i.bi.bi-search.d-inline-flex
-                button.btn.btn-secondary
+                button.btn.btn-secondary(
+                    data-bs-toggle="modal",
+                    data-bs-target="#trainerDisconnetModal"
+                )
                     .hstack.gap-2
                         i.bi.bi-x-lg
                         span 연결 해제
@@ -50,3 +53,25 @@ block contents
                         - for (let index = 1; index <= 10; index++)
                             +robotTableBody(index)
             +pagination
+
+block modal
+    #trainerDisconnetModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="trainerDisconnetModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-body
+                    i.bi.bi-exclamation-triangle.opacity-25.display-1
+                    span.fw-bold.d-block 정말로 연결 해제하시겠습니까?
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 확인
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소

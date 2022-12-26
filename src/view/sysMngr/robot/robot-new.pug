@@ -13,7 +13,10 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-list.lh-1
                             span 목록
-                    a.btn.btn-primary(href="/src/view/sysMngr/robot/robot.pug")
+                    button.btn.btn-primary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#saveCheckModal"
+                    )
                         .hstack.gap-2
                             i.bi.bi-save.lh-1
                             span 저장
@@ -32,3 +35,6 @@ block contents
             .vstack.gap-2
                 label.form-label.fw-bold(for="robotExplain") 설명
                 textarea#robotExplain.form-control(rows="5")
+
+block modal
+    +saveCheckModal("/src/view/sysMngr/robot/robot.pug")

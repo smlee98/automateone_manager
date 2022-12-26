@@ -44,7 +44,7 @@ block contents
                     .row.row-cols-1.row-cols-lg-2.g-4
                         .col
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userId") 아이디 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(for="userId") 아이디
                                 input#userId.form-control(
                                     type="text",
                                     minLength="5",
@@ -53,19 +53,27 @@ block contents
                                 )
                         .col
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userFirstName") 성 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userFirstName"
+                                ) 성
                                 input#userFirstName.form-control(type="text")
                         .col
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userLastName") 이름 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userLastName"
+                                ) 이름
                                 input#userLastName.form-control(type="text")
                         .col
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userEmail") 이메일 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userEmail"
+                                ) 이메일
                                 input#userEmail.form-control(type="email")
                         .col
                             .vstack.gap-2
-                                label.form-label.fw-bold(for="userPhone") 전화번호 #[sup.text-danger ●]
+                                label.form-label.fw-bold.required(
+                                    for="userPhone"
+                                ) 전화번호
                                 input#userPhone.form-control(
                                     type="number",
                                     minLength="8",

@@ -124,15 +124,61 @@ table#mainProcTable {
     }
 }
 
+table#projectManagerTable {
+    min-width: auto !important;
+
+    $projectManagerTable: (
+        1: 6%,
+        2: 20%,
+        3: 20%,
+        4: 54%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        @each $i, $percent in $projectManagerTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#projectRobotTable {
+    min-width: auto !important;
+
+    $projectRobotTable: (
+        1: 6%,
+        2: 15%,
+        3: 25%,
+        4: 54%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $projectRobotTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
 table#serverResourceTable {
     $serverResourceTable: (
         1: 10%,
-        2: 10%,
-        3: 10%,
+        2: 12%,
+        3: 12%,
         4: 20%,
         5: 20%,
         6: 20%,
-        7: 10%,
+        7: 6%,
     );
 
     th,
@@ -152,13 +198,14 @@ table#allRobotTable {
         1: 4%,
         2: 5%,
         3: 15%,
-        4: 10%,
-        5: 24%,
+        4: 8%,
+        5: 20%,
         6: 10%,
         7: 10%,
         8: 10%,
         9: 6%,
         10: 6%,
+        11: 6%,
     );
 
     th,
@@ -200,8 +247,8 @@ table#robotSettingTable {
         1: 4%,
         2: 5%,
         3: 25%,
-        4: 40%,
-        5: 10%,
+        4: 38%,
+        5: 12%,
         6: 10%,
         7: 6%,
     );
@@ -378,7 +425,7 @@ table#mainRobotTable {
 
     th,
     td {
-        &:not(:nth-child(2)):not(:nth-child(5)) {
+        &:not(:nth-child(5)) {
             text-align: center;
         }
 
@@ -469,6 +516,29 @@ table#scriptHistoryTable {
         }
 
         @each $i, $percent in $scriptHistoryTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#robotPatchListTable {
+    min-width: auto !important;
+
+    $robotPatchListTable: (
+        1: 5%,
+        2: 38%,
+        3: 38%,
+        4: 13%,
+        5: 6%,
+    );
+
+    th,
+    td {
+        text-align: center;
+
+        @each $i, $percent in $robotPatchListTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

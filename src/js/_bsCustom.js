@@ -1,27 +1,26 @@
 import { Modal } from "bootstrap";
 
 export const modalController = () => {
-    [...document.querySelectorAll(".modal")].forEach((x) => {
-        const target = `#${x.id}`;
-        Modal.getOrCreateInstance(target, {
-            keyboard: false,
-            backdrop: "static",
-        });
-        x.addEventListener("show.bs.modal", (e) => {
-            e.target.classList.remove("modal-min");
-            const backdrop = document.querySelectorAll(".modal-backdrop");
-            backdrop.forEach((elem) => {
-                elem.classList.remove("d-none");
+    [...document.querySelectorAll(".modal")]
+        .filter((el) => el.id !== "loadingModal")
+        .forEach((x) => {
+            const target = `#${x.id}`;
+            Modal.getOrCreateInstance(target, {
+                keyboard: false,
+                backdrop: "static",
             });
         });
-        x.addEventListener("hide.bs.modal", (e) => {
-            x.addEventListener("transitionend", () => {
-                const backdrop = document.querySelectorAll(".modal-backdrop");
-                backdrop.forEach((elem) => {
-                    elem.classList.remove("d-none");
-                });
-            });
-        });
+
+    const loadingModal = document.querySelector("#loadingModal");
+    const loadingInstance = Modal.getOrCreateInstance(loadingModal, {
+        keyboard: false,
+        backdrop: false,
+    });
+
+    loadingModal.addEventListener("shown.bs.modal", (e) => {
+        setTimeout(() => {
+            loadingInstance.hide();
+        }, 2000);
     });
 
     [...document.querySelectorAll("[data-gr-toggle='modal']")].forEach((x) => {
@@ -29,23 +28,25 @@ export const modalController = () => {
             const target = document.querySelector(
                 x.getAttribute("data-gr-target")
             );
+            target.setAttribute("style", "z-index: 1061;");
             if (typeof target !== "undefined") {
-                const instance = new Modal(target);
+                const instance = new Modal(target, {
+                    keyboard: false,
+                    backdrop: "static",
+                });
+
                 instance.show();
             }
-        });
-    });
 
-    const minmax = document.querySelectorAll(".btn-minmax");
+            target.addEventListener("transitionstart", (e) => {
+                const backdrop = document.querySelectorAll(".modal-backdrop");
+                const backdropLength = backdrop.length;
 
-    minmax.forEach((el) => {
-        el.addEventListener("click", () => {
-            const targetModal = el.closest(".modal");
-            const backdrop = document.querySelectorAll(".modal-backdrop");
-            backdrop.forEach((elem) => {
-                elem.classList.toggle("d-none");
+                backdrop[backdropLength - 1].setAttribute(
+                    "style",
+                    "z-index: 1060;"
+                );
             });
-            targetModal.classList.toggle("modal-min");
         });
     });
 };

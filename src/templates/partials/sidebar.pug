@@ -1,4 +1,4 @@
-nav.sidebar.border-end.close
+nav.sidebar.border-end
     header.position-relative
         .d-flex.align-items-center
             span.image
@@ -35,10 +35,14 @@ nav.sidebar.border-end.close
                         i.bi.bi-shop.fs-5.icon
                         span.text 스토어
             li.nav-item
-                a.nav-link(href="#")
+                a.nav-link(
+                    href="#",
+                    data-bs-toggle="modal",
+                    data-bs-target="#manualModal"
+                )
                     .hstack.gap-1.align-items-center
-                        i.bi.bi-question-circle-fill.fs-5.icon
-                        span.text 도움말
+                        i.bi.bi-journal-text.fs-5.icon
+                        span.text 매뉴얼
             hr
             li.nav-item
                 a.nav-link(href="/src/view/login.pug")

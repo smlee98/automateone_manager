@@ -1,4 +1,8 @@
-#loadingModal.modal.fade(aria-labelledby="loadingModal", aria-hidden="true")
+#loadingModal.modal(
+    tabindex="-1",
+    aria-labelledby="loadingModal",
+    aria-hidden="true"
+)
     .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
             .modal-body
@@ -10,107 +14,110 @@
                         div 
                     span.visually-hidden Loading...
 
-#personCheckModal.modal.fade(
-    aria-labelledby="personCheckModal",
+#manualModal.modal.fade(
+    tabindex="-1",
+    aria-labelledby="manualModal",
+    aria-hidden="true"
+)
+    .modal-dialog.modal-md.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content.text-center
+            .modal-header
+                h5.fw-bold 매뉴얼
+                button.btn-close(
+                    type="button",
+                    data-bs-dismiss="modal",
+                    aria-label="Close"
+                )
+            .modal-body
+                .vstack.gap-3
+                    .hstack.gap-2
+                        img(
+                            src="/src/assets/images/ic_title.png",
+                            alt="타이틀 아이콘"
+                        )
+                        h6.fw-bold AutomateOne Manager 기본 매뉴얼
+                    .row.row-cols-3.g-3
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-download.opacity-25.display-5
+                                    small.fw-bold 설치 매뉴얼
+                            input.form-control(type="hidden", value="shit")
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-person-fill-gear.opacity-25.display-5
+                                    small.fw-bold 관리자 매뉴얼
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-person-fill.opacity-25.display-5
+                                    small.fw-bold 사용자 매뉴얼
+                    .hstack.gap-2
+                        img(
+                            src="/src/assets/images/ic_title.png",
+                            alt="타이틀 아이콘"
+                        )
+                        h6.fw-bold AutomateOne Manager 상세 매뉴얼
+                    .row.row-cols-3.g-3
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-robot.opacity-25.display-5
+                                    small.fw-bold 로봇 설정 매뉴얼
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-clock-history.opacity-25.display-5
+                                    small.fw-bold 실행 예약 매뉴얼
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-diagram-3.opacity-25.display-5
+                                    small.fw-bold 분류 통합기능 매뉴얼
+                    .hstack.gap-2
+                        img(
+                            src="/src/assets/images/ic_title.png",
+                            alt="타이틀 아이콘"
+                        )
+                        h6.fw-bold AutomateOne Trainer/Bot 매뉴얼
+                    .row.row-cols-3.g-3
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    i.bi.bi-download.opacity-25.display-5
+                                    small.fw-bold Trainer 설치 매뉴얼
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    img.mx-auto(
+                                        src="/src/assets/images/logo_trainer.png",
+                                        alt="트레이너 아이콘",
+                                        width="55",
+                                        height="60"
+                                    )
+                                    small.fw-bold Trainer 매뉴얼
+                        .col
+                            button.btn.btn-light.manual-item.w-100.h-100
+                                .vstack.gap-2.py-4
+                                    img.mx-auto(
+                                        src="/src/assets/images/logo_bot.png",
+                                        alt="봇 아이콘",
+                                        width="55",
+                                        height="60"
+                                    )
+                                    small.fw-bold Bot 매뉴얼
+
+#deleteCheckModal.modal.fade(
+    tabindex="-1",
+    aria-labelledby="deleteCheckModal",
     aria-hidden="true"
 )
     .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
         .modal-content.text-center
             .modal-body
-                .vstack.gap-3
-                    .vstack.gap-2
-                        i.bi.bi-exclamation-triangle.opacity-25.display-1
-                        span 개인정보 변경을 위해 #[br] 비밀번호 확인이 필요합니다.
-                    input.form-control(type="password")
-            .modal-footer.justify-content-center
-                .hstack.gap-3.w-100
-                    a.btn.btn-lg.btn-primary.w-100(
-                        href="/src/view/sysMngr/system/userManagement.pug"
-                    ) 확인
-                    button.btn.btn-lg.btn-secondary.w-100(
-                        data-bs-dismiss="modal",
-                        aria-label="Close"
-                    ) 취소
-
-#pwCheckModal.modal.fade(aria-labelledby="pwCheckModal", aria-hidden="true")
-    .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
-        .modal-content.text-center
-            .modal-body
-                .vstack.gap-3
-                    .vstack.gap-2
-                        i.bi.bi-exclamation-triangle.opacity-25.display-1
-                        span 비밀번호 변경을 위해 #[br] 기존 비밀번호 확인이 필요합니다.
-                    input.form-control(type="password")
-            .modal-footer.justify-content-center
-                .hstack.gap-3.w-100
-                    button.btn.btn-lg.btn-primary.w-100(
-                        data-bs-toggle="modal",
-                        data-bs-target="#pwChangeModal"
-                    ) 확인
-                    button.btn.btn-lg.btn-secondary.w-100(
-                        data-bs-dismiss="modal",
-                        aria-label="Close"
-                    ) 취소
-
-#pwChangeModal.modal.fade(aria-labelledby="pwChangeModal", aria-hidden="true")
-    .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
-        .modal-content.text-center
-            .modal-body
-                .vstack.gap-3
-                    .vstack.gap-2
-                        label.form-label.text-start.fw-bold(for="newPassword") 새 비밀번호
-                        input#newPassword.form-control(type="password")
-                    .vstack.gap-2
-                        label.form-label.text-start.fw-bold(
-                            for="newPasswordCheck"
-                        ) 새 비밀번호 확인
-                        input#newPasswordCheck.form-control(type="password")
-            .modal-footer.justify-content-center
-                .hstack.gap-3.w-100
-                    button.btn.btn-lg.btn-primary.w-100(
-                        data-bs-dismiss="modal",
-                        aria-label="Close"
-                    ) 확인
-                    button.btn.btn-lg.btn-secondary.w-100(
-                        data-bs-dismiss="modal",
-                        aria-label="Close"
-                    ) 취소
-
-#statChangeModal.modal.fade(
-    aria-labelledby="statChangeModal",
-    aria-hidden="true"
-)
-    .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
-        .modal-content.text-center
-            .modal-body
-                .hstack.gap-3
-                    input#statActive.btn-check(
-                        type="radio",
-                        name="statRadio",
-                        autocomplete="off"
-                    )
-                    label.btn.btn-outline-success.w-100(for="statActive")
-                        .vstack.gap-0
-                            i.bi.bi-check-circle.display-5
-                            span 사용
-                    input#statLock.btn-check(
-                        type="radio",
-                        name="statRadio",
-                        autocomplete="off"
-                    )
-                    label.btn.btn-outline-danger.w-100(for="statLock")
-                        .vstack.gap-0
-                            i.bi.bi-shield-lock.display-5
-                            span 잠금
-                    input#statDelete.btn-check(
-                        type="radio",
-                        name="statRadio",
-                        autocomplete="off"
-                    )
-                    label.btn.btn-outline-secondary.w-100(for="statDelete")
-                        .vstack.gap-0
-                            i.bi.bi-trash.display-5
-                            span 삭제
+                i.bi.bi-exclamation-triangle.opacity-25.display-1
+                span.fw-bold.d-block 정말로 삭제하시겠습니까?
             .modal-footer.justify-content-center
                 .hstack.gap-3.w-100
                     button.btn.btn-lg.btn-primary.w-100(
@@ -123,6 +130,7 @@
                     ) 취소
 
 #newScriptModal.modal.fade(
+    tabindex="-1",
     aria-labelledby="newScriptModal",
     aria-hidden="true"
 )

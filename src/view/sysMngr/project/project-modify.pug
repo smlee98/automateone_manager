@@ -13,8 +13,9 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-list.lh-1
                             span 목록
-                    a.btn.btn-primary(
-                        href="/src/view/sysMngr/project/project.pug"
+                    button.btn.btn-primary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#saveCheckModal"
                     )
                         .hstack.gap-2
                             i.bi.bi-save.lh-1
@@ -49,22 +50,28 @@ block contents
                             label.btn.btn-outline-primary(for="typeDev") 개발
             .vstack.gap-2
                 label.form-label.fw-bold(for="projectEditor") 설명
-                #projectEditor.editor
+                textarea#projectExplain.form-control(rows="5")
             .row.row-cols-1.row-cols-lg-2.g-4.flex-grow-1
                 .col
                     .vstack.gap-2.h-100
                         .d-flex.justify-content-between.align-items-center
                             label.form-label.fw-bold(for="projectEditor") 프로젝트 관리자
                             .hstack.gap-2
-                                button.btn.btn-sm.btn-primary
+                                button.btn.btn-sm.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#projectManagerModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-plus-lg
-                                        span 추가
-                                button.btn.btn-sm.btn-secondary
+                                        span 관리자 추가
+                                button.btn.btn-sm.btn-secondary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#deleteCheckModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-x-lg
-                                        span 삭제
-                        .card.h-100
+                                        span 관리자 삭제
+                        .card.mb-2.h-100
                             ul.list-group.list-group-flush
                                 li.list-group-item
                                     .d-flex.justify-content-between.align-items-center
@@ -136,20 +143,27 @@ block contents
                                             i.bi.bi-envelope
                                             span admin@gridone.co.kr
                                         span.text-muted 2022-11-18
+                        +pagination
                 .col
                     .vstack.gap-2.h-100
                         .d-flex.justify-content-between.align-items-center
                             label.form-label.fw-bold(for="projectEditor") 로봇
                             .hstack.gap-2
-                                button.btn.btn-sm.btn-primary
+                                button.btn.btn-sm.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#projectRobotModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-plus-lg
-                                        span 추가
-                                button.btn.btn-sm.btn-secondary
+                                        span 로봇 추가
+                                button.btn.btn-sm.btn-secondary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#deleteCheckModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-x-lg
-                                        span 삭제
-                        .card.h-100
+                                        span 로봇 삭제
+                        .card.mb-2.h-100
                             ul.list-group.list-group-flush
                                 li.list-group-item
                                     .hstack.gap-2
@@ -196,4 +210,105 @@ block contents
                                             ) 
                                         i.bi.bi-robot
                                         span ibizbot_05
+                        +pagination
     script(src="/src/js/AOEditor.js", type="module")
+
+block modal
+    +saveCheckModal("/src/view/sysMngr/project/project.pug")
+    #projectManagerModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="projectManagerModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.fw-bold 프로젝트 관리자 추가
+                .modal-body
+                    .vstack.gap-4
+                        .table-responsive
+                            table#projectManagerTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                )
+                                        th #[span 성]
+                                        th #[span 이름]
+                                        th #[span E-Mail]
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#manager1.form-check-input.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="manager1"
+                                                )
+                                        td #[span 관]
+                                        td #[span 리자]
+                                        td #[span admin@gridone.co.kr]
+                        +pagination
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 추가
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #projectRobotModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="projectRobotModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.fw-bold 프로젝트 로봇 추가
+                .modal-body
+                    .vstack.gap-4
+                        .table-responsive
+                            table#projectRobotTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                )
+                                        th #[span ID]
+                                        th #[span 로봇명]
+                                        th #[span 설명]
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#robot1.form-check-input.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="robot1"
+                                                )
+                                        td #[span 120]
+                                        td #[span ibizbot_120]
+                                        td #[span 관리자 전용 로봇]
+                        +pagination
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 추가
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소

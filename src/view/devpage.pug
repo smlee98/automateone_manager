@@ -264,6 +264,11 @@ block contents
                                 .card.flex-grow-1
                                     .card-header
                                         h5.card-title 카드 제목
-                                        h6.card-subtitle.text-muted 카드 부제목
                                     .card-body
                                         p.card-text 카드 내용은 다음과 같이 입력됩니다.
+                    hr
+                    .hstack.gap-2.mb-3
+                        img(src="/src/assets/images/ic_home.png")
+                        span.d-block.fw-bold.lh-1 Editor
+                    #devpageEditor.editor
+    script(src="/src/js/AOEditor.js", type="module")

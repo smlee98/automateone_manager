@@ -6,7 +6,10 @@ block contents
         .vstack.gap-4.px-5.py-4
             .d-flex.justify-content-between.align-items-center
                 h4.fw-bold 이메일 설정
-                button.btn.btn-primary
+                button.btn.btn-primary(
+                    data-bs-toggle="modal",
+                    data-bs-target="#loadingModal"
+                )
                     .hstack.gap-2
                         i.bi.bi-save.lh-1
                         span 저장
@@ -23,7 +26,10 @@ block contents
                                         label.form-label.fw-bold(
                                             for="emailType"
                                         ) 방식
-                                        button.btn.btn-sm.btn-secondary 테스트 메일
+                                        button.btn.btn-sm.btn-secondary(
+                                            data-bs-toggle="modal",
+                                            data-bs-target="#loadingModal"
+                                        ) 테스트 메일
                                     select#emailType.form-select
                                         option(value="smtp") SMTP
                                         option(value="ssms") SSMS

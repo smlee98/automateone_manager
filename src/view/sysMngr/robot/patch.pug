@@ -66,7 +66,7 @@ block contents
                                         .hstack.justify-content-center
                                             i.bi.bi-search.d-inline-flex
                                 .btn-group(role="group")
-                                    input#settingRobotTypeAo2.btn-check(
+                                    input#settingTypeAo2.btn-check(
                                         type="radio",
                                         name="settingRobotType",
                                         autocomplete="off",
@@ -75,7 +75,7 @@ block contents
                                     label.btn.btn-outline-primary(
                                         for="settingTypeAo2"
                                     ) AO2
-                                    input#settingRobotTypeAo3.btn-check(
+                                    input#settingTypeAo3.btn-check(
                                         type="radio",
                                         name="settingRobotType",
                                         autocomplete="off"
@@ -84,11 +84,17 @@ block contents
                                         for="settingTypeAo3"
                                     ) AO3
                             .hstack.gap-3
-                                button.btn.btn-primary
+                                button.btn.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#robotPatchListModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-plus-lg.lh-1
                                         span 파일 추가
-                                button.btn.btn-primary
+                                button.btn.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#patchCheckModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-check-lg.lh-1
                                         span 패치 적용
@@ -124,10 +130,13 @@ block contents
                         .d-flex.justify-content-between.align-items-center
                             legend.w-auto 트레이너 패치 기본설정
                             .hstack.gap-3
-                                button.btn.btn-secondary
+                                button.btn.btn-secondary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#basicSettingResetModal"
+                                )
                                     .hstack.gap-2
-                                        i.bi.bi-x-lg.lh-1
-                                        span 기본설정 해제
+                                        i.bi.bi-arrow-clockwise.lh-1
+                                        span 기본설정 초기화
                         .card
                             .card-body
                                 .row.gx-4.gy-2
@@ -151,15 +160,24 @@ block contents
                                     for="settingTrainerTypeAo3"
                                 ) AO3
                             .hstack.gap-3
-                                button.btn.btn-primary
+                                button.btn.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#basicSettingModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-check-lg.lh-1
                                         span 기본설정 등록
-                                button.btn.btn-primary
+                                button.btn.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#newTrainerFileModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-plus-lg.lh-1
                                         span 파일 추가
-                                button.btn.btn-secondary
+                                button.btn.btn-secondary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#deleteCheckModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-x-lg.lh-1
                                         span 파일 삭제
@@ -186,3 +204,170 @@ block contents
                                     - for (let index = 1; index <= 10; index++)
                                         +robotTableBody(index)
                         +pagination
+
+block modal
+    #robotPatchListModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="robotPatchListModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-fullscreen.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.fw-bold 로봇 패치파일 목록
+                    button.btn-close(
+                        type="button",
+                        data-bs-dismiss="modal",
+                        aria-label="Close"
+                    )
+                .modal-body
+                    .vstack.gap-4
+                        .table-responsive
+                            table#robotPatchListTable.table.table-bordered
+                                thead
+                                    tr
+                                        th #[span 번호]
+                                        th #[span 버전명]
+                                        th #[span 파일명]
+                                        th #[span 등록일]
+                                        th #[span 삭제]
+                                tbody
+                                    tr
+                                        td #[span 1]
+                                        td #[span AutomateOne3_Bot_3.310.0.231_Update_x64]
+                                        td #[span AutomateOne3_Bot_3.310.0.231_Update_x64.exe]
+                                        td #[span 2022-12-01 14:07:27]
+                                        td
+                                            button.btn.btn-sm.btn-secondary.py-0
+                                                .hstack.gap-2
+                                                    i.bi.bi-x-lg.lh-1
+                                                    span 삭제
+                        +pagination
+                .modal-footer.justify-content-center
+                    button.btn.btn-lg.btn-primary.w-100(
+                        data-gr-toggle="modal",
+                        data-gr-target="#newBotFileModal"
+                    ) 업로드
+
+    #newBotFileModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="newBotFileModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-body
+                    .vstack.gap-3
+                        .vstack.gap-2
+                            label.form-label.text-start.fw-bold(
+                                for="newBotVersion"
+                            ) 버전명
+                            input#newBotVersion.form-control(type="text")
+                        .vstack.gap-2
+                            label.form-label.text-start.fw-bold(
+                                for="newBotFilename"
+                            ) 파일명
+                            input#newBotFilename.form-control(type="file")
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 등록
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #newTrainerFileModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="newTrainerFileModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-body
+                    .vstack.gap-3
+                        .vstack.gap-2
+                            label.form-label.text-start.fw-bold(
+                                for="newTrainerVersion"
+                            ) 버전명
+                            input#newTrainerVersion.form-control(type="text")
+                        .vstack.gap-2
+                            label.form-label.text-start.fw-bold(
+                                for="newTrainerFilename"
+                            ) 파일명
+                            input#newTrainerFilename.form-control(type="file")
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 등록
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #patchCheckModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="patchCheckModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-body
+                    i.bi.bi-check2-circle.opacity-25.display-1
+                    span.fw-bold.d-block 패치를 적용하시겠습니까?
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 확인
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #basicSettingModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="basicSettingModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-body
+                    i.bi.bi-check2-circle.opacity-25.display-1
+                    span.fw-bold.d-block 기본설정으로 등록하시겠습니까?
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 확인
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #basicSettingResetModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="basicSettingResetModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-body
+                    i.bi.bi-arrow-clockwise.opacity-25.display-1
+                    span.fw-bold.d-block 기본설정을 초기화하시겠습니까?
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 확인
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소

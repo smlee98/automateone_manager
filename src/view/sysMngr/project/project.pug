@@ -17,7 +17,7 @@ mixin procTableBody(index)
         td #[span 2]
         td #[span 2021-07-16 17:39:21]
         td
-            a.btn.btn-sm.btn-primary.py-0(
+            a.btn.btn-sm.btn-secondary.py-0(
                 href="/src/view/sysMngr/project/project-modify.pug"
             )
                 .hstack.gap-1
@@ -45,7 +45,10 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-plus-lg
                             span 프로젝트 추가
-                    button.btn.btn-secondary
+                    button.btn.btn-secondary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#deleteCheckModal"
+                    )
                         .hstack.gap-2
                             i.bi.bi-x-lg
                             span 프로젝트 삭제

@@ -20,3 +20,13 @@ $body-bg: #f7f7f7;
 $navbar-height: 5rem;
 $sidebar-width: 5rem;
 $breadcrumb-height: 3rem;
+
+// breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: 768px,
+    md: 769px,
+    lg: 1024px,
+    xl: 1216px,
+    xxl: 1408px,
+);

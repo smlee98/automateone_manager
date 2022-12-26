@@ -17,7 +17,30 @@ html(lang="ko")
             block contents
 
         //- MODAL START ===========
+        #personCheckModal.modal.fade(
+            tabindex="-1",
+            aria-labelledby="personCheckModal",
+            aria-hidden="true"
+        )
+            .modal-dialog.modal-sm.modal-dialog-centered.modal-dialog-scrollable
+                .modal-content.text-center
+                    .modal-body
+                        .vstack.gap-3
+                            .vstack.gap-2
+                                i.bi.bi-exclamation-triangle.opacity-25.display-1
+                                span 개인정보 변경을 위해 #[br] 비밀번호 확인이 필요합니다.
+                            input.form-control(type="password")
+                    .modal-footer.justify-content-center
+                        .hstack.gap-3.w-100
+                            a.btn.btn-lg.btn-primary.w-100(
+                                href="/src/view/sysMngr/system/userManagement.pug"
+                            ) 확인
+                            button.btn.btn-lg.btn-secondary.w-100(
+                                data-bs-dismiss="modal",
+                                aria-label="Close"
+                            ) 취소
         include partials/modal
+        block modal
 
         //- SCRIPT START ===========
         include partials/default-script
