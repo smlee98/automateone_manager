@@ -1,12 +1,9 @@
-.table-responsive {
-    border-top: 2px solid $primary;
-}
-
 .table {
     min-width: 960px;
     margin-bottom: 0;
     overflow: hidden;
-    margin-top: -1px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0 1px var(--#{$prefix}border-color);
 
     thead.row-sticky {
         position: sticky !important;
@@ -15,17 +12,12 @@
 
     th,
     td {
-        @include text-truncate;
-        white-space: nowrap;
-        word-break: break-all;
+        // @include text-truncate;
+        // white-space: nowrap;
+        // word-break: break-all;
         vertical-align: middle !important;
         max-width: 0;
-        &:first-child {
-            border-left: none;
-        }
-        &:last-child {
-            border-right: none;
-        }
+
         & > .form-check {
             display: flex;
             justify-content: center;
@@ -34,35 +26,9 @@
     }
 
     th {
-        background-color: #edeff2;
-        color: #64686e;
+        background-color: #f9f9fb;
+        color: #5e6599;
         text-align: center;
-    }
-
-    td {
-        background-color: #fff;
-    }
-}
-
-table#fileList {
-    $fileList_table: (
-        1: 5%,
-        2: 10%,
-        3: 50%,
-        4: 10%,
-        5: 10%,
-        6: 15%,
-    );
-    th,
-    td {
-        &:not(:nth-child(3)) {
-            text-align: center;
-        }
-        @each $i, $percent in $fileList_table {
-            &:nth-child(#{$i}) {
-                width: $percent;
-            }
-        }
     }
 }
 
@@ -71,10 +37,10 @@ table#allProcTable {
         1: 4%,
         2: 5%,
         3: 45%,
-        4: 10%,
-        5: 10%,
+        4: 12%,
+        5: 12%,
         6: 8%,
-        7: 12%,
+        7: 8%,
         8: 5%,
     );
 
@@ -465,10 +431,10 @@ table#manageScriptTable {
     $manageScriptTable: (
         1: 4%,
         2: 6%,
-        3: 25%,
-        4: 35%,
+        3: 27%,
+        4: 37%,
         5: 13%,
-        6: 12%,
+        6: 8%,
         7: 5%,
     );
 
@@ -496,10 +462,10 @@ table#scriptHistoryTable {
     $scriptHistoryTable: (
         1: 4%,
         2: 6%,
-        3: 25%,
-        4: 35%,
+        3: 27%,
+        4: 37%,
         5: 12%,
-        6: 12%,
+        6: 8%,
         7: 6%,
     );
 
@@ -527,10 +493,10 @@ table#robotPatchListTable {
     min-width: auto !important;
 
     $robotPatchListTable: (
-        1: 5%,
-        2: 38%,
-        3: 38%,
-        4: 13%,
+        1: 6%,
+        2: 40%,
+        3: 40%,
+        4: 8%,
         5: 6%,
     );
 
@@ -550,9 +516,9 @@ table#manageAttachTable {
     $manageAttachTable: (
         1: 4%,
         2: 6%,
-        3: 60%,
-        4: 13%,
-        5: 12%,
+        3: 62%,
+        4: 15%,
+        5: 8%,
         6: 5%,
     );
 
@@ -579,10 +545,10 @@ table#manageAttachTable {
 table#attachListTable {
     $attachListTable: (
         1: 5%,
-        2: 30%,
-        3: 35%,
+        2: 32%,
+        3: 37%,
         4: 12%,
-        5: 12%,
+        5: 8%,
         6: 6%,
     );
 
@@ -599,6 +565,40 @@ table#attachListTable {
         }
 
         @each $i, $percent in $attachListTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#manageProcessTable {
+    $manageProcessTable: (
+        1: 4%,
+        2: 5%,
+        3: 20%,
+        4: 12%,
+        5: 18%,
+        6: 9%,
+        7: 9%,
+        8: 9%,
+        9: 8%,
+        10: 6%,
+    );
+
+    th,
+    td {
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        &:not(:nth-child(3)):not(:nth-child(5)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $manageProcessTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

@@ -158,7 +158,7 @@
                             },
                             {
                                 "title": "프로세스 관리",
-                                "link": "#"
+                                "link": "/src/view/process/process.pug"
                             },
                             {
                                 "title": "데이터셋 관리",

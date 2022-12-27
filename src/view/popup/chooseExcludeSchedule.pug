@@ -6,10 +6,21 @@ block contents
             .container.h-100
                 #workdayCalendar.flex-grow-1
 
-    script.
+    script(type="importmap").
+        {
+            "imports": {
+                "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.0.1",
+                "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/daygrid@6.0.1"
+            }
+        }
+    script(type="module").
+        import { Calendar } from "@fullcalendar/core";
+        import dayGridPlugin from "@fullcalendar/daygrid";
+
         document.addEventListener("DOMContentLoaded", () => {
             const calendarEl = document.getElementById("workdayCalendar");
-            const calendar = new FullCalendar.Calendar(calendarEl, {
+            const calendar = new Calendar(calendarEl, {
+                plugins: [dayGridPlugin],
                 initialView: "dayGridMonth",
                 locale: "ko",
                 buttonText: {

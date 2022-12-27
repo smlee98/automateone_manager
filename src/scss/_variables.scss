@@ -1,5 +1,6 @@
 $prefix: sm-;
 $enable-negative-margins: true;
+$enable-dark-mode: true;
 
 // type
 $font-family-sans-serif: Pretendard, -apple-system, BlinkMacSystemFont,
@@ -15,7 +16,8 @@ $dark: #212529;
 $light: #f7f7f7;
 
 // body
-$body-bg: #f7f7f7;
+$body-bg: #ffffff;
+$body-bg-dark: #111828;
 
 $navbar-height: 5rem;
 $sidebar-width: 5rem;

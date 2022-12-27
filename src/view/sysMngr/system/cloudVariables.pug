@@ -10,7 +10,7 @@ mixin userTableBody(index)
                     name="boardCheck",
                     value=`check${index}`
                 ) 
-        td= index
+        td #[span= index]
         td #[span= `variable${index}`]
         td #[span 그리드원|BrityWorks/이든티엔에스/인지소프트|UiPath/Automation Anywhere/소프토모티브]
         td #[span String]
@@ -22,7 +22,7 @@ block contents
         .vstack.gap-4.px-5.py-4
             h4.fw-bold 클라우드 변수 관리
             .d-flex.justify-content-between.align-items-center
-                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
                     input.form-control-plaintext.form-control-sm(
                         type="text",
                         placeholder="변수 이름 검색"

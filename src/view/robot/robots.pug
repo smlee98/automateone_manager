@@ -2,7 +2,7 @@ extends ../../templates/base
 
 mixin robotTableBody(index)
     tr
-        td= index
+        td #[span= index]
         td #[span= `ibizbot-${index}`]
         td #[span= `group-${index}`]
         td #[span 사용가능]
@@ -25,7 +25,7 @@ block contents
             h4.fw-bold 로봇 설정
             .d-flex.justify-content-between.align-items-center
                 .hstack.gap-3
-                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
                         input.form-control-plaintext.form-control-sm(
                             type="text",
                             placeholder="로봇명 검색"
@@ -39,7 +39,7 @@ block contents
                             span 엑셀 다운로드
                 .hstack.gap-3
                     span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
-                    #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
+                    #update.hstack.gap-2.border.p-2.rounded-pill
                         button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
                                 i.bi.bi-arrow-clockwise.d-inline-flex

@@ -1,5 +1,5 @@
-import preloader from "./_preloader";
 import * as bootstrap from "bootstrap";
+import preloader from "./_preloader";
 import { checkItems, projectToggle, sidebarToggle } from "./_input";
 import {
     accordionController,
@@ -7,9 +7,18 @@ import {
     tooltipController,
 } from "./_bsCustom";
 import { excelController } from "./_excel";
+import { getCookie, setCookie } from "./_cookie";
+import { themeController } from "./_theme";
 
 /* Bootstrap */
 window.bootstrap = bootstrap;
+
+/* Cookie */
+getCookie();
+setCookie();
+
+/* Theme */
+themeController();
 
 /* Preloader */
 preloader();

@@ -1,16 +1,16 @@
 extends ../../templates/base
 
 block contents
-    +breadcrumb(["프로세스", "스크립트 관리"])
+    +breadcrumb(["프로세스", "프로세스 관리"])
     section#wrapper
         .vstack.gap-4.px-5.py-4
-            h4.fw-bold 스크립트 관리
+            h4.fw-bold 프로세스 관리
             .d-flex.justify-content-between.align-items-center
                 .hstack.gap-3
                     .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
                         input.form-control-plaintext.form-control-sm(
                             type="text",
-                            placeholder="스크립트명 검색"
+                            placeholder="프로세스명 검색"
                         )
                         button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
@@ -20,29 +20,22 @@ block contents
                             i.bi.bi-file-earmark-spreadsheet
                             span 엑셀 다운로드
                 .hstack.gap-2
-                    button.btn.btn-secondary(
-                        data-bs-toggle="modal",
-                        data-bs-target="#loadingModal"
-                    )
-                        .hstack.gap-2
-                            i.bi.bi-git
-                            span GIT 스크립트 동기화
                     button.btn.btn-primary(
                         data-bs-toggle="modal",
                         data-bs-target="#newScriptModal"
                     )
                         .hstack.gap-2
                             i.bi.bi-plus-lg
-                            span 스크립트 등록
+                            span 프로세스 등록
                     button.btn.btn-secondary(
                         data-bs-toggle="modal",
                         data-bs-target="#deleteCheckModal"
                     )
                         .hstack.gap-2
                             i.bi.bi-x-lg
-                            span 스크립트 삭제
+                            span 프로세스 삭제
             .table-responsive
-                table#manageScriptTable.table.table-bordered.table-excel
+                table#manageProcessTable.table.table-bordered
                     thead
                         tr
                             th
@@ -53,29 +46,33 @@ block contents
                                         value="checkAll"
                                     ) 
                             th #[span 번호]
-                            th #[span 스크립트명]
-                            th #[span Git URL]
-                            th #[span 버전]
+                            th #[span 프로세스명]
+                            th #[span 로봇그룹]
+                            th #[span 스크립트]
+                            th #[span 데이터셋]
+                            th #[span 결과 데이터셋]
+                            th #[span 로봇 설정]
                             th #[span 등록일]
                             th #[span 수정]
                     tbody
                         tr
                             td
                                 .form-check
-                                    input#board1.form-check-input.board-check(
+                                    input#board1.form-check-input(
                                         type="checkbox",
                                         name="boardCheck",
                                         value="board1"
                                     )
                             td #[span 1]
-                            td #[span 디지털마케팅팀 주보 업무]
-                            td #[span https://10.10.1.148:8033/automateone_git/r/~NzM/Mjc1.git]
-                            td #[span 5]
+                            td #[span 디지털마케팅 업무]
+                            td #[span 디지털마케팅봇]
+                            td #[span 디지털마케팅 주보 업무]
+                            td #[span COM00050_I_01]
+                            td #[span COM00050_I_01]
+                            td #[span COM00050_I_01]
                             td #[small.text-muted.lh-sm 2022-04-05 #[br] 14:18:45]
                             td
-                                a.btn.btn-sm.btn-secondary.py-0(
-                                    href="/src/view/process/script-modify.pug"
-                                )
+                                a.btn.btn-sm.btn-secondary.py-0(href="#")
                                     span.me-1 수정
                                     i.bi.bi-pencil-fill
             +pagination

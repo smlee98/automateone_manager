@@ -2,20 +2,20 @@ extends ../templates/base
 
 mixin procTableBody
     tr
-        td 10234
-        td 분류없음
-        td.text-wrap Naver_뉴스_HtmlAgilityPack
-        td.text-wrap ibizbot_note
-        td.text-wrap Naver_뉴스_Http.zip
-        td 예약
-        td 2022/04/13 #[br] 11:22:33
-        td 2022/04/13 #[br] 11:22:33
-        td 2022/04/13 #[br] 11:22:33
-        td 1,394
-        td 23.23
+        td #[span 10234]
+        td #[span 분류없음]
+        td #[span.text-wrap Naver_뉴스_HtmlAgilityPack]
+        td #[span.text-wrap ibizbot_note]
+        td #[span.text-wrap Naver_뉴스_Http.zip]
+        td #[span 예약]
+        td #[small.text-muted.lh-sm 2022-04-05 #[br] 14:18:45]
+        td #[small.text-muted.lh-sm 2022-04-05 #[br] 14:18:45]
+        td #[small.text-muted.lh-sm 2022-04-05 #[br] 14:18:45]
+        td #[span 1,394]
+        td #[span 23.23]
         td
             span.badge.badge-gridone.status-ongoing.w-100 SUCCESS
-        td 관리자
+        td #[span 관리자]
         td
             a.btn.btn-sm.btn-primary.py-0(href="#")
                 .hstack.gap-1
@@ -33,7 +33,7 @@ block contents
             .d-flex.justify-content-end.align-items-center
                 .hstack.gap-3
                     span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
-                    #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
+                    #update.hstack.gap-2.border.p-2.rounded-pill
                         button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
                                 i.bi.bi-arrow-clockwise.d-inline-flex
@@ -214,20 +214,20 @@ block contents
                             table#mainProcTable.table.table-bordered
                                 thead
                                     tr
-                                        th 실행ID
-                                        th 분류명
-                                        th 프로세스
-                                        th 로봇
-                                        th 스크립트
-                                        th 유형
-                                        th 요청시간
-                                        th 시작시간
-                                        th 종료시간
-                                        th 실행시간 #[br] (초)
-                                        th 실행시간 #[br] (분)
-                                        th 상태
-                                        th 실행자
-                                        th 상세 #[br] 결과
+                                        th #[span 실행ID]
+                                        th #[span 분류명]
+                                        th #[span 프로세스]
+                                        th #[span 로봇]
+                                        th #[span 스크립트]
+                                        th #[span 유형]
+                                        th #[span 요청시간]
+                                        th #[span 시작시간]
+                                        th #[span 종료시간]
+                                        th #[span 실행시간 #[br] (초)]
+                                        th #[span 실행시간 #[br] (분)]
+                                        th #[span 상태]
+                                        th #[span 실행자]
+                                        th #[span 상세 #[br] 결과]
                                 tbody
                                     +procTableBody
                                     +procTableBody

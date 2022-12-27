@@ -276,11 +276,23 @@ const statWeekConfig = {
                     beginAtZero: true,
                     stepSize: 1,
                 },
+                grid: {
+                    color: "#adb5bd80",
+                },
+                border: {
+                    color: "#adb5bd80",
+                },
                 stacked: true,
             },
             y: {
                 ticks: {
                     padding: 0,
+                },
+                grid: {
+                    color: "#adb5bd80",
+                },
+                border: {
+                    color: "#adb5bd80",
                 },
                 stacked: true,
             },

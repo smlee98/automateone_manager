@@ -2,7 +2,7 @@ extends ../../../templates/project
 
 mixin userTableBody(index)
     tr
-        td= index
+        td #[span= index]
         td
             .hstack.justify-content-between.align-items-center
                 span= `user${index}`

@@ -6,35 +6,18 @@ nav.navbar {
     }
 }
 
-.nav-tabs {
-    overflow-x: auto;
-    overflow-y: hidden;
-    flex-wrap: nowrap;
+.nav-pills {
+    border: 1px solid var(--#{$prefix}border-color);
+    border-radius: var(--#{$prefix}nav-pills-border-radius);
+    padding: 0.25rem;
 
-    .nav-item {
-        & + .nav-item {
-            margin-left: -1px;
-        }
-        &:last-child {
-            & .nav-link {
-                border-radius: 0 1rem 0 0;
-            }
-        }
-    }
     .nav-link {
         --#{$prefix}nav-link-padding-x: 2rem;
         font-weight: $font-weight-bold;
-        background-color: rgba(236, 236, 236, 0.3);
-        color: rgba(0, 0, 0, 0.4);
-        border-radius: 0;
-        border-color: var(--#{$prefix}nav-tabs-link-active-border-color);
-        border-bottom: 1px solid
-            var(--#{$prefix}nav-tabs-link-active-border-color);
-        white-space: nowrap;
+        color: var(--#{$prefix}tertiary-color);
 
         &.active {
-            border-bottom-width: 0 !important;
-            color: #000 !important;
+            color: $white !important;
         }
     }
 }

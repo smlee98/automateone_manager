@@ -1,17 +1,13 @@
 :root {
     /* ===== Colors ===== */
-    --body-color: #e4e9f7;
-    --sidebar-color: #fff;
+    --sidebar-color: var(--#{$prefix}body-bg);
     --primary-color: var(--#{$prefix}primary);
-    --primary-color-light: #f6f5ff;
-    --toggle-color: #ddd;
-    --text-color: #707070;
+    --toggle-color: var(--#{$prefix}body-color);
+    --text-color: var(--#{$prefix}secondary-color);
 
     /* ====== Transition ====== */
-    --tran-03: all 0.2s ease;
-    --tran-03: all 0.3s ease;
-    --tran-04: all 0.3s ease;
-    --tran-05: all 0.3s ease;
+    --sidebar-transition: all 0.2s ease;
+    --sidebar-width-transition: width 0.2s ease;
 }
 
 /* ===== Sidebar ===== */
@@ -23,7 +19,7 @@
     height: calc(100vh - $navbar-height - $breadcrumb-height);
     width: 250px;
     padding: 10px 14px;
-    transition: var(--tran-05);
+    transition: var(--sidebar-width-transition);
     background-color: var(--sidebar-color);
     z-index: 100;
 
@@ -76,7 +72,7 @@
                 width: 40px;
                 border-radius: 25px;
                 background-color: var(--toggle-color);
-                transition: var(--tran-05);
+                transition: var(--sidebar-transition);
 
                 &::before {
                     content: "";
@@ -88,7 +84,7 @@
                     left: 5px;
                     transform: translateY(-50%);
                     background-color: var(--sidebar-color);
-                    transition: var(--tran-04);
+                    transition: var(--sidebar-transition);
                 }
             }
         }
@@ -111,7 +107,7 @@
             width: 100%;
             border-radius: 6px;
             text-decoration: none;
-            transition: var(--tran-03);
+            transition: var(--sidebar-transition);
             cursor: pointer;
             user-select: none;
 
@@ -120,7 +116,7 @@
 
                 .icon,
                 .text {
-                    color: var(--sidebar-color);
+                    color: rgba($white, 0.4);
                 }
             }
         }
@@ -136,13 +132,13 @@
             width: 26px;
             font-size: 14px;
             background-color: var(--primary-color);
-            color: var(--sidebar-color);
+            color: $white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: var(--tran-05);
+            transition: var(--sidebar-transition);
         }
 
         .image {
@@ -174,7 +170,7 @@
     .text,
     .icon {
         color: var(--text-color);
-        transition: var(--tran-03);
+        transition: var(--sidebar-transition);
     }
 
     .text {
@@ -203,7 +199,7 @@
     top: calc($navbar-height + $breadcrumb-height);
     left: 250px;
     width: calc(100% - 250px);
-    transition: var(--tran-05);
+    transition: var(--sidebar-transition);
 }
 
 .sidebar.close ~ #wrapper {

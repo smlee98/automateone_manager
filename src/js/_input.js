@@ -13,7 +13,7 @@ export const projectToggle = () => {
         const selectEl = choice.querySelectorAll(".dropdown-item");
         selectEl.forEach((el) => {
             el.addEventListener("click", (e) => {
-                choice.querySelector(".dropdown-toggle").innerText =
+                document.querySelector("#projectTitle").innerText =
                     e.target.innerText;
             });
         });

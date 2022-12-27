@@ -10,7 +10,7 @@ mixin robotTableBody(index)
                     name="boardCheck",
                     value=`check${index}`
                 ) 
-        td= index
+        td #[span= index]
         td #[span= `ibizbot-${index}`]
         td #[span 사용가능]
         td #[span -]
@@ -46,7 +46,7 @@ block contents
         .vstack.gap-4.px-5.py-4
             h4.fw-bold 로봇 관리
             .d-flex.justify-content-between.align-items-center
-                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill.bg-white
+                .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
                     input.form-control-plaintext.form-control-sm(
                         type="text",
                         placeholder="로봇명 검색"
@@ -56,7 +56,7 @@ block contents
                             i.bi.bi-search.d-inline-flex
                 .hstack.gap-3
                     span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
-                    #update.hstack.gap-2.border.p-2.rounded-pill.bg-white
+                    #update.hstack.gap-2.border.p-2.rounded-pill
                         button.btn.btn-primary.btn-icon.rounded-circle
                             .hstack.justify-content-center
                                 i.bi.bi-arrow-clockwise.d-inline-flex

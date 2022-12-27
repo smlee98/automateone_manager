@@ -1,0 +1,10 @@
+$color-mode-type: data;
+
+@include color-mode(dark) {
+    .table {
+        th {
+            background-color: #202938 !important;
+            color: #9ca4b1 !important;
+        }
+    }
+}
