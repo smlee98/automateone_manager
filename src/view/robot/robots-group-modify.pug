@@ -25,7 +25,10 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-list.lh-1
                             span 목록
-                    a.btn.btn-primary(href="/src/view/robot/robots-group.pug")
+                    a.btn.btn-primary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#saveCheckModal"
+                    )
                         .hstack.gap-2
                             i.bi.bi-save.lh-1
                             span 저장
@@ -41,14 +44,71 @@ block contents
                         .hstack.justify-content-between
                             h4.fw-bold 로봇
                             .hstack.gap-3
-                                button.btn.btn-primary
+                                button.btn.btn-primary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#robotGroupModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-plus-lg.lh-1
                                         span 추가
-                                button.btn.btn-secondary
+                                button.btn.btn-secondary(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#deleteCheckModal"
+                                )
                                     .hstack.gap-2
                                         i.bi.bi-x-lg.lh-1
                                         span 삭제
                         .row.row-cols-2.row-cols-lg-6.g-4
                             - for (let index = 1; index <= 10; index++)
                                 +robotItems(index)
+
+block modal
+    +saveCheckModal("/src/view/robot/robots-group.pug")
+    #robotGroupModal.modal.fade(
+        tabindex="-1",
+        aria-labelledby="robotGroupModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.fw-bold 로봇 추가
+                .modal-body
+                    .vstack.gap-4
+                        .table-responsive
+                            table#robotGroupAddTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                )
+                                        th #[span ID]
+                                        th #[span 로봇명]
+                                        th #[span 설명]
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#robot1.form-check-input.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="robot1"
+                                                )
+                                        td #[span 120]
+                                        td #[span ibizbot_120]
+                                        td #[span 관리자 전용 로봇]
+                        +pagination
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 추가
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소

@@ -46,28 +46,4 @@ block contents
                         input#robotKey.form-control(type="robotKey", readonly)
             .vstack.gap-2
                 label.form-label.fw-bold(for="robotEditor") 설명
-                #robotEditor.editor
-            hr
-            .row.row-cols-1.row-cols-lg-2.g-4
-                .col
-                    .card
-                        .card-body
-                            .vstack.gap-4.h-100
-                                h4.fw-bold 디스크 용량
-                                .d-flex.justify-content-center.align-items-center.flex-grow-1
-                                    canvas#statDiskChart
-                .col
-                    .card
-                        .card-body
-                            .vstack.gap-4.h-100
-                                h4.fw-bold 메모리 사용량
-                                .d-flex.justify-content-center.align-items-center.flex-grow-1
-                                    canvas#statMemoryChart
-            .card
-                .card-body
-                    .vstack.gap-4.h-100
-                        h4.fw-bold CPU 사용률
-                        .d-flex.justify-content-center.align-items-center.flex-grow-1
-                            canvas#statCpuChart
-    script(src="/src/js/AOEditor.js", type="module")
-    script(src="/src/lib/data/mainChart.js", type="module")
+                textarea#robotExplain.form-control(rows="5")

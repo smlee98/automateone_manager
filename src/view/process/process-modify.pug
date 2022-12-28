@@ -1,0 +1,696 @@
+extends ../../templates/base
+
+block contents
+    +breadcrumb(["프로세스", "프로세스 수정"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            .d-flex.justify-content-between.align-items-center
+                h4.fw-bold 프로세스 수정
+                .hstack.gap-3
+                    a.btn.btn-secondary(href="/src/view/process/process.pug")
+                        .hstack.gap-2
+                            i.bi.bi-list.lh-1
+                            span 목록
+                    button.btn.btn-primary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#saveCheckModal"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-save.lh-1
+                            span 저장
+            .vstack.gap-2
+                label.form-label.fw-bold(for="newProcessName") 프로세스명
+                input#newProcessName.form-control(type="text")
+            .vstack.gap-2
+                label.form-label.fw-bold(for="newProcessExplain") 설명
+                textarea#newProcessExplain.form-control(rows="5")
+            hr
+            .row.gx-3.gy-0
+                label.col.col-form-label.fw-bold.required(for="staticEmail") 스크립트
+                .col-10
+                    input.form-control-plaintext(
+                        type="text",
+                        value="-",
+                        disabled=""
+                    )
+                .col
+                    button.btn.btn-primary.w-100(
+                        data-bs-toggle="modal",
+                        data-bs-target="#selectScriptModal"
+                    ) 선택
+            .row.gx-3.gy-0
+                label.col.col-form-label.fw-bold.required(for="staticEmail") 로봇그룹
+                .col-10
+                    input.form-control-plaintext(
+                        type="text",
+                        value="-",
+                        disabled=""
+                    )
+                .col
+                    button.btn.btn-primary.w-100(
+                        data-bs-toggle="modal",
+                        data-bs-target="#selectRobotGroupModal"
+                    ) 선택
+            .row.gx-3.gy-0
+                label.col.col-form-label.fw-bold(for="staticEmail") 첨부파일 그룹
+                .col-10
+                    input.form-control-plaintext(
+                        type="text",
+                        value="-",
+                        disabled=""
+                    )
+                .col
+                    button.btn.btn-primary.w-100(
+                        data-bs-toggle="modal",
+                        data-bs-target="#selectAttachModal"
+                    ) 선택
+            .row.gx-3.gy-0
+                label.col.col-form-label.fw-bold(for="staticEmail") 데이터 셋
+                .col-10
+                    input.form-control-plaintext(
+                        type="text",
+                        value="-",
+                        disabled=""
+                    )
+                .col
+                    button.btn.btn-primary.w-100(
+                        data-bs-toggle="modal",
+                        data-bs-target="#selectDatasetModal"
+                    ) 선택
+            .row.gx-3.gy-0
+                label.col.col-form-label.fw-bold(for="staticEmail") 결과 데이터 셋
+                .col-10
+                    input.form-control-plaintext(
+                        type="text",
+                        value="-",
+                        disabled=""
+                    )
+                .col
+                    button.btn.btn-primary.w-100(
+                        data-bs-toggle="modal",
+                        data-bs-target="#selectResultDatasetModal"
+                    ) 선택
+            .row.gx-3.gy-0
+                label.col.col-form-label.fw-bold(for="staticEmail") 로봇 설정
+                .col-10
+                    input.form-control-plaintext(
+                        type="text",
+                        value="-",
+                        disabled=""
+                    )
+                .col
+                    button.btn.btn-primary.w-100(
+                        data-bs-toggle="modal",
+                        data-bs-target="#selectRobotSettingModal"
+                    ) 선택
+
+block modal
+    +saveCheckModal("/src/view/process/process.pug")
+    #selectScriptModal.modal.fade(
+        aria-labelledby="selectScriptModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.modal-title.fw-bold 스크립트 선택
+                .modal-body
+                    .vstack.gap-3
+                        .input-group
+                            span.input-group-text 스크립트명
+                            input.form-control(type="text")
+                            button.btn.btn-primary
+                                i.bi.bi-search
+                        .table-responsive
+                            table#selectScriptTable.table.table-bordered
+                                thead
+                                    tr
+                                        th &nbsp;
+                                        th ID
+                                        th 스크립트
+                                        th 버전
+                                        th 등록일
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectScriptTable1.form-check-input(
+                                                    type="radio",
+                                                    name="selectScriptModal",
+                                                    value="board1"
+                                                )
+                                        td 266
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectScriptTable2.form-check-input(
+                                                    type="radio",
+                                                    name="selectScriptModal",
+                                                    value="board2"
+                                                )
+                                        td 174
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectScriptTable3.form-check-input(
+                                                    type="radio",
+                                                    name="selectScriptModal",
+                                                    value="board3"
+                                                )
+                                        td 171
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectScriptTable4.form-check-input(
+                                                    type="radio",
+                                                    name="selectScriptModal",
+                                                    value="board4"
+                                                )
+                                        td 171
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectScriptTable5.form-check-input(
+                                                    type="radio",
+                                                    name="selectScriptModal",
+                                                    value="board5"
+                                                )
+                                        td 171
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                        +pagination
+                .modal-footer
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 선택
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #selectRobotGroupModal.modal.fade(
+        aria-labelledby="selectRobotGroupModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.modal-title.fw-bold 로봇그룹 선택
+                .modal-body
+                    .vstack.gap-3
+                        .table-responsive
+                            table#selectRobotgroupTable.table.table-bordered
+                                thead
+                                    tr
+                                        th &nbsp;
+                                        th ID
+                                        th 로봇그룹
+                                        th 설명
+                                        th 등록일
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotGroup1.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotGroupModal",
+                                                    value="board1"
+                                                )
+                                        td 266
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotGroup2.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotGroupModal",
+                                                    value="board2"
+                                                )
+                                        td 174
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotGroup3.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotGroupModal",
+                                                    value="board3"
+                                                )
+                                        td 171
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotGroup4.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotGroupModal",
+                                                    value="board4"
+                                                )
+                                        td 171
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotGroup5.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotGroupModal",
+                                                    value="board5"
+                                                )
+                                        td 171
+                                        td AO 테스트
+                                        td 10
+                                        td 2022-10-05
+                        +pagination
+                .modal-footer
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 선택
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #selectAttachModal.modal.fade(
+        aria-labelledby="selectAttachModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.modal-title.fw-bold 첨부파일 그룹 선택
+                .modal-body
+                    .vstack.gap-3
+                        .table-responsive
+                            table#selectAttachmentTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                ) 
+                                        th ID
+                                        th 첨부파일
+                                        th 등록일
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedAttach1.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedAttach1"
+                                                ) 
+                                        td 266
+                                        td AO 테스트
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedAttach2.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedAttach2"
+                                                ) 
+                                        td 174
+                                        td AO 테스트
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedAttach3.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedAttach3"
+                                                ) 
+                                        td 171
+                                        td AO 테스트
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedAttach4.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedAttach4"
+                                                ) 
+                                        td 171
+                                        td AO 테스트
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedAttach5.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedAttach5"
+                                                ) 
+                                        td 171
+                                        td AO 테스트
+                                        td 2022-10-05
+                        +pagination
+                .modal-footer
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 선택
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #selectDatasetModal.modal.fade(
+        aria-labelledby="selectDatasetModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.modal-title.fw-bold 데이터셋 선택
+                .modal-body
+                    .vstack.gap-3
+                        .input-group
+                            span.input-group-text 데이터셋
+                            select#datasetModalSelect.form-select
+                                option(value="dataset1") 데이터셋1
+                                option(value="dataset2") 데이터셋2
+                                option(value="dataset3") 데이터셋3
+                            button.btn.btn-primary
+                                i.bi.bi-search
+                        .table-responsive
+                            table#selectDatasetTable.table.table-bordered
+                                thead
+                                    tr
+                                        th
+                                            .form-check
+                                                input#checkAll.form-check-input.border-1(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="checkAll"
+                                                ) 
+                                        th 행번호
+                                        th Column 1
+                                        th Column 2
+                                        th Column 3
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedDataset1.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedDataset1"
+                                                ) 
+                                        td 1
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedDataset2.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedDataset2"
+                                                ) 
+                                        td 2
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedDataset3.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedDataset3"
+                                                ) 
+                                        td 3
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedDataset4.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedDataset4"
+                                                ) 
+                                        td 4
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedDataset5.form-check-input.border-1.board-check(
+                                                    type="checkbox",
+                                                    name="boardCheck",
+                                                    value="selectedDataset5"
+                                                ) 
+                                        td 5
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                        +pagination
+                .modal-footer
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 선택
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #selectResultDatasetModal.modal.fade(
+        aria-labelledby="selectResultDatasetModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.modal-title.fw-bold 결과 데이터셋 선택
+                .modal-body
+                    .vstack.gap-3
+                        .table-responsive
+                            table#selectResultDatasetTable.table.table-bordered
+                                thead
+                                    tr
+                                        th &nbsp;
+                                        th ID
+                                        th 데이터셋
+                                        th 설명
+                                        th 생성일
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedResultDatasetGroup1.form-check-input(
+                                                    type="radio",
+                                                    name="selectedResultDatasetModal",
+                                                    value="board1"
+                                                )
+                                        td 266
+                                        td Dataset 테스트
+                                        td -
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedResultDatasetGroup2.form-check-input(
+                                                    type="radio",
+                                                    name="selectedResultDatasetModal",
+                                                    value="board2"
+                                                )
+                                        td 174
+                                        td Dataset 테스트
+                                        td -
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedResultDatasetGroup3.form-check-input(
+                                                    type="radio",
+                                                    name="selectedResultDatasetModal",
+                                                    value="board3"
+                                                )
+                                        td 171
+                                        td Dataset 테스트
+                                        td -
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedResultDatasetGroup4.form-check-input(
+                                                    type="radio",
+                                                    name="selectedResultDatasetModal",
+                                                    value="board4"
+                                                )
+                                        td 171
+                                        td Dataset 테스트
+                                        td -
+                                        td 2022-10-05
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedResultDatasetGroup5.form-check-input(
+                                                    type="radio",
+                                                    name="selectedResultDatasetModal",
+                                                    value="board5"
+                                                )
+                                        td 171
+                                        td Dataset 테스트
+                                        td -
+                                        td 2022-10-05
+                        +pagination
+                .modal-footer
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 선택
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소
+
+    #selectRobotSettingModal.modal.fade(
+        aria-labelledby="selectRobotSettingModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    h5.modal-title.fw-bold 로봇 설정 선택
+                .modal-body
+                    .vstack.gap-3
+                        .table-responsive
+                            table#selectRobotSettingTable.table.table-bordered
+                                thead
+                                    tr
+                                        th &nbsp;
+                                        th ID
+                                        th 설정명
+                                        th 파일명
+                                        th 서버명
+                                        th 기본 #[br] 설정
+                                        th 메모
+                                        th 수정일
+                                tbody
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotSetting1.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotSettingModal",
+                                                    value="board1"
+                                                )
+                                        td 133
+                                        td AO3 TEST
+                                        td CONF3_ROBOT
+                                        td M1
+                                        td N
+                                        td -
+                                        td 2021-06-15
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotSetting2.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotSettingModal",
+                                                    value="board2"
+                                                )
+                                        td 133
+                                        td AO3 TEST
+                                        td CONF3_ROBOT
+                                        td M1
+                                        td N
+                                        td -
+                                        td 2021-06-15
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotSetting3.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotSettingModal",
+                                                    value="board3"
+                                                )
+                                        td 133
+                                        td AO3 TEST
+                                        td CONF3_ROBOT
+                                        td M1
+                                        td N
+                                        td -
+                                        td 2021-06-15
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotSetting4.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotSettingModal",
+                                                    value="board4"
+                                                )
+                                        td 133
+                                        td AO3 TEST
+                                        td CONF3_ROBOT
+                                        td M1
+                                        td N
+                                        td -
+                                        td 2021-06-15
+                                    tr
+                                        td
+                                            .form-check
+                                                input#selectedRobotSetting5.form-check-input(
+                                                    type="radio",
+                                                    name="selectedRobotSettingModal",
+                                                    value="board5"
+                                                )
+                                        td 133
+                                        td AO3 TEST
+                                        td CONF3_ROBOT
+                                        td M1
+                                        td N
+                                        td -
+                                        td 2021-06-15
+                        +pagination
+                .modal-footer
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 선택
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소

@@ -17,6 +17,14 @@ mixin robotTableBody(index)
                 .hstack.gap-1
                     span 수정
                     i.bi.bi-pencil.lh-1
+        td
+            button.btn.btn-sm.btn-primary.py-0(
+                data-bs-toggle="modal",
+                data-bs-target="#robotResourceModal"
+            )
+                .hstack.gap-1
+                    span 확인
+                    i.bi.bi-search.lh-1
 
 block contents
     +breadcrumb(["로봇", "로봇 설정"])
@@ -62,7 +70,50 @@ block contents
                             th #[span Memory]
                             th #[span Disk]
                             th #[span 수정]
+                            th #[span 리소스]
+
                     tbody
                         - for (let index = 1; index <= 10; index++)
                             +robotTableBody(index)
             +pagination
+
+block modal
+    #robotResourceModal.modal.fade(
+        aria-labelledby="robotResourceModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-xl.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content.text-center
+                .modal-header
+                    h5.fw-bold 리소스 그래프
+                    button.btn-close(
+                        type="button",
+                        data-bs-dismiss="modal",
+                        aria-label="Close"
+                    )
+                .modal-body
+                    .row.row-cols-1.row-cols-lg-3.g-3
+                        .col
+                            .card
+                                .card-body
+                                    .vstack.gap-4.h-100
+                                        h6.fw-bold 디스크 용량
+                                        .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                            canvas#statDiskChart
+                        .col
+                            .card
+                                .card-body
+                                    .vstack.gap-4.h-100
+                                        h6.fw-bold 메모리 사용량
+                                        .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                            canvas#statMemoryChart
+                        .col
+                            .card
+                                .card-body
+                                    .vstack.gap-4.h-100
+                                        h6.fw-bold CPU 사용률
+                                        .d-flex.justify-content-center.align-items-center.flex-grow-1
+                                            canvas#statCpuChart
+
+block scripts
+    script(src="/src/lib/data/mainChart.js", type="module")

@@ -383,10 +383,11 @@ table#mainRobotTable {
         3: 11%,
         4: 10%,
         5: 22%,
-        6: 10%,
-        7: 10%,
-        8: 10%,
+        6: 8%,
+        7: 8%,
+        8: 8%,
         9: 5%,
+        10: 6%,
     );
 
     th,
@@ -599,6 +600,186 @@ table#manageProcessTable {
         }
 
         @each $i, $percent in $manageProcessTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#robotGroupAddTable {
+    min-width: auto !important;
+
+    $robotGroupAddTable: (
+        1: 6%,
+        2: 15%,
+        3: 25%,
+        4: 54%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $robotGroupAddTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#selectScriptTable {
+    min-width: auto;
+
+    $selectScriptTable: (
+        1: 6%,
+        2: 14%,
+        3: 50%,
+        4: 10%,
+        5: 20%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $selectScriptTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#selectRobotgroupTable,
+table#selectResultDatasetTable {
+    min-width: auto;
+
+    $selectTable: (
+        1: 6%,
+        2: 14%,
+        3: 25%,
+        4: 35%,
+        5: 20%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $selectTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#selectAttachmentTable {
+    min-width: auto;
+
+    $selectAttachmentTable: (
+        1: 6%,
+        2: 10%,
+        3: 64%,
+        4: 20%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $selectAttachmentTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#selectDatasetTable {
+    min-width: auto;
+
+    th,
+    td {
+        text-align: center;
+
+        &:first-child {
+            width: 5%;
+            min-width: 3rem;
+        }
+
+        &:nth-child(2) {
+            width: 7%;
+            min-width: 4rem;
+        }
+
+        &:nth-child(n + 3) {
+            min-width: 180px;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+table#selectRobotSettingTable {
+    min-width: auto;
+
+    $selectRobotSettingTable: (
+        1: 6%,
+        2: 10%,
+        3: 15%,
+        4: 15%,
+        5: 7%,
+        6: 7%,
+        7: 20%,
+        8: 20%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)) {
+            text-align: center;
+        }
+
+        & > .form-check {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0 !important;
+        }
+
+        @each $i, $percent in $selectRobotSettingTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

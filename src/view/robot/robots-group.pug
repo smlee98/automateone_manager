@@ -45,7 +45,10 @@ block contents
                         .hstack.gap-2
                             i.bi.bi-plus-lg
                             span 로봇그룹 추가
-                    button.btn.btn-secondary
+                    button.btn.btn-secondary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#deleteCheckModal"
+                    )
                         .hstack.gap-2
                             i.bi.bi-x-lg
                             span 로봇그룹 삭제
