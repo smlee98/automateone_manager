@@ -224,49 +224,25 @@ const statWeekConfig = {
         datasets: [
             {
                 label: "성공",
-                backgroundColor: function (context) {
-                    if (context.dataset.data[context.dataIndex] !== 0) {
-                        return "#00BB91";
-                    } else {
-                        return "transparent";
-                    }
-                },
+                backgroundColor: "#00BB91",
                 data: [4, 2, 3, 2, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0],
                 barThickness: 36,
             },
             {
                 label: "실패",
-                backgroundColor: function (context) {
-                    if (context.dataset.data[context.dataIndex] !== 0) {
-                        return "#FFBB00";
-                    } else {
-                        return "transparent";
-                    }
-                },
+                backgroundColor: "#FFBB00",
                 data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 barThickness: 36,
             },
             {
                 label: "정지",
-                backgroundColor: function (context) {
-                    if (context.dataset.data[context.dataIndex] !== 0) {
-                        return "#828282";
-                    } else {
-                        return "transparent";
-                    }
-                },
+                backgroundColor: "#828282",
                 data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 barThickness: 36,
             },
             {
                 label: "오류",
-                backgroundColor: function (context) {
-                    if (context.dataset.data[context.dataIndex] !== 0) {
-                        return "#FF5A5A";
-                    } else {
-                        return "transparent";
-                    }
-                },
+                backgroundColor: "#FF5A5A",
                 data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
                 barThickness: 36,
             },

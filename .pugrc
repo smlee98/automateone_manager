@@ -162,7 +162,7 @@
                             },
                             {
                                 "title": "데이터셋 관리",
-                                "link": "#"
+                                "link": "/src/view/process/dataset.pug"
                             }
                         ]
                     }

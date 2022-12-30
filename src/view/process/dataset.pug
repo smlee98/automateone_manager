@@ -1,0 +1,72 @@
+extends ../../templates/base
+
+block contents
+    +breadcrumb(["프로세스", "데이터셋 관리"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 데이터셋 관리
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-3
+                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
+                        input.form-control-plaintext.form-control-sm(
+                            type="text",
+                            placeholder="데이터셋명 검색"
+                        )
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-search.d-inline-flex
+                    button#excelDownload.btn.btn-success
+                        .hstack.gap-2
+                            i.bi.bi-file-earmark-spreadsheet
+                            span 엑셀 다운로드
+                .hstack.gap-2
+                    a.btn.btn-primary(href="/src/view/process/dataset-new.pug")
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg
+                            span 데이터셋 등록
+                    button.btn.btn-secondary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#deleteCheckModal"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-x-lg
+                            span 데이터셋 삭제
+            .table-responsive
+                table#manageDatasetTable.table.table-bordered
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input.border-1(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    ) 
+                            th 번호
+                            th 데이터 셋 명
+                            th 설명
+                            th 수정일
+                            th 목록 수정
+                            th 데이터 관리
+                    tbody
+                        tr
+                            td
+                                .form-check
+                                    input#board1.form-check-input.board-check(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="board1"
+                                    )
+                            td 1
+                            td CNR22010_I_02
+                            td 관공서 지급심사 활용자료 확보
+                            td 2022-02-22 16:57:22
+                            td
+                                a.btn.btn-sm.btn-secondary.py-0(href="#")
+                                    span.me-1 수정
+                                    i.bi.bi-pencil-fill
+                            td
+                                a.btn.btn-sm.btn-primary.py-0(href="#")
+                                    span.me-1 관리
+                                    i.bi.bi-gear-fill
+            +pagination

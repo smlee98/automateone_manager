@@ -441,12 +441,6 @@ table#manageScriptTable {
 
     th,
     td {
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         &:not(:nth-child(3)) {
             text-align: center;
         }
@@ -472,12 +466,6 @@ table#scriptHistoryTable {
 
     th,
     td {
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         &:not(:nth-child(3)) {
             text-align: center;
         }
@@ -525,12 +513,6 @@ table#manageAttachTable {
 
     th,
     td {
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         &:not(:nth-child(3)) {
             text-align: center;
         }
@@ -555,12 +537,6 @@ table#attachListTable {
 
     th,
     td {
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         &:not(:nth-child(3)) {
             text-align: center;
         }
@@ -589,12 +565,6 @@ table#manageProcessTable {
 
     th,
     td {
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         &:not(:nth-child(3)):not(:nth-child(5)) {
             text-align: center;
         }
@@ -648,12 +618,6 @@ table#selectScriptTable {
             text-align: center;
         }
 
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         @each $i, $percent in $selectScriptTable {
             &:nth-child(#{$i}) {
                 width: $percent;
@@ -680,12 +644,6 @@ table#selectResultDatasetTable {
             text-align: center;
         }
 
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
-
         @each $i, $percent in $selectTable {
             &:nth-child(#{$i}) {
                 width: $percent;
@@ -708,12 +666,6 @@ table#selectAttachmentTable {
     td {
         &:not(:nth-child(3)) {
             text-align: center;
-        }
-
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
         }
 
         @each $i, $percent in $selectAttachmentTable {
@@ -744,12 +696,6 @@ table#selectDatasetTable {
         &:nth-child(n + 3) {
             min-width: 180px;
         }
-
-        & > .form-check {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0 !important;
-        }
     }
 }
 
@@ -773,13 +719,61 @@ table#selectRobotSettingTable {
             text-align: center;
         }
 
+        @each $i, $percent in $selectRobotSettingTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#manageDatasetTable {
+    $manageDatasetTable: (
+        1: 4%,
+        2: 6%,
+        3: 25%,
+        4: 39%,
+        5: 13%,
+        6: 6%,
+        7: 7%,
+    );
+
+    th,
+    td {
+        &:not(:nth-child(3)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $manageDatasetTable {
+            &:nth-child(#{$i}) {
+                width: $percent;
+            }
+        }
+    }
+}
+
+table#datasetNewTable {
+    $datasetNewTable: (
+        1: 4%,
+        2: 24%,
+        3: 60%,
+        4: 6%,
+        5: 6%,
+    );
+
+    th,
+    td {
         & > .form-check {
             display: flex;
             justify-content: center;
             margin-bottom: 0 !important;
         }
 
-        @each $i, $percent in $selectRobotSettingTable {
+        &:not(:nth-child(3)):not(:nth-child(4)) {
+            text-align: center;
+        }
+
+        @each $i, $percent in $datasetNewTable {
             &:nth-child(#{$i}) {
                 width: $percent;
             }

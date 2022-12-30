@@ -18,7 +18,7 @@
     left: 0;
     height: calc(100vh - $navbar-height - $breadcrumb-height);
     width: 250px;
-    padding: 10px 14px;
+    padding: 16px 14px 10px;
     transition: var(--sidebar-width-transition);
     background-color: var(--sidebar-color);
     z-index: 100;
@@ -116,7 +116,7 @@
 
                 .icon,
                 .text {
-                    color: rgba($white, 0.4);
+                    color: $white;
                 }
             }
         }

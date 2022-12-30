@@ -7,24 +7,20 @@ import {
     tooltipController,
 } from "./_bsCustom";
 import { excelController } from "./_excel";
-import { getCookie, setCookie } from "./_cookie";
 import { themeController } from "./_theme";
+import dynamicTableInit from "./_dynamicTable";
 
 /* Bootstrap */
 window.bootstrap = bootstrap;
-
-/* Cookie */
-getCookie();
-setCookie();
+modalController();
+tooltipController();
+accordionController();
 
 /* Theme */
 themeController();
 
 /* Preloader */
 preloader();
-modalController();
-tooltipController();
-accordionController();
 
 /* InputItems */
 checkItems();
@@ -33,3 +29,6 @@ sidebarToggle();
 
 /* Excel Export */
 excelController();
+
+/* DynamicTable */
+dynamicTableInit();

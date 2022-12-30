@@ -1,28 +1,40 @@
-import { getCookie, setCookie } from "./_cookie";
-
 export const themeController = () => {
     "use strict";
-    const getPreferredThemeVariant = () => {
-        return window.matchMedia("(prefers-color-scheme: light)").matches
-            ? "light"
-            : "dark";
+
+    const storedTheme = window.localStorage.getItem("theme");
+    const getPreferredTheme = () => {
+        if (storedTheme) {
+            return storedTheme;
+        }
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
     };
 
-    const setThemeColor = (theme) => {
-        const themeChoice = theme;
-        const themeVariant =
-            themeChoice === "auto" ? getPreferredThemeVariant() : themeChoice;
-        setCookie("theme", themeChoice);
+    const setTheme = (theme) => {
+        if (
+            theme === "auto" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+        } else {
+            document.documentElement.setAttribute("data-bs-theme", theme);
+        }
+    };
 
-        document.documentElement.setAttribute("data-bs-theme", themeVariant);
+    setTheme(getPreferredTheme());
+
+    const showActiveTheme = (theme) => {
+        const themeChoice = theme;
 
         // Deactivate all
-        document.querySelectorAll("[data-theme-value]").forEach((el) => {
+        document.querySelectorAll("[data-bs-theme-value]").forEach((el) => {
             el.classList.remove("active");
         });
 
         const buttonToActive = document.querySelector(
-            `[data-theme-value="${themeChoice}"]`
+            `[data-bs-theme-value="${themeChoice}"]`
         );
 
         // Activate
@@ -34,13 +46,23 @@ export const themeController = () => {
         themeChoice === "auto" && (bdIcon.className = "bi bi-circle-half");
     };
 
-    // initialize theme
-    setThemeColor(getCookie("theme") || "auto");
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+            if (storedTheme !== "light" || storedTheme !== "dark") {
+                setTheme(getPreferredTheme());
+            }
+        });
 
-    // Listen For theme changes
-    document.querySelectorAll("[data-theme-value]").forEach((toggle) => {
-        toggle.addEventListener("click", () => {
-            setThemeColor(toggle.getAttribute("data-theme-value"));
+    window.addEventListener("DOMContentLoaded", () => {
+        showActiveTheme(getPreferredTheme());
+        document.querySelectorAll("[data-bs-theme-value]").forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+                const theme = toggle.getAttribute("data-bs-theme-value");
+                window.localStorage.setItem("theme", theme);
+                setTheme(theme);
+                showActiveTheme(theme);
+            });
         });
     });
 };
