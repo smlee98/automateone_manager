@@ -1,11 +1,11 @@
 extends ../../templates/base
 
 block contents
-    +breadcrumb(["프로세스", "데이터셋 등록"])
+    +breadcrumb(["프로세스", "데이터셋 관리"])
     section#wrapper
         .vstack.gap-4.px-5.py-4
             .d-flex.justify-content-between.align-items-center
-                h4.fw-bold 데이터셋 등록
+                h4.fw-bold 데이터셋 관리
                 .hstack.gap-3
                     a.btn.btn-secondary(href="/src/view/process/dataset.pug")
                         .hstack.gap-2
@@ -20,20 +20,19 @@ block contents
                             span 저장
             .vstack.gap-2
                 label.form-label.fw-bold(for="newDatasetName") 데이터셋명
-                input#newDatasetName.form-control(type="text")
+                input#newDatasetName.form-control(type="text", readonly)
             .vstack.gap-2
                 label.form-label.fw-bold(for="newDatasetExplain") 설명
-                textarea#newDatasetExplain.form-control(rows="5")
+                textarea#newDatasetExplain.form-control(rows="5", readonly)
             .dynamic-table.vstack.gap-3
                 .hstack.justify-content-between
-                    legend.w-auto 데이터 항목
+                    legend.w-auto 데이터 관리
                     button.btn.row-add-btn.btn-primary(type="button")
                         .hstack.gap-2
                             i.bi.bi-plus-circle
                             span.lh-1 행 추가
-                span.text-nowrap.small= `※ 항목명은 숫자, 특수문자가 아닌 문자로 시작해야하며 "_", "."을 제외한 특수문자(~!@#$%^&*()=+), 특정단어(data, id, set, get)는 사용이 불가합니다.`
                 .table-responsive
-                    table#datasetNewTable.table.table-bordered
+                    table#datasetManageTable.table.table-bordered
                         thead
                             tr
                                 th(data-gr-class="row-idx", data-gr-tag="span") 번호
@@ -43,19 +42,21 @@ block contents
                                     data-gr-tag-class="form-control form-control-sm lh-sm rounded-0 border-0",
                                     data-gr-tag-type="text",
                                     data-gr-tag-name="category"
-                                ) 항목
+                                ) 데이터셋명#1
                                 th(
                                     data-gr-class="py-0",
                                     data-gr-tag="input",
                                     data-gr-tag-class="form-control form-control-sm lh-sm rounded-0 border-0",
                                     data-gr-tag-type="text",
                                     data-gr-tag-name="describe"
-                                ) 설명
+                                ) 데이터셋명#2
                                 th(
-                                    data-gr-tag="div",
-                                    data-gr-tag-class="form-check form-switch row-ignore",
-                                    data-gr-tag-inner="<input class='form-check-input row-control' type='checkbox'>"
-                                ) 암호화
+                                    data-gr-class="py-0",
+                                    data-gr-tag="input",
+                                    data-gr-tag-class="form-control form-control-sm lh-sm rounded-0 border-0",
+                                    data-gr-tag-type="text",
+                                    data-gr-tag-name="describe"
+                                ) 데이터셋명#3
                                 th(
                                     data-gr-tag="button",
                                     data-gr-tag-class="btn btn-sm btn-danger py-0 row-remove-btn",
@@ -66,20 +67,20 @@ block contents
                             tr
                                 td.row-idx 1
                                 td.py-0
-                                    input#category-1.form-control.form-control-sm.lh-sm.rounded-0.border-0.row-control(
+                                    input#dataset1-1.form-control.form-control-sm.lh-sm.rounded-0.border-0.row-control(
                                         type="text",
                                         name="category"
                                     )
                                 td.py-0
-                                    input#describe-1.form-control.form-control-sm.lh-sm.rounded-0.border-0.row-control(
+                                    input#dataset2-1.form-control.form-control-sm.lh-sm.rounded-0.border-0.row-control(
                                         type="text",
                                         name="describe"
                                     )
-                                td
-                                    .form-check.form-switch.row-ignore.row-control
-                                        input#encryption-1.form-check-input.row-control(
-                                            type="checkbox"
-                                        )
+                                td.py-0
+                                    input#dataset3-1.form-control.form-control-sm.lh-sm.rounded-0.border-0.row-control(
+                                        type="text",
+                                        name="describe"
+                                    )
                                 td
                                     button#remove-1.btn.btn-sm.btn-danger.py-0.row-remove-btn.row-control(
                                         name="remove"

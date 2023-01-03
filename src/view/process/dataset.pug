@@ -62,11 +62,17 @@ block contents
                             td 관공서 지급심사 활용자료 확보
                             td 2022-02-22 16:57:22
                             td
-                                a.btn.btn-sm.btn-secondary.py-0(href="#")
-                                    span.me-1 수정
-                                    i.bi.bi-pencil-fill
+                                a.btn.btn-sm.btn-secondary.py-0(
+                                    href="/src/view/process/dataset-new.pug"
+                                )
+                                    .hstack.gap-1
+                                        span 수정
+                                        i.bi.bi-pencil-fill
                             td
-                                a.btn.btn-sm.btn-primary.py-0(href="#")
-                                    span.me-1 관리
-                                    i.bi.bi-gear-fill
+                                a.btn.btn-sm.btn-primary.py-0(
+                                    href="/src/view/process/dataset-manage.pug"
+                                )
+                                    .hstack.gap-1
+                                        span 관리
+                                        i.bi.bi-gear-fill
             +pagination

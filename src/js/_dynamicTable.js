@@ -55,34 +55,28 @@ export const DynamicTable = class {
     };
 
     removeRow = (specified) => {
-        console.log(specified);
-        specified.constructor.name.endsWith("Event") &&
-            specified.target.parentNode.parentNode.remove();
-        specified.constructor.name === "HTMLTableRowElement" &&
-            specified.remove();
-        typeof specified === "number" &&
-            this.tbody.querySelector(`tr:nth-child(${specified})`).remove();
+        const rowLength = this.tbody.querySelectorAll("tr").length;
+        if (rowLength > 1) {
+            specified.constructor.name.endsWith("Event") &&
+                specified.target.parentNode.parentNode.remove();
+            specified.constructor.name === "HTMLTableRowElement" &&
+                specified.remove();
+            typeof specified === "number" &&
+                this.tbody.querySelector(`tr:nth-child(${specified})`).remove();
 
-        this.getChecks().forEach((el, idx) => {
-            this.setId(el, idx + 1);
-        });
-    };
-
-    observer = {
-        thead: new window.MutationObserver(() => {
-            this.makeTemplate();
-            this.setId();
-        }),
-        tbody: new window.MutationObserver(() => {
-            this.getChecks().forEach((el) => {
-                el.addEventListener("click", this.processChecks);
+            this.getChecks().forEach((el, idx) => {
+                this.setId(el, idx + 1);
             });
-            this.getRemoveButtons().forEach((el) =>
-                el.addEventListener("click", this.removeRow)
-            );
-            this.setId();
-        }),
+        } else {
+            window.alert("최소 1개 이상의 행이 필요합니다.");
+        }
     };
+
+    observer = new window.MutationObserver((mutation) => {
+        [...mutation[0].addedNodes].forEach((tr) => {
+            this.setId(tr);
+        });
+    });
 
     init = (option) => {
         this.counter = [...this.root.querySelectorAll(".row-counter")];
@@ -95,9 +89,9 @@ export const DynamicTable = class {
 
         // remove
         this.getRemoveButtons().length !== 0 &&
-            this.getRemoveButtons().forEach((el) =>
-                el.addEventListener("click", this.removeRow)
-            );
+            this.getRemoveButtons().forEach((el) => {
+                el.addEventListener("click", this.removeRow);
+            });
 
         // add
         const headers = [...this.thead.querySelectorAll("th[data-gr-tag]")];
