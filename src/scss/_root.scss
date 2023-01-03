@@ -7,4 +7,17 @@ $color-mode-type: data;
             color: #9ca4b1 !important;
         }
     }
+
+    .datepicker-picker {
+        background-color: #111828;
+
+        .datepicker-controls .btn {
+            background-color: #111828;
+            color: #fff;
+        }
+
+        .datepicker-cell:not(.disabled):hover {
+            color: #111828;
+        }
+    }
 }

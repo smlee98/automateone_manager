@@ -1,0 +1,723 @@
+extends ../../templates/base
+
+block contents
+    +breadcrumb(["실행", "예약"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 예약
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-3
+                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
+                        input.form-control-plaintext.form-control-sm(
+                            type="text",
+                            placeholder="예약명 검색"
+                        )
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-search.d-inline-flex
+                    button#excelDownload.btn.btn-success
+                        .hstack.gap-2
+                            i.bi.bi-file-earmark-spreadsheet
+                            span 엑셀 다운로드
+                .hstack.gap-2
+                    button#reservationCalendarBtn.btn.btn-primary(
+                        onclick="chooseExcludeSchedule()"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-calendar2-week
+                            span 예약일정
+                    button.btn.btn-primary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#reservationNewModal"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-plus-lg
+                            span 예약 등록
+                    button.btn.btn-secondary(
+                        data-bs-toggle="modal",
+                        data-bs-target="#deleteCheckModal"
+                    )
+                        .hstack.gap-2
+                            i.bi.bi-x-lg
+                            span 예약 삭제
+            .table-responsive
+                table#processExecutionTable.table.table-bordered.table-excel
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    ) 
+                            th #[span 번호]
+                            th #[span 프로세스명]
+                            th #[span 로봇]
+                            th #[span 스크립트 버전]
+                            th #[span 실행대기열(수)]
+                            th #[span 실행중(수)]
+                            th #[span 마지막 #[br] 시작시각]
+                            th #[span 마지막 #[br] 실행시간]
+                            th #[span 실행등록]
+                            th #[span 우선실행 #[br] 등록]
+                    tbody
+                        tr
+                            td
+                                .form-check
+                                    input#board1.form-check-input.board-check(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="board1"
+                                    )
+                            td #[span 1]
+                            td #[span RID00012_03_test]
+                            td
+                                select#processExcutionRobotSelect1.form-select.form-select-sm
+                                    option(value="auto") Auto
+                            td
+                                select#processExcutionScriptSelect1.form-select.form-select-sm
+                                    option(value="recent") [4] RID00012_XXX_XXX
+                            td #[span 0]
+                            td #[span 0]
+                            td #[span 2022-01-09 #[br] 15:32:36]
+                            td #[span 12345초]
+                            td
+                                button.btn.btn-sm.btn-primary.py-0(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#loadingModal"
+                                )
+                                    span.me-1 실행
+                                    i.bi.bi-play-fill
+                            td
+                                button.btn.btn-sm.btn-primary.py-0(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#loadingModal"
+                                )
+                                    span.me-1 우선실행
+                                    i.bi.bi-play-fill
+            +pagination
+
+block modal
+    #reservationNewModal.modal.fade(
+        aria-labelledby="reservationNewModal",
+        aria-hidden="true"
+    )
+        .modal-dialog.modal-lg.modal-dialog-centered.modal-dialog-scrollable
+            .modal-content
+                .modal-header
+                    .d-flex.flex-column
+                        h5.fw-bold 예약 스케쥴 등록
+                .modal-body
+                    .row.gx-4.gy-2
+                        label.col-3.col-form-label(for="reservationNewTitle")
+                            span.text-nowrap 예약명
+                        .col-9
+                            input#reservationNewTitle.form-control(
+                                type="text",
+                                value=""
+                            )
+                        label.col-3.col-form-label(for="reservationNewProcess")
+                            span.text-nowrap 프로세스
+                        .col-9
+                            select#reservationNewProcess.form-select(
+                                data-search="on"
+                            )
+                                option(value="") 선택
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap 스크립트
+                        .col-9
+                            select#reservationNewScript.form-select(
+                                data-search="on"
+                            )
+                                option(value="") 선택
+                    hr.w-100
+                    .row.gx-4.gy-2
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap 로봇
+                        .col-9
+                            .d-flex.align-items-center.h-100
+                                .form-check.text-nowrap.me-2
+                                    input#reservationNewRobotMutiple.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRobot",
+                                        checked
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRobotMutiple"
+                                    ) 동시실행 로봇 수 :
+                                input.form-control.form-number(type=number)
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.align-items-center.h-100
+                                .form-check
+                                    input#reservationNewRobotAll.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRobot"
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRobotAll"
+                                    ) 전체 동시실행
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.align-items-center.h-100
+                                .form-check.text-nowrap.me-2
+                                    input#reservationNewRobotMutiple.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRobot"
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRobotChoice"
+                                    ) 로봇선택 :
+                                select#reservationNewRobotChoice.form-select(
+                                    data-search="on"
+                                )
+                                    option(value="auto") Auto
+                    hr.w-100
+                    .row.gx-4.gy-2
+                        label.col-3.col-form-label(
+                            for="reservationNewRobotDevide"
+                        )
+                            span.text-nowrap 로봇 균등분배
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap
+                                    input#reservationNewRobotDevideAgree.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRobotDevide",
+                                        checked
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRobotDevideAgree"
+                                    ) 예 : 휴지시간이 긴 로봇부터 우선 실행
+                        label.col-3.col-form-label(
+                            for="reservationNewRobotDevide"
+                        )
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap
+                                    input#reservationNewRobotDevideAgree.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRobotDevide"
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRobotDevideDisagree"
+                                    ) 아니오 : 로봇ID 순서대로 실행
+                        label.col-3.col-form-label(
+                            for="reservationNewRobotFrom"
+                        )
+                            span.text-nowrap 반복 시작일
+                        .col-9
+                            .input-group
+                                input#reservationNewRobotFrom.form-control.datepicker-single(
+                                    type="text",
+                                    placeholder="반복 시작일"
+                                )
+                                .input-group-text
+                                    i.bi.bi-calendar2-week
+                        label.col-3.col-form-label(for="reservationNewRobotTo")
+                            span.text-nowrap 업무시간
+                        .col-9
+                            .hstack.gap-2
+                                .input-group.flex-nowrap
+                                    select#startHourModal.form-select.hour-picker
+                                    span.input-group-text :
+                                    select#startMinuteModal.form-select.minute-picker
+                                span ~
+                                .input-group.flex-nowrap
+                                    select#endHourModal.form-select.hour-picker
+                                    span.input-group-text :
+                                    select#endMinuteModal.form-select.minute-picker
+                    hr.w-100
+                    .row.gx-4.gy-2.mb-3
+                        label.col-3.col-form-label(for="reservationRepeatType")
+                            span.text-nowrap 반복 유형
+                        .col-9
+                            .d-flex.align-items-center.h-100
+                                select#reservationRepeatType.form-select(
+                                    data-search="on"
+                                )
+                                    option(value="none") 없음
+                                    option(value="reservationMinute") 분
+                                    option(value="reservationHour") 시
+                                    option(value="reservationDay") 일
+                                    option(value="reservationWeek") 주
+                                    option(value="reservationMonth") 월
+                                    option(value="reservationYear") 년
+                                    option(value="reservationDirect") 직접입력
+                    #reservationFrequency.row.gx-4.gy-2.mb-3(
+                        style="display: none"
+                    )
+                        label.col-3.col-form-label(for="reservationNewTitle")
+                            span.text-nowrap 반복주기
+                        .col-9
+                            .input-group
+                                input#reservationTypeFrequencyInput.form-control.form-number(
+                                    type="text",
+                                    value="1"
+                                )
+                                span#reservationTypeFrequencyText.input-group-text 분
+                    #reservationWeek.row.gx-4.gy-2.mb-3(style="display: none")
+                        label.col-3.col-form-label
+                            span.text-nowrap 반복요일
+                        .col-9
+                            .d-flex.align-items-center.h-100
+                                .form-check.me-3
+                                    input#reservationWeekSun.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekSun"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="reservationWeekSun"
+                                    ) 일
+                                .form-check.me-3
+                                    input#reservationWeekMon.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekMon"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="reservationWeekMon"
+                                    ) 월
+                                .form-check.me-3
+                                    input#reservationWeekTue.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekTue"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="lifecyclereservationWeekTue"
+                                    ) 화
+                                .form-check.me-3
+                                    input#reservationWeekWed.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekWed"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="reservationWeekWed"
+                                    ) 수
+                                .form-check.me-3
+                                    input#reservationWeekThu.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekThu"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="reservationWeekThu"
+                                    ) 목
+                                .form-check.me-3
+                                    input#reservationWeekFri.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekFri"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="reservationWeekFri"
+                                    ) 금
+                                .form-check
+                                    input#reservationWeekSat.form-check-input(
+                                        type="checkbox",
+                                        value="reservationWeekSat"
+                                    )
+                                    label.form-check-label.text-nowrap(
+                                        for="reservationWeekSat"
+                                    ) 토
+                    #reservationMonth.row.gx-4.gy-2.mb-3(style="display: none")
+                        label.col-3.col-form-label(for="reservationNewTitle")
+                            span.text-nowrap 반복일
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap.me-3
+                                    input#reservationMonthDate.form-check-input(
+                                        type="radio",
+                                        name="reservationMonthDate",
+                                        checked
+                                    )
+                                .input-group
+                                    input.form-control.form-number(
+                                        type=number,
+                                        min="1",
+                                        max="32"
+                                    )
+                                    span.input-group-text 일
+                        .col-12
+                            .d-flex.justify-content-end.align-items-center.h-100
+                                span.text-muted.small 32일은 매월 마지막 일입니다.
+                        label.col-3.col-form-label(for="reservationNewTitle")
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap.me-3
+                                    input#reservationMonthDate.form-check-input(
+                                        type="radio",
+                                        name="reservationMonthSelect"
+                                    )
+                                .row.row-cols-2.gx-2.gy-0.w-100
+                                    .col
+                                        select#reservationMonthSelectWeek.form-select(
+                                            data-search="off"
+                                        )
+                                            option(value="first") 첫번째
+                                            option(value="second") 두번째
+                                            option(value="third") 세번째
+                                            option(value="fourth") 네번째
+                                            option(value="last") 마지막
+                                    .col
+                                        select#reservationMonthSelectDate.form-select(
+                                            data-search="off"
+                                        )
+                                            option(value="day") 일
+                                            option(value="week") 주중
+                                            option(value="weekend") 주말
+                                            option(value="sun") 일요일
+                                            option(value="mon") 월요일
+                                            option(value="tue") 화요일
+                                            option(value="wed") 수요일
+                                            option(value="thu") 목요일
+                                            option(value="fri") 금요일
+                                            option(value="sat") 토요일
+                    #reservationYear.row.gx-4.gy-2.mb-3(style="display: none")
+                        label.col-3.col-form-label(for="reservationNewTitle")
+                            span.text-nowrap 반복일
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap.me-3
+                                    input#reservationYearDate.form-check-input(
+                                        type="radio",
+                                        name="reservationYearSelect",
+                                        checked
+                                    )
+                                .row.row-cols.gx-2.gy-0.w-100
+                                    .col
+                                        select#reservationYearSelectMonth.form-select(
+                                            data-search="off"
+                                        )
+                                            option(value="jan") 1월
+                                            option(value="feb") 2월
+                                            option(value="mar") 3월
+                                            option(value="apr") 4월
+                                            option(value="may") 5월
+                                            option(value="jun") 6월
+                                            option(value="jul") 7월
+                                            option(value="aug") 8월
+                                            option(value="sep") 9월
+                                            option(value="oct") 10월
+                                            option(value="nov") 11월
+                                            option(value="dec") 12월
+                                    .col
+                                        .input-group
+                                            input.form-control.form-number(
+                                                type=number,
+                                                min="1",
+                                                max="32",
+                                                checked
+                                            )
+                                            span.input-group-text 일
+                        .col-12
+                            .d-flex.justify-content-end.align-items-center.h-100
+                                span.text-muted.small 32일은 매월 마지막 일입니다.
+                        label.col-3.col-form-label(for="reservationNewTitle")
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap.me-3
+                                    input#reservationYearSelect.form-check-input(
+                                        type="radio",
+                                        name="reservationYearSelect"
+                                    )
+                                .row.row-cols-3.gx-2.gy-0.w-100
+                                    .col
+                                        .d-flex.align-items-center.h-100
+                                            select#reservationYearSelectMonthB.form-select(
+                                                data-search="off"
+                                            )
+                                                option(value="jan") 1월
+                                                option(value="feb") 2월
+                                                option(value="mar") 3월
+                                                option(value="apr") 4월
+                                                option(value="may") 5월
+                                                option(value="jun") 6월
+                                                option(value="jul") 7월
+                                                option(value="aug") 8월
+                                                option(value="sep") 9월
+                                                option(value="oct") 10월
+                                                option(value="nov") 11월
+                                                option(value="dec") 12월
+                                            span.mx-1 의
+                                    .col
+                                        select#reservationMonthSelectWeek.form-select(
+                                            data-search="off"
+                                        )
+                                            option(value="first") 첫번째
+                                            option(value="second") 두번째
+                                            option(value="third") 세번째
+                                            option(value="fourth") 네번째
+                                            option(value="last") 마지막
+                                    .col
+                                        select#reservationMonthSelectDate.form-select(
+                                            data-search="off"
+                                        )
+                                            option(value="day") 일
+                                            option(value="week") 주중
+                                            option(value="weekend") 주말
+                                            option(value="sun") 일요일
+                                            option(value="mon") 월요일
+                                            option(value="tue") 화요일
+                                            option(value="wed") 수요일
+                                            option(value="thu") 목요일
+                                            option(value="fri") 금요일
+                                            option(value="sat") 토요일
+                    #reservationDirect.row.gx-4.gy-2.mb-3(
+                        style="display: none"
+                    )
+                        label.col-3.col-form-label
+                            span.text-nowrap 월
+                        .col-9
+                            input.form-control(placeholder="ex) 1,2,...,11,12")
+                        label.col-3.col-form-label
+                            span.text-nowrap 주기
+                        .col-9
+                            .d-flex.align-items-center.h-100
+                                .form-check.me-3
+                                    input#reservationDirectDay.form-check-input(
+                                        type="radio",
+                                        name="reservationDirectType",
+                                        value="allDay",
+                                        checked
+                                    )
+                                    label.form-check-label(
+                                        for="receptionTypeAll"
+                                    ) 매일
+                                .form-check
+                                    input#reservationDirectWeek.form-check-input(
+                                        type="radio",
+                                        name="reservationDirectType",
+                                        value="allWeek"
+                                    )
+                                    label.form-check-label(
+                                        for="receptionTypeNew"
+                                    ) 매주
+                        #reservationdirectInDay.row.gx-4.gy-2.mx-0.mt-0.px-0
+                            label.col-3.col-form-label
+                                span.text-nowrap 일
+                            .col-9
+                                input.form-control(
+                                    placeholder="ex) 1,2,...,30,31"
+                                )
+                        #reservationdirectInWeek.row.gx-4.gy-2.mx-0.mt-0.px-0(
+                            style="display: none"
+                        )
+                            label.col-3.col-form-label
+                                span.text-nowrap 주
+                            .col-9
+                                .d-flex.align-items-center.h-100
+                                    .form-check.me-3
+                                        input#reservationDirectWeekSun.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekSun"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationDirectWeekSun"
+                                        ) 일
+                                    .form-check.me-3
+                                        input#reservationDirectWeekMon.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekMon"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationDirectWeekMon"
+                                        ) 월
+                                    .form-check.me-3
+                                        input#reservationDirectWeekTue.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekTue"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="lifecyclereservationDirectWeekTue"
+                                        ) 화
+                                    .form-check.me-3
+                                        input#reservationDirectWeekWed.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekWed"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationDirectWeekWed"
+                                        ) 수
+                                    .form-check.me-3
+                                        input#reservationDirectWeekThu.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekThu"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationDirectWeekThu"
+                                        ) 목
+                                    .form-check.me-3
+                                        input#reservationDirectWeekFri.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekFri"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationDirectWeekFri"
+                                        ) 금
+                                    .form-check
+                                        input#reservationDirectWeekSat.form-check-input(
+                                            type="checkbox",
+                                            value="reservationDirectWeekSat"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationDirectWeekSat"
+                                        ) 토
+                        label.col-3.col-form-label
+                            span.text-nowrap 시
+                        .col-9
+                            input.form-control(placeholder="ex) 0,1,...,22,23")
+                        label.col-3.col-form-label
+                            span.text-nowrap 분
+                        .col-9
+                            input.form-control(placeholder="ex) 0,1,...,58,59")
+                    #reservationEnd.row.gx-4.gy-2.mb-3(style="display: none")
+                        label.col-3.col-form-label
+                            span.text-nowrap 반복종료
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check
+                                    input#reservationEndTypeNone.form-check-input(
+                                        type="radio",
+                                        name="reservationEndType",
+                                        checked
+                                    )
+                                    label.form-check-label(
+                                        for="reservationEndTypeNone"
+                                    ) 없음
+                        label.col-3.col-form-label
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .d-flex.justify-content-between.align-items-center.h-100.me-3
+                                    .form-check
+                                        input#reservationEndTypeCount.form-check-input(
+                                            type="radio",
+                                            name="reservationEndType"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationEndTypeCount"
+                                        ) 반복 실행 횟수
+                                .input-group
+                                    input#reservationEndTypeCountNumber.form-control.form-number(
+                                        type="text",
+                                        value="2"
+                                    )
+                                    span.input-group-text 회
+                        label.col-3.col-form-label
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .d-flex.justify-content-between.align-items-center.h-100.me-3
+                                    .form-check
+                                        input#reservationEndTypeDate.form-check-input(
+                                            type="radio",
+                                            name="reservationEndType"
+                                        )
+                                        label.form-check-label.text-nowrap(
+                                            for="reservationEndTypeDate"
+                                        ) 반복 종료일
+                                .input-group-text.datepicker-box.border-0.w-100
+                                    input#reservationEndTypeDateNumber.form-control.datepicker-single(
+                                        type="text"
+                                    )
+                                    i.bi.bi-calendar2-week
+                    #reservationDetail.accordion(style="display: none")
+                        .accordion-item
+                            h2#reservationAccordion.accordion-header
+                                button.accordion-button.collapsed(
+                                    type="button",
+                                    data-bs-toggle="collapse",
+                                    data-bs-target="#collapseReservationNew",
+                                    aria-expanded="false",
+                                    aria-controls="collapseReservationNew"
+                                ) 미리보기
+                            #collapseReservationNew.accordion-collapse.collapse(
+                                aria-labelledby="headingOne",
+                                data-bs-parent="#reservationDetail"
+                            )
+                                .accordion-body.p-0
+                                    ul.list-group.list-group-flush
+                                        li.list-group-item
+                                            span.badge.bg-secondary.me-1 1
+                                            span 2022/08/05 00:00:00
+                                        li.list-group-item
+                                            span.badge.bg-secondary.me-1 2
+                                            span 2022/08/05 01:00:00
+                                        li.list-group-item
+                                            span.badge.bg-secondary.me-1 3
+                                            span 2022/08/05 02:00:00
+                                        li.list-group-item
+                                            span.badge.bg-secondary.me-1 4
+                                            span 2022/08/05 03:00:00
+                                        li.list-group-item
+                                            span.badge.bg-secondary.me-1 5
+                                            span 2022/08/05 04:00:00
+                    hr.w-100
+                    .row.gx-4.gy-2
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap 실패 시 재실행
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap
+                                    input#reservationNewRetryAccept.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRetry"
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRetryAccept"
+                                    ) 예
+                                .d-flex.align-items-center.text-nowrap
+                                    span.me-2 재시도 횟수(0 : 무제한)
+                                    input.form-control.form-number(type=number)
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check.text-nowrap
+                                    input#reservationNewRetryDisaccept.form-check-input(
+                                        type="radio",
+                                        name="reservationNewRetry",
+                                        checked
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewRetryDisaccept"
+                                    ) 아니오
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap 대기열 중복등록
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check
+                                    input#reservationNewOverlapAccept.form-check-input(
+                                        type="radio",
+                                        name="reservationNewOverlap"
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewOverlapAccept"
+                                    ) 예 : 동일한 예약이 대기열에 있어도 계속해서 대기열에 등록됩니다.
+                        label.col-3.col-form-label(for="reservationNewScript")
+                            span.text-nowrap &nbsp;
+                        .col-9
+                            .d-flex.justify-content-between.align-items-center.h-100
+                                .form-check
+                                    input#reservationNewOverlapDisaccept.form-check-input(
+                                        type="radio",
+                                        name="reservationNewOverlap",
+                                        checked
+                                    )
+                                    label.form-check-label(
+                                        for="reservationNewOverlapDisaccept"
+                                    ) 아니오 : 예약시간 도달시 이전예약이 대기열에 이미 있을경우 대기열 등록을 건너뜁니다.
+                .modal-footer.justify-content-center
+                    .hstack.gap-3.w-100
+                        button.btn.btn-lg.btn-primary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 등록
+                        button.btn.btn-lg.btn-secondary.w-100(
+                            data-bs-dismiss="modal",
+                            aria-label="Close"
+                        ) 취소

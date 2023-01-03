@@ -178,15 +178,15 @@
                         "contents": [
                             {
                                 "title": "프로세스 실행",
-                                "link": "#"
+                                "link": "/src/view/execution/execution.pug"
                             },
                             {
                                 "title": "예약",
-                                "link": "#"
+                                "link": "/src/view/execution/reservation.pug"
                             },
                             {
                                 "title": "실행 대기열",
-                                "link": "#"
+                                "link": "/src/view/execution/queue.pug"
                             },
                             {
                                 "title": "실시간 모니터링",

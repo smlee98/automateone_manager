@@ -1,0 +1,90 @@
+extends ../../templates/base
+
+block contents
+    +breadcrumb(["실행", "프로세스 실행"])
+    section#wrapper
+        .vstack.gap-4.px-5.py-4
+            h4.fw-bold 프로세스 실행
+            .d-flex.justify-content-between.align-items-center
+                .hstack.gap-3
+                    .hstack.gap-2.border.ps-3.pe-2.py-2.rounded-pill
+                        input.form-control-plaintext.form-control-sm(
+                            type="text",
+                            placeholder="프로세스명 검색"
+                        )
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-search.d-inline-flex
+                    button#excelDownload.btn.btn-success
+                        .hstack.gap-2
+                            i.bi.bi-file-earmark-spreadsheet
+                            span 엑셀 다운로드
+                .hstack.gap-2
+                    span.text-muted 최근 업데이트 : 2022-11-18 10:13:06
+                    #update.hstack.gap-2.border.p-2.rounded-pill
+                        button.btn.btn-primary.btn-icon.rounded-circle
+                            .hstack.justify-content-center
+                                i.bi.bi-arrow-clockwise.d-inline-flex
+                        select
+                            option(value="0") 자동갱신안함
+                            option(value="5000") 5초
+                            option(value="10000") 10초
+                            option(value="30000") 30초
+                            option(value="60000") 60초
+            .table-responsive
+                table#processExecutionTable.table.table-bordered.table-excel
+                    thead
+                        tr
+                            th
+                                .form-check
+                                    input#checkAll.form-check-input(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="checkAll"
+                                    ) 
+                            th #[span 번호]
+                            th #[span 프로세스명]
+                            th #[span 로봇]
+                            th #[span 스크립트 버전]
+                            th #[span 실행대기열(수)]
+                            th #[span 실행중(수)]
+                            th #[span 마지막 #[br] 시작시각]
+                            th #[span 마지막 #[br] 실행시간]
+                            th #[span 실행등록]
+                            th #[span 우선실행 #[br] 등록]
+                    tbody
+                        tr
+                            td
+                                .form-check
+                                    input#board1.form-check-input.board-check(
+                                        type="checkbox",
+                                        name="boardCheck",
+                                        value="board1"
+                                    )
+                            td #[span 1]
+                            td #[span RID00012_03_test]
+                            td
+                                select#processExcutionRobotSelect1.form-select.form-select-sm
+                                    option(value="auto") Auto
+                            td
+                                select#processExcutionScriptSelect1.form-select.form-select-sm
+                                    option(value="recent") [4] RID00012_XXX_XXX
+                            td #[span 0]
+                            td #[span 0]
+                            td #[span 2022-01-09 #[br] 15:32:36]
+                            td #[span 12345초]
+                            td
+                                button.btn.btn-sm.btn-primary.py-0(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#loadingModal"
+                                )
+                                    span.me-1 실행
+                                    i.bi.bi-play-fill
+                            td
+                                button.btn.btn-sm.btn-primary.py-0(
+                                    data-bs-toggle="modal",
+                                    data-bs-target="#loadingModal"
+                                )
+                                    span.me-1 우선실행
+                                    i.bi.bi-play-fill
+            +pagination

@@ -1,6 +1,12 @@
 import * as bootstrap from "bootstrap";
 import preloader from "./_preloader";
-import { checkItems, projectToggle, sidebarToggle } from "./_input";
+import {
+    checkItems,
+    datepickerController,
+    projectToggle,
+    sidebarToggle,
+    timepickerController,
+} from "./_input";
 import {
     accordionController,
     modalController,
@@ -15,6 +21,10 @@ window.bootstrap = bootstrap;
 modalController();
 tooltipController();
 accordionController();
+
+/* DatePicker */
+timepickerController();
+datepickerController();
 
 /* Theme */
 themeController();

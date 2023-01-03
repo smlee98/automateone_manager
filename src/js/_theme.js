@@ -38,12 +38,14 @@ export const themeController = () => {
         );
 
         // Activate
-        buttonToActive.classList.add("active");
-        const bdIcon = document.querySelector("#bd-icon i");
+        if (buttonToActive) {
+            buttonToActive.classList.add("active");
+            const bdIcon = document.querySelector("#bd-icon i");
 
-        themeChoice === "light" && (bdIcon.className = "bi bi-sun-fill");
-        themeChoice === "dark" && (bdIcon.className = "bi bi-moon-fill");
-        themeChoice === "auto" && (bdIcon.className = "bi bi-circle-half");
+            themeChoice === "light" && (bdIcon.className = "bi bi-sun-fill");
+            themeChoice === "dark" && (bdIcon.className = "bi bi-moon-fill");
+            themeChoice === "auto" && (bdIcon.className = "bi bi-circle-half");
+        }
     };
 
     window
